@@ -15,6 +15,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import de.jbamberger.offlinefetcher.source.jodel.JodelApi;
+import de.jbamberger.offlinefetcher.source.reddit.RedditApi;
 import de.jbamberger.offlinefetcher.util.LocalDateTimeDeSerializer;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -98,7 +99,13 @@ public class NetModule {
 
     @Provides
     @Singleton
-    JodelApi provideFhgApiInterface(Retrofit.Builder retrofitBuilder) {
+    JodelApi provideJodelApiInterface(Retrofit.Builder retrofitBuilder) {
         return retrofitBuilder.baseUrl(JodelApi.BASE_URL).build().create(JodelApi.class);
+    }
+
+    @Provides
+    @Singleton
+    RedditApi provideRedditApiInterface(Retrofit.Builder retrofitBuilder) {
+        return retrofitBuilder.baseUrl(RedditApi.BASE_URL).build().create(RedditApi.class);
     }
 }

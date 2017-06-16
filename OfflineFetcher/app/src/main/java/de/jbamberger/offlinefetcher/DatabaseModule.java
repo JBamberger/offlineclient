@@ -1,14 +1,6 @@
 package de.jbamberger.offlinefetcher;
 
-import android.content.Context;
-
-import org.greenrobot.greendao.database.Database;
-import org.greenrobot.greendao.database.DatabaseOpenHelper;
-
-import javax.inject.Singleton;
-
 import dagger.Module;
-import dagger.Provides;
 
 /**
  * Dependency Injection module to provide database related objects.
@@ -21,7 +13,7 @@ public class DatabaseModule {
 
     private static final String DB_NAME = "offline-fetcher-app-db";
 
-    @Provides
+    /*@Provides
     @Singleton
     DatabaseOpenHelper provideDbHelper(Context context) {
         return new DaoMaster.DevOpenHelper(context, DB_NAME);
@@ -43,5 +35,5 @@ public class DatabaseModule {
     @Singleton
     DaoSession provideDaoSession(DaoMaster daoMaster) {
         return daoMaster.newSession();
-    }
+    }*/
 }

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">OfflineFetcher</string>
+    <string name="title_activity_jodel">JodelActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
