@@ -17,6 +17,7 @@ import de.jbamberger.offlinefetcher.ui.components.DataBindingAdapter;
 import de.jbamberger.offlinefetcher.ui.components.ListItem;
 import de.jbamberger.offlinefetcher.ui.components.TwoLineItem;
 import de.jbamberger.offlinefetcher.ui.jodel.JodelActivity;
+import de.jbamberger.offlinefetcher.ui.reddit.RedditActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,8 +46,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, JodelActivity.class));
             }
+        }));items.add(new TwoLineItem("Reddit", "", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, RedditActivity.class));
+            }
         }));
+
         adapter.setItems(items);
+
+
     }
 
 }

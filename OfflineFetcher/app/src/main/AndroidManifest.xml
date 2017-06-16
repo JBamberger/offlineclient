@@ -29,6 +29,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.jbamberger.offlinefetcher.ui.main.MainActivity" />
         </activity>
+        <activity
+            android:name=".ui.reddit.RedditActivity"
+            android:label="@string/title_activity_reddit"
+            android:parentActivityName=".ui.main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="de.jbamberger.offlinefetcher.ui.main.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
