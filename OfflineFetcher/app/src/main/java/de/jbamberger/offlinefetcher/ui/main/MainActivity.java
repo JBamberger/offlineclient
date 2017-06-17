@@ -10,7 +10,6 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-import de.jbamberger.offlinefetcher.App;
 import de.jbamberger.offlinefetcher.R;
 import de.jbamberger.offlinefetcher.databinding.ActivityMainBinding;
 import de.jbamberger.offlinefetcher.ui.components.DataBindingAdapter;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        ((App) getApplication()).getAppComponent().inject(this);
+        //((App) getApplication()).getAppComponent().inject(this);
 
         adapter = new DataBindingAdapter();
 
@@ -46,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, JodelActivity.class));
             }
-        }));items.add(new TwoLineItem("Reddit", "", new View.OnClickListener() {
+        }));
+        items.add(new TwoLineItem("Reddit", "", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, RedditActivity.class));
@@ -54,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
         }));
 
         adapter.setItems(items);
-
-
     }
+
 
 }

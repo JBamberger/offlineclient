@@ -1,17 +1,23 @@
 package de.jbamberger.offlinefetcher;
 
+import android.app.Activity;
 import android.app.Application;
 import android.util.Log;
 
+import javax.inject.Inject;
+
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 import timber.log.Timber;
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-public class App extends Application {
+public class App extends Application implements HasActivityInjector {
 
-    private AppComponent appComponent;
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
     @Override
     public void onCreate() {
@@ -22,13 +28,14 @@ public class App extends Application {
         } else {
             Timber.plant(new CrashReportingTree());
         }
-
-        appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
-        appComponent.inject(this);
+        AppInjector.init(this);
+//        appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+//        appComponent.inject(this);
     }
 
-    public AppComponent getAppComponent() {
-        return appComponent;
+    @Override
+    public DispatchingAndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
 
 

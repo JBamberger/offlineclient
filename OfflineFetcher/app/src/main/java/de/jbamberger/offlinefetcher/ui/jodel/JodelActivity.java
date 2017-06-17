@@ -4,13 +4,11 @@ import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 
 import java.io.IOException;
@@ -20,7 +18,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import de.jbamberger.offlinefetcher.App;
+import dagger.android.AndroidInjection;
 import de.jbamberger.offlinefetcher.R;
 import de.jbamberger.offlinefetcher.databinding.ActivityJodelBinding;
 import de.jbamberger.offlinefetcher.source.jodel.GetPostsComboResponse;
@@ -34,6 +32,7 @@ import retrofit2.Response;
 public class JodelActivity extends AppCompatActivity {
 
     private static final String TAG = JodelActivity.class.getSimpleName();
+
     @Inject
     JodelApi api;
 
@@ -43,30 +42,23 @@ public class JodelActivity extends AppCompatActivity {
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    return true;
-                case R.id.navigation_dashboard:
-                    return true;
-                case R.id.navigation_notifications:
-                    return true;
-            }
-            return false;
-        }
-
-    };
+            = item -> {
+                switch (item.getItemId()) {
+                    case R.id.navigation_home:
+                        return true;
+                    case R.id.navigation_dashboard:
+                        return true;
+                    case R.id.navigation_notifications:
+                        return true;
+                }
+                return false;
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_jodel);
-
-        ((App) getApplication()).getAppComponent().inject(this);
-
 
         binding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -154,4 +146,5 @@ public class JodelActivity extends AppCompatActivity {
             return items.size();
         }
     }
+
 }

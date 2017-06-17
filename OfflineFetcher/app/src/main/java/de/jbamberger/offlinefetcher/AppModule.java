@@ -7,6 +7,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.ContributesAndroidInjector;
+import de.jbamberger.offlinefetcher.ui.jodel.JodelActivity;
+import de.jbamberger.offlinefetcher.ui.main.MainActivity;
 
 /**
  * Dependency injection module to provide application wide dependencies.
@@ -15,19 +18,13 @@ import dagger.Provides;
  */
 
 @Module
-public class AppModule {
+public abstract class AppModule {
 
-    private Application mApplication;
+    @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
+    abstract MainActivity contributeMainActivity();
 
-    public AppModule(Application application) {
-        mApplication = application;
-    }
-
-    @Provides
-    @Singleton
-    Application providesApplication() {
-        return mApplication;
-    }
+    @ContributesAndroidInjector
+    abstract JodelActivity contributeJodelActivity();
 
     @Provides
     @Singleton
