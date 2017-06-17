@@ -4,7 +4,6 @@ apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
-    dataBinding.enabled = true
 
     defaultConfig {
         applicationId "de.jbamberger.offlinefetcher"
@@ -19,6 +18,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     packagingOptions {
         pickFirst 'META-INF/ASL2.0'
@@ -46,40 +52,52 @@ dependencies {
 
     //compile "com.google.guava:guava:20.0"
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:support-annotations:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support:cardview-v7:25.3.1'
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support:customtabs:25.3.1'
-    compile 'com.android.support:preference-v14:25.3.1'
-    compile 'org.apache.commons:commons-lang3:3.4'
-    compile 'commons-io:commons-io:2.5'
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:retrofit-converters:2.3.0'
-    compile 'com.squareup.retrofit2:converter-scalars:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-    compile 'com.squareup:otto:1.3.8'
-    compile 'android.arch.lifecycle:runtime:1.0.0-alpha3'
-    compile 'android.arch.lifecycle:extensions:1.0.0-alpha3'
-    compile 'android.arch.persistence.room:runtime:1.0.0-alpha3'
-    compile 'org.greenrobot:greendao:3.2.2'
-    compile 'joda-time:joda-time:2.9.9'
-    compile 'com.jakewharton.timber:timber:4.5.0'
-    compile 'org.jsoup:jsoup:1.10.2'
-    compile 'com.google.code.gson:gson:2.8.1'
-    compile 'com.google.dagger:dagger:2.9'
-    compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
-    testCompile 'junit:junit:4.12'
-    annotationProcessor 'android.arch.lifecycle:compiler:1.0.0-alpha3'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha3'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.9'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
-    provided 'javax.annotation:jsr250-api:1.0'
+    compile "com.android.support:support-v4:$support_version"
+    compile "com.android.support:appcompat-v7:$support_version"
+    compile "com.android.support:support-annotations:$support_version"
+    compile "com.android.support:design:$support_version"
+    compile "com.android.support:cardview-v7:$support_version"
+    compile "com.android.support:recyclerview-v7:$support_version"
+    compile "com.android.support:customtabs:$support_version"
+    compile "com.android.support:preference-v14:$support_version"
+    compile "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+
+    compile "org.apache.commons:commons-lang3:$apache_commons_lang_version"
+    compile "commons-io:commons-io:$apache_commons_version"
+
+    compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+    compile "com.squareup.retrofit2:retrofit-converters:$retrofit_version"
+    compile "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    compile "com.squareup.okhttp3:okhttp:$okhttp_version"
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    compile "com.squareup:otto:$otto_version"
+
+    compile "android.arch.lifecycle:runtime:$arch_version"
+    compile "android.arch.lifecycle:extensions:$arch_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$arch_version"
+
+    compile "android.arch.persistence.room:runtime:$arch_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$arch_version"
+
+
+    compile "org.greenrobot:greendao:$greendao_version"
+    compile "joda-time:joda-time:$joda_time_version"
+    compile "com.jakewharton.timber:timber:$timber_version"
+    compile "org.jsoup:jsoup:$jsoup_version"
+    compile "com.google.code.gson:gson:$gson_version"
+
+    compile "com.google.dagger:dagger:$dagger_version"
+    compile "com.google.dagger:dagger-android-support:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+
+
+    compile "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+
+    testCompile "junit:junit:$junit_version"
+    provided "javax.annotation:jsr250-api:1.0"
 }
