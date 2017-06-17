@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
 
 import java.util.ArrayList;
 
+import dagger.android.AndroidInjection;
 import de.jbamberger.offlinefetcher.R;
 import de.jbamberger.offlinefetcher.databinding.ActivityMainBinding;
 import de.jbamberger.offlinefetcher.ui.components.DataBindingAdapter;
@@ -28,10 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
-        //((App) getApplication()).getAppComponent().inject(this);
 
         adapter = new DataBindingAdapter();
 
@@ -40,18 +39,8 @@ public class MainActivity extends AppCompatActivity {
         binding.list.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         ArrayList<ListItem> items = new ArrayList<>();
-        items.add(new TwoLineItem("Jodel", "", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, JodelActivity.class));
-            }
-        }));
-        items.add(new TwoLineItem("Reddit", "", new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, RedditActivity.class));
-            }
-        }));
+        items.add(new TwoLineItem("Jodel", "", v -> startActivity(new Intent(MainActivity.this, JodelActivity.class))));
+        items.add(new TwoLineItem("Reddit", "", v -> startActivity(new Intent(MainActivity.this, RedditActivity.class))));
 
         adapter.setItems(items);
     }

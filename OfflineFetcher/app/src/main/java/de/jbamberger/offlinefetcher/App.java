@@ -29,8 +29,6 @@ public class App extends Application implements HasActivityInjector {
             Timber.plant(new CrashReportingTree());
         }
         AppInjector.init(this);
-//        appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
-//        appComponent.inject(this);
     }
 
     @Override

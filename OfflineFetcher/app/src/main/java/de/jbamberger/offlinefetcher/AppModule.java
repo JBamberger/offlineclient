@@ -10,6 +10,7 @@ import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
 import de.jbamberger.offlinefetcher.ui.jodel.JodelActivity;
 import de.jbamberger.offlinefetcher.ui.main.MainActivity;
+import de.jbamberger.offlinefetcher.ui.reddit.RedditActivity;
 
 /**
  * Dependency injection module to provide application wide dependencies.
@@ -25,6 +26,9 @@ public abstract class AppModule {
 
     @ContributesAndroidInjector
     abstract JodelActivity contributeJodelActivity();
+
+    @ContributesAndroidInjector
+    abstract RedditActivity contributeRedditActivity();
 
     @Provides
     @Singleton

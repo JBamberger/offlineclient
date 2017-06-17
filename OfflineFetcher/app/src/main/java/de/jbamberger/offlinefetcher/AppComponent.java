@@ -8,8 +8,6 @@ import javax.inject.Singleton;
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
-import de.jbamberger.offlinefetcher.ui.jodel.JodelActivity;
-import de.jbamberger.offlinefetcher.ui.main.MainActivity;
 
 @Singleton
 @Component(modules = {
@@ -29,9 +27,5 @@ public interface AppComponent {
     }
 
     void inject(App app);
-
-    void inject(MainActivity mainActivity);
-
-    void inject(JodelActivity jodelActivity);
 
 }

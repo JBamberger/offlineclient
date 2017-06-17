@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import dagger.android.AndroidInjection;
 import de.jbamberger.offlinefetcher.R;
 import de.jbamberger.offlinefetcher.databinding.ActivityRedditBinding;
 
@@ -24,6 +25,7 @@ public class RedditActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_reddit);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
