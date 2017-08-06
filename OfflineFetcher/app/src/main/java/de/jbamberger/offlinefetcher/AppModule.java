@@ -2,6 +2,8 @@ package de.jbamberger.offlinefetcher;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import javax.inject.Singleton;
 
@@ -10,7 +12,6 @@ import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
 import de.jbamberger.offlinefetcher.ui.jodel.JodelActivity;
 import de.jbamberger.offlinefetcher.ui.main.MainActivity;
-import de.jbamberger.offlinefetcher.ui.reddit.RedditActivity;
 
 /**
  * Dependency injection module to provide application wide dependencies.
@@ -21,14 +22,14 @@ import de.jbamberger.offlinefetcher.ui.reddit.RedditActivity;
 @Module
 public abstract class AppModule {
 
-    @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
+    @ContributesAndroidInjector
     abstract MainActivity contributeMainActivity();
 
     @ContributesAndroidInjector
     abstract JodelActivity contributeJodelActivity();
 
-    @ContributesAndroidInjector
-    abstract RedditActivity contributeRedditActivity();
+/*    @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
+    abstract RedditActivity contributeRedditActivity();*/
 
     @Provides
     @Singleton
@@ -36,4 +37,9 @@ public abstract class AppModule {
         return application.getApplicationContext();
     }
 
+    @Provides
+    @Singleton
+    SharedPreferences providesSharedPreferences(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context);
+    }
 }

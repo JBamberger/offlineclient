@@ -8,8 +8,6 @@ import com.google.gson.GsonBuilder;
 
 import org.joda.time.LocalDateTime;
 
-import java.io.IOException;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -18,10 +16,8 @@ import de.jbamberger.offlinefetcher.source.jodel.JodelApi;
 import de.jbamberger.offlinefetcher.source.reddit.RedditApi;
 import de.jbamberger.offlinefetcher.util.LocalDateTimeDeSerializer;
 import okhttp3.Cache;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -62,24 +58,21 @@ public class NetModule {
             builder.addInterceptor(httpLoggingInterceptor);
         }
 
-        builder.addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Interceptor.Chain chain) throws IOException {
-                Request original = chain.request();
+        builder.addInterceptor(chain -> {
+            Request original = chain.request();
 
-                Request request = original.newBuilder()
-                        .header("User-Agent", "Jodel/4.47.0 Dalvik/2.1.0 (Linux; U; Android 7.1.1; GT-I9295 Build/NOF27B)")
-                        .header("Authorization", "Bearer 59374521-a79c9e81-614da76f-f171-4783-8063-ef955ef3972f")
-                        //.header("X-Client-Type", "android_4.47.0")
-                        //.header("X-Api-Version", "0.2")
-                        //.header("X-Timestamp", "2017-06-11T20:33:44Z")
-                        //.header("X-Authorization", "HMAC 4A49F88A4B3E11A6FE2C559FF7228DF0917D1CB9")
+            Request request = original.newBuilder()
+                    .header("User-Agent", "Jodel/4.47.0 Dalvik/2.1.0 (Linux; U; Android 7.1.1; GT-I9295 Build/NOF27B)")
+                    .header("Authorization", "Bearer 63792751-28cccc12-21c5d3d5-5087-40f6-a1ca-aaf58555da91")//59374521-a79c9e81-614da76f-f171-4783-8063-ef955ef3972f")
+                    //.header("X-Client-Type", "android_4.47.0")
+                    //.header("X-Api-Version", "0.2")
+                    //.header("X-Timestamp", "2017-06-11T20:33:44Z")
+                    //.header("X-Authorization", "HMAC 4A49F88A4B3E11A6FE2C559FF7228DF0917D1CB9")
 
-                        .method(original.method(), original.body())
-                        .build();
+                    .method(original.method(), original.body())
+                    .build();
 
-                return chain.proceed(request);
-            }
+            return chain.proceed(request);
         });
 
         return builder.build();

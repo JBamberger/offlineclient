@@ -28,14 +28,16 @@ public class App extends Application implements HasActivityInjector {
         } else {
             Timber.plant(new CrashReportingTree());
         }
-        AppInjector.init(this);
+        DaggerAppComponent.builder()
+                .application(this)
+                .build()
+                .inject(this);
     }
 
     @Override
     public DispatchingAndroidInjector<Activity> activityInjector() {
         return dispatchingAndroidInjector;
     }
-
 
 
     /**

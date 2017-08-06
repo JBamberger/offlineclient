@@ -2,16 +2,16 @@ package de.jbamberger.offlinefetcher.ui.jodel;
 
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +27,10 @@ import de.jbamberger.offlinefetcher.source.jodel.Post;
 import de.jbamberger.offlinefetcher.source.jodel.SecurePreferences;
 import de.jbamberger.offlinefetcher.ui.components.DataBindingBaseAdapter;
 import de.jbamberger.offlinefetcher.util.ExecuteAsRootBase;
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
 public class JodelActivity extends AppCompatActivity {
 
@@ -38,21 +41,24 @@ public class JodelActivity extends AppCompatActivity {
 
     ActivityJodelBinding binding;
 
+    @Inject
+    SharedPreferences prefs;
+
     Adapter adapter;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
-                switch (item.getItemId()) {
-                    case R.id.navigation_home:
-                        return true;
-                    case R.id.navigation_dashboard:
-                        return true;
-                    case R.id.navigation_notifications:
-                        return true;
-                }
-                return false;
-            };
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                return true;
+            case R.id.navigation_dashboard:
+                return true;
+            case R.id.navigation_notifications:
+                return true;
+        }
+        return false;
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +73,8 @@ public class JodelActivity extends AppCompatActivity {
         binding.list.setLayoutManager(new LinearLayoutManager(this));
         binding.list.setAdapter(adapter);
         binding.list.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
+        binding.swipeRefreshLayout.setOnRefreshListener(this::runApi);
 
         runApi();
 
@@ -93,33 +101,41 @@ public class JodelActivity extends AppCompatActivity {
         Map<String, ?> m = p.getAll();
         for (String k : m.keySet()) {
             try {
-                Log.d(TAG, "run: key: [" + pref.decryptString(k) + "], val: [" + pref.decryptString((String) m.get(k)) + "]");
-            } catch (ClassCastException e) {}}
+                String key = pref.decryptString(k);
+                String value = pref.decryptString((String) m.get(k));
+                Log.d(TAG, "run: key: [" + key + "], val: [" + value + "]");
+
+                if(key.equals("accessToken")) {
+                    prefs.edit().putString("accessToken", value).apply();
+                }
+
+            } catch (ClassCastException e) {
+                Timber.e(e);
+            }
+        }
     }
 
     public void runApi() {
-        new AsyncTask<Void, Void, List<Post>>() {
+        binding.swipeRefreshLayout.setRefreshing(true);
+        api.getPostsCombo(47.75027847290039D, 8.978754997253418D, true, true, false).enqueue(new Callback<GetPostsComboResponse>() {
             @Override
-            protected List<Post> doInBackground(Void[] params) {
-                try {
-                    Response<GetPostsComboResponse> r = api.getPostsCombo(47.75027847290039D, 8.978754997253418D, true, true, false).execute();
-                    r.body();
-                    return r.body().getRecent();
-                } catch (NullPointerException | IOException e) {
-                    e.printStackTrace();
+            public void onResponse(@NonNull Call<GetPostsComboResponse> call, @NonNull Response<GetPostsComboResponse> response) {
+                GetPostsComboResponse r = response.body();
+                if (r != null) {
+                    List<Post> posts = r.getRecent();
+                    if (posts != null) {
+                        adapter.setItems(posts);
+                    }
                 }
-                return null;
+                binding.swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
-            protected void onPostExecute(List<Post> posts) {
-                super.onPostExecute(posts);
-
-                if (posts != null) {
-                    adapter.setItems(posts);
-                }
+            public void onFailure(@NonNull Call<GetPostsComboResponse> call, @NonNull Throwable t) {
+                Snackbar.make(binding.getRoot(), "loading error.", Snackbar.LENGTH_LONG).show();
+                binding.swipeRefreshLayout.setRefreshing(false);
             }
-        }.execute();
+        });
     }
 
     private class Adapter extends DataBindingBaseAdapter {

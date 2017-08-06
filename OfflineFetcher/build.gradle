@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-alpha4'
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha9'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -16,7 +16,7 @@ buildscript {
 
 ext.support_version = "25.4.0"
 ext.arch_version = "1.0.0-alpha3"
-ext.dagger_version = "2.11-rc2"
+ext.dagger_version = "2.11"
 ext.junit_version = "4.12"
 ext.espresso_version = "2.2.2"
 ext.retrofit_version = "2.3.0"
