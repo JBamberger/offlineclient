@@ -38,6 +38,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.jbamberger.offlinefetcher.ui.main.MainActivity" />
         </activity>
+        <activity
+            android:name=".ui.hackernews.HackerNewsActivity"
+            android:label="@string/title_activity_hacker_news"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.ninegag.NineGagActivity"
+            android:label="@string/title_activity_nine_gag"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.twitter.TwitterActivity"
+            android:label="@string/title_activity_twitter"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

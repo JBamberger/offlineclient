@@ -11,6 +11,7 @@ import dagger.multibindings.IntoMap;
 import de.jbamberger.offlinefetcher.ui.jodel.JodelActivity;
 import de.jbamberger.offlinefetcher.ui.jodel.JodelSubComponent;
 import de.jbamberger.offlinefetcher.ui.main.MainActivity;
+import de.jbamberger.offlinefetcher.ui.reddit.RedditActivity;
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
@@ -27,6 +28,6 @@ public abstract class BuildersModule {
     @ContributesAndroidInjector
     abstract MainActivity contributeMainActivity();
 
-    /*@ContributesAndroidInjector
-    abstract JodelActivity contributeJodelActivity();*/
+    @ContributesAndroidInjector
+    abstract RedditActivity contributeRedditActivity();
 }

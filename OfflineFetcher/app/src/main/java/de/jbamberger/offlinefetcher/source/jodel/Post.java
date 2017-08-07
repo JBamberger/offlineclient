@@ -1,5 +1,6 @@
 package de.jbamberger.offlinefetcher.source.jodel;
 
+import android.graphics.Color;
 import android.location.Location;
 
 import java.util.List;
@@ -275,5 +276,14 @@ public class Post {
 
     public void setVoted(String voted) {
         this.voted = voted;
+    }
+
+    public int getColorInt() {
+        try {
+            return Color.parseColor("#" + color);
+
+        } catch (IllegalArgumentException e) {
+            return Color.WHITE;
+        }
     }
 }

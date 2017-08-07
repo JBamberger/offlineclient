@@ -13,4 +13,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_activity_hacker_news">HackerNewsActivity</string>
+    <string name="title_activity_nine_gag">NineGagActivity</string>
+    <string name="title_activity_twitter">TwitterActivity</string>
 </resources>

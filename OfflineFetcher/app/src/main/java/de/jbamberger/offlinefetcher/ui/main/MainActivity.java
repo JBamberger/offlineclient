@@ -15,8 +15,11 @@ import de.jbamberger.offlinefetcher.databinding.ActivityMainBinding;
 import de.jbamberger.offlinefetcher.ui.components.DataBindingAdapter;
 import de.jbamberger.offlinefetcher.ui.components.ListItem;
 import de.jbamberger.offlinefetcher.ui.components.TwoLineItem;
+import de.jbamberger.offlinefetcher.ui.hackernews.HackerNewsActivity;
 import de.jbamberger.offlinefetcher.ui.jodel.JodelActivity;
+import de.jbamberger.offlinefetcher.ui.ninegag.NineGagActivity;
 import de.jbamberger.offlinefetcher.ui.reddit.RedditActivity;
+import de.jbamberger.offlinefetcher.ui.twitter.TwitterActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,8 +42,11 @@ public class MainActivity extends AppCompatActivity {
         binding.list.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         ArrayList<ListItem> items = new ArrayList<>();
-        items.add(new TwoLineItem("Jodel", "", v -> startActivity(new Intent(MainActivity.this, JodelActivity.class))));
-        items.add(new TwoLineItem("Reddit", "", v -> startActivity(new Intent(MainActivity.this, RedditActivity.class))));
+        items.add(new TwoLineItem("Jodel", "anonymous location based chat", v -> startActivity(new Intent(MainActivity.this, JodelActivity.class))));
+        items.add(new TwoLineItem("Reddit", "frontpage of the internet", v -> startActivity(new Intent(MainActivity.this, RedditActivity.class))));
+        items.add(new TwoLineItem("HackerNews", "y-combinator hacker news", v -> startActivity(new Intent(MainActivity.this, HackerNewsActivity.class))));
+        items.add(new TwoLineItem("9Gag", "crappy memes?!", v -> startActivity(new Intent(MainActivity.this, NineGagActivity.class))));
+        items.add(new TwoLineItem("Twitter", "who knows...?", v -> startActivity(new Intent(MainActivity.this, TwitterActivity.class))));
 
         adapter.setItems(items);
     }

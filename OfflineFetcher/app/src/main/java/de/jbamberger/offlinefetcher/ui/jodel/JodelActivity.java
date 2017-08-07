@@ -150,6 +150,11 @@ public class JodelActivity extends AppCompatActivity {
         }
 
         @Override
+        protected Object getListenerForPosition(int position) {
+            return null;
+        }
+
+        @Override
         protected Object getObjForPosition(int position) {
             return items.get(position);
         }
