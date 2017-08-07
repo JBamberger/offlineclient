@@ -9,7 +9,8 @@ import dagger.android.AndroidInjector;
 
 @RedditScope
 @Subcomponent(modules = {RedditModule.class})
-public interface RedditSubcomponent extends AndroidInjector<RedditActivity> {
+public interface RedditSubComponent extends AndroidInjector<RedditActivity> {
+
     @Subcomponent.Builder
-    public abstract class Builder extends AndroidInjector.Builder<RedditActivity> {}
+    abstract class Builder extends AndroidInjector.Builder<RedditActivity> {}
 }

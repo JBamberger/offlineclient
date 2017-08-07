@@ -9,9 +9,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import dagger.android.ContributesAndroidInjector;
-import de.jbamberger.offlinefetcher.ui.jodel.JodelActivity;
-import de.jbamberger.offlinefetcher.ui.main.MainActivity;
+import de.jbamberger.offlinefetcher.ui.jodel.JodelSubComponent;
 
 /**
  * Dependency injection module to provide application wide dependencies.
@@ -19,17 +17,15 @@ import de.jbamberger.offlinefetcher.ui.main.MainActivity;
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-@Module
+@Module(subcomponents = JodelSubComponent.class)
 public abstract class AppModule {
 
-    @ContributesAndroidInjector
-    abstract MainActivity contributeMainActivity();
+    /*@ContributesAndroidInjector
+    abstract MainActivity contributeMainActivity();*/
 
-    @ContributesAndroidInjector
-    abstract JodelActivity contributeJodelActivity();
+    /*@ContributesAndroidInjector
+    abstract JodelActivity contributeJodelActivity();*/
 
-/*    @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
-    abstract RedditActivity contributeRedditActivity();*/
 
     @Provides
     @Singleton

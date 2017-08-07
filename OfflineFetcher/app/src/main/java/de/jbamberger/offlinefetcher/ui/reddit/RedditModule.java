@@ -13,12 +13,12 @@ import dagger.multibindings.IntoMap;
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-@Module//(subcomponents = RedditSubcomponent.class)
+@Module//(subcomponents = RedditSubComponent.class)
 public abstract class RedditModule {
 
     @Binds
     @IntoMap
     @ActivityKey(RedditActivity.class)
     abstract AndroidInjector.Factory<? extends Activity>
-    bindRedditActivityInjectorFactory(RedditSubcomponent.Builder builder);
+    bindRedditActivityInjectorFactory(RedditSubComponent.Builder builder);
 }

@@ -7,17 +7,15 @@ import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
-import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 
 @Singleton
 @Component(modules = {
-        AndroidInjectionModule.class,
         AndroidSupportInjectionModule.class,
         AppModule.class,
-        DatabaseModule.class,
-        NetModule.class
+        BuildersModule.class,
+        DatabaseModule.class
 })
 public interface AppComponent extends AndroidInjector<App> {
 

@@ -14,6 +14,7 @@ import dagger.Module;
 import dagger.Provides;
 import de.jbamberger.offlinefetcher.source.jodel.JodelApi;
 import de.jbamberger.offlinefetcher.source.reddit.RedditApi;
+import de.jbamberger.offlinefetcher.ui.jodel.JodelSubComponent;
 import de.jbamberger.offlinefetcher.util.LocalDateTimeDeSerializer;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -26,7 +27,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
-@Module
+@Module(subcomponents = JodelSubComponent.class)
 public class NetModule {
 
     @Provides
