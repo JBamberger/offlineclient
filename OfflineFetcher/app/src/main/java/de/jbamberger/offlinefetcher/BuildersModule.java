@@ -10,11 +10,12 @@ import dagger.android.ContributesAndroidInjector;
 import dagger.multibindings.IntoMap;
 import de.jbamberger.offlinefetcher.ui.jodel.JodelActivity;
 import de.jbamberger.offlinefetcher.ui.jodel.JodelSubComponent;
-import de.jbamberger.offlinefetcher.ui.reddit.RedditActivity;
+import de.jbamberger.offlinefetcher.ui.main.MainActivity;
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
+
 
 @Module
 public abstract class BuildersModule {
@@ -24,6 +25,8 @@ public abstract class BuildersModule {
     abstract AndroidInjector.Factory<? extends Activity> bindJodelActivityInjectorFactory(JodelSubComponent.Builder builder);
 
     @ContributesAndroidInjector
-    abstract RedditActivity contributeRedditActivity();
+    abstract MainActivity contributeMainActivity();
 
+    /*@ContributesAndroidInjector
+    abstract JodelActivity contributeJodelActivity();*/
 }

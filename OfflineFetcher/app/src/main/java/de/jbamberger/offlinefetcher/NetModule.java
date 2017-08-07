@@ -8,13 +8,10 @@ import com.google.gson.GsonBuilder;
 
 import org.joda.time.LocalDateTime;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import de.jbamberger.offlinefetcher.source.jodel.JodelApi;
-import de.jbamberger.offlinefetcher.source.reddit.RedditApi;
-import de.jbamberger.offlinefetcher.ui.jodel.JodelSubComponent;
+import de.jbamberger.offlinefetcher.ui.jodel.JodelActivityScope;
 import de.jbamberger.offlinefetcher.util.LocalDateTimeDeSerializer;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -27,18 +24,18 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
-@Module(subcomponents = JodelSubComponent.class)
+@Module
 public class NetModule {
 
     @Provides
-    @Singleton
+    @JodelActivityScope
     Cache provideOkHttpCache(Application application) {
         int cacheSize = 10 * 1024 * 1024; // 10 MiB
         return new Cache(application.getCacheDir(), cacheSize);
     }
 
     @Provides
-    @Singleton
+    @JodelActivityScope
     Gson provideGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
@@ -47,7 +44,7 @@ public class NetModule {
     }
 
     @Provides
-    @Singleton
+    @JodelActivityScope
     OkHttpClient provideOkHttpClient(Cache cache) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         if (cache != null) {
@@ -82,7 +79,7 @@ public class NetModule {
     }
 
     @Provides
-    @Singleton
+    @JodelActivityScope
     Retrofit.Builder provideRetrofitAPI(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 //.addConverterFactory(SimpleXmlConverterFactory.create())//TODO produces errors, different handling necessary
@@ -92,14 +89,8 @@ public class NetModule {
     }
 
     @Provides
-    @Singleton
+    @JodelActivityScope
     JodelApi provideJodelApiInterface(Retrofit.Builder retrofitBuilder) {
         return retrofitBuilder.baseUrl(JodelApi.BASE_URL).build().create(JodelApi.class);
-    }
-
-    @Provides
-    @Singleton
-    RedditApi provideRedditApiInterface(Retrofit.Builder retrofitBuilder) {
-        return retrofitBuilder.baseUrl(RedditApi.BASE_URL).build().create(RedditApi.class);
     }
 }

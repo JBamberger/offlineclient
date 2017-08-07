@@ -65,6 +65,7 @@ public class JodelActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_jodel);
 
         binding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

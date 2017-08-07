@@ -18,14 +18,7 @@ import de.jbamberger.offlinefetcher.ui.jodel.JodelSubComponent;
  */
 
 @Module(subcomponents = JodelSubComponent.class)
-public abstract class AppModule {
-
-    /*@ContributesAndroidInjector
-    abstract MainActivity contributeMainActivity();*/
-
-    /*@ContributesAndroidInjector
-    abstract JodelActivity contributeJodelActivity();*/
-
+public class AppModule {
 
     @Provides
     @Singleton
