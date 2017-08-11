@@ -26,6 +26,7 @@
         tools:context="de.jbamberger.offlinefetcher.ui.main.MainActivity">
 
         <TextView
+            android:textColor="#ffffff"
             android:id="@+id/textView6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -39,6 +40,7 @@
             tools:text="Message" />
 
         <TextView
+            android:textColor="#ffffff"
             android:id="@+id/textView7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -52,6 +54,7 @@
             app:layout_constraintEnd_toStartOf="@+id/textView4" />
 
         <TextView
+            android:textColor="#ffffff"
             android:id="@+id/textView5"
             android:layout_width="61dp"
             android:layout_height="wrap_content"
@@ -65,6 +68,7 @@
             app:layout_constraintEnd_toStartOf="@+id/textView3" />
 
         <TextView
+            android:textColor="#ffffff"
             android:id="@+id/textView4"
             android:layout_width="61dp"
             android:layout_height="wrap_content"
@@ -77,6 +81,7 @@
             app:layout_constraintEnd_toStartOf="@+id/textView5" />
 
         <TextView
+            android:textColor="#ffffff"
             android:id="@+id/textView3"
             android:layout_width="61dp"
             android:layout_height="wrap_content"
@@ -90,6 +95,7 @@
             app:layout_constraintEnd_toStartOf="@+id/textView2" />
 
         <TextView
+            android:textColor="#ffffff"
             android:id="@+id/textView2"
             android:layout_width="61dp"
             android:layout_height="wrap_content"
