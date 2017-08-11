@@ -17,8 +17,8 @@ import de.jbamberger.offlinefetcher.ui.jodel.JodelSubComponent;
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-@Module(subcomponents = JodelSubComponent.class)
-public class AppModule {
+@Module(subcomponents = JodelSubComponent.class, includes = ViewModelModule.class)
+class AppModule {
 
     @Provides
     @Singleton

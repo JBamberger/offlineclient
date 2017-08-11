@@ -1,7 +1,6 @@
 package de.jbamberger.offlinefetcher.ui.jodel.feed;
 
 import android.arch.lifecycle.LifecycleFragment;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
@@ -35,8 +34,8 @@ public class JodelFeedFragment extends LifecycleFragment implements Injectable {
     @Inject
     Context context;
 
-    @Inject
-    ViewModelProvider.Factory viewModelFactory;
+    //@Inject
+    //ViewModelProvider.Factory viewModelFactory;
 
     private JodelFeedViewModel feedViewModel;
 
@@ -59,7 +58,7 @@ public class JodelFeedFragment extends LifecycleFragment implements Injectable {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         feedViewModel = ViewModelProviders
-                .of(this, viewModelFactory)
+                .of(this) //, viewModelFactory
                 .get(JodelFeedViewModel.class);
 
         adapter = new AutoClearedValue<>(this, new JodelPostsAdapter());
