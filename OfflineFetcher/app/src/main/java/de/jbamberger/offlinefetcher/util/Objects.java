@@ -23,4 +23,6 @@ public class Objects {
         }
         return o2 != null && o1.equals(o2);
     }
+
+    private Objects() {}
 }
