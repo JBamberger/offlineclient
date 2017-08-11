@@ -35,7 +35,7 @@ public abstract class BuildersModule {
     abstract RedditActivity contributeRedditActivity();
 
     @JodelActivityScope
-    @ContributesAndroidInjector(modules = {JodelModule.class, NetModule.class})
+    @ContributesAndroidInjector(modules = {JodelModule.class/*, NetModule.class*/})
     abstract JodelFeedFragment contributeJodelFeedFragment();
 
 }

@@ -2,14 +2,13 @@ package de.jbamberger.offlinefetcher.ui.jodel;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
-import de.jbamberger.offlinefetcher.NetModule;
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
 @JodelActivityScope
-@Subcomponent(modules = {JodelModule.class, NetModule.class})
+@Subcomponent(modules = {JodelModule.class/*, NetModule.class*/})
 public interface JodelSubComponent extends AndroidInjector<JodelActivity> {
 
     @Subcomponent.Builder

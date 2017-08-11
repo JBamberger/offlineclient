@@ -1,6 +1,7 @@
 package de.jbamberger.offlinefetcher;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -8,10 +9,11 @@ import com.google.gson.GsonBuilder;
 
 import org.joda.time.LocalDateTime;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import de.jbamberger.offlinefetcher.source.jodel.JodelApi;
-import de.jbamberger.offlinefetcher.ui.jodel.JodelActivityScope;
 import de.jbamberger.offlinefetcher.util.LocalDateTimeDeSerializer;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
@@ -28,14 +30,14 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class NetModule {
 
     @Provides
-    @JodelActivityScope
+    @Singleton
     Cache provideOkHttpCache(Application application) {
         int cacheSize = 10 * 1024 * 1024; // 10 MiB
         return new Cache(application.getCacheDir(), cacheSize);
     }
 
     @Provides
-    @JodelActivityScope
+    @Singleton
     Gson provideGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
@@ -44,8 +46,8 @@ public class NetModule {
     }
 
     @Provides
-    @JodelActivityScope
-    OkHttpClient provideOkHttpClient(Cache cache) {
+    @Singleton
+    OkHttpClient provideOkHttpClient(Cache cache, SharedPreferences sharedPreferences) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         if (cache != null) {
             builder.cache(cache);
@@ -59,9 +61,11 @@ public class NetModule {
         builder.addInterceptor(chain -> {
             Request original = chain.request();
 
+            String accessToken = sharedPreferences.getString("accessToken", "63792751-28cccc12-21c5d3d5-5087-40f6-a1ca-aaf58555da91");
+
             Request request = original.newBuilder()
                     .header("User-Agent", "Jodel/4.47.0 Dalvik/2.1.0 (Linux; U; Android 7.1.1; GT-I9295 Build/NOF27B)")
-                    .header("Authorization", "Bearer 63792751-28cccc12-21c5d3d5-5087-40f6-a1ca-aaf58555da91")//59374521-a79c9e81-614da76f-f171-4783-8063-ef955ef3972f")
+                    .header("Authorization", "Bearer " + accessToken)//59374521-a79c9e81-614da76f-f171-4783-8063-ef955ef3972f")
                     //.header("X-Client-Type", "android_4.47.0")
                     //.header("X-Api-Version", "0.2")
                     //.header("X-Timestamp", "2017-06-11T20:33:44Z")
@@ -79,7 +83,7 @@ public class NetModule {
     }
 
     @Provides
-    @JodelActivityScope
+    @Singleton
     Retrofit.Builder provideRetrofitAPI(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 //.addConverterFactory(SimpleXmlConverterFactory.create())//TODO produces errors, different handling necessary
@@ -89,7 +93,7 @@ public class NetModule {
     }
 
     @Provides
-    @JodelActivityScope
+    @Singleton
     JodelApi provideJodelApiInterface(Retrofit.Builder retrofitBuilder) {
         return retrofitBuilder.baseUrl(JodelApi.BASE_URL).build().create(JodelApi.class);
     }
