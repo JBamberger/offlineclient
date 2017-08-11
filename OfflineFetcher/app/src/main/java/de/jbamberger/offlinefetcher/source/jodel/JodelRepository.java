@@ -9,6 +9,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import de.jbamberger.offlinefetcher.source.jodel.model.GetPostsComboResponse;
+import de.jbamberger.offlinefetcher.source.jodel.model.Post;
 import de.jbamberger.offlinefetcher.ui.viewutil.Resource;
 import retrofit2.Call;
 import retrofit2.Callback;

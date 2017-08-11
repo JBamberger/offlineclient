@@ -7,14 +7,15 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import de.jbamberger.offlinefetcher.source.jodel.JodelApi;
-import de.jbamberger.offlinefetcher.util.LocalDateTimeDeSerializer;
+import de.jbamberger.offlinefetcher.source.jodel.typeadapter.ByteArrayTypeAdapter;
+import de.jbamberger.offlinefetcher.source.jodel.typeadapter.DateTimeTypeAdapter;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -41,7 +42,9 @@ public class NetModule {
     Gson provideGson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeSerializer());
+        //gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeSerializer());
+        gsonBuilder.registerTypeAdapter(DateTime.class, new DateTimeTypeAdapter());
+        gsonBuilder.registerTypeAdapter(byte[].class, new ByteArrayTypeAdapter());
         return gsonBuilder.create();
     }
 
@@ -64,7 +67,7 @@ public class NetModule {
             String accessToken = sharedPreferences.getString("accessToken", "63792751-28cccc12-21c5d3d5-5087-40f6-a1ca-aaf58555da91");
 
             Request request = original.newBuilder()
-                    .header("User-Agent", "Jodel/4.47.0 Dalvik/2.1.0 (Linux; U; Android 7.1.1; GT-I9295 Build/NOF27B)")
+                    .header("User-Agent", "Jodel/4.56.1 Dalvik/2.1.0 (Linux; U; Android 7.1.1; GT-I9295 Build/NOF27B)")//version 4.47.0
                     .header("Authorization", "Bearer " + accessToken)//59374521-a79c9e81-614da76f-f171-4783-8063-ef955ef3972f")
                     //.header("X-Client-Type", "android_4.47.0")
                     //.header("X-Api-Version", "0.2")

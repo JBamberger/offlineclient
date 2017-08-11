@@ -7,7 +7,7 @@
 
         <variable
             name="obj"
-            type="de.jbamberger.offlinefetcher.source.jodel.Post" />
+            type="de.jbamberger.offlinefetcher.source.jodel.model.Post" />
     </data>
 
     <android.support.constraint.ConstraintLayout

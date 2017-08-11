@@ -3,7 +3,6 @@ package de.jbamberger.offlinefetcher.ui.reddit;
 
 import android.app.Fragment;
 import android.arch.lifecycle.LifecycleFragment;
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -17,11 +16,9 @@ import android.view.ViewGroup;
 
 import javax.inject.Inject;
 
-import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;
 import de.jbamberger.offlinefetcher.R;
 import de.jbamberger.offlinefetcher.databinding.FragmentRedditStreamBinding;
-import de.jbamberger.offlinefetcher.source.reddit.RedditPost;
 
 import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 

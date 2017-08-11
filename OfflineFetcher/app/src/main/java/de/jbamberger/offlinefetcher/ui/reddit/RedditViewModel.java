@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel;
 
 import javax.inject.Inject;
 
-import de.jbamberger.offlinefetcher.source.reddit.RedditPost;
+import de.jbamberger.offlinefetcher.db.entity.RedditPost;
 import de.jbamberger.offlinefetcher.source.reddit.RedditRepository;
 
 /**

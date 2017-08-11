@@ -22,6 +22,7 @@ import de.jbamberger.offlinefetcher.di.Injectable;
 import de.jbamberger.offlinefetcher.source.jodel.JodelApi;
 import de.jbamberger.offlinefetcher.ui.viewutil.Status;
 import de.jbamberger.offlinefetcher.util.AutoClearedValue;
+import timber.log.Timber;
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
@@ -65,6 +66,7 @@ public class JodelFeedFragment extends LifecycleFragment implements Injectable {
         binding.get().list.setAdapter(adapter.get());
 
         feedViewModel.getPosts().observe(this, listResource -> {
+            Timber.d("" + listResource);
             if (listResource != null) {
                 if (listResource.status == Status.SUCCESS && listResource.data != null) {
                     adapter.get().setItems(listResource.data);

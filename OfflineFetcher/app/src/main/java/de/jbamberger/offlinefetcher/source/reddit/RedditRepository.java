@@ -7,6 +7,8 @@ import java.util.concurrent.Executor;
 
 import javax.inject.Singleton;
 
+import de.jbamberger.offlinefetcher.db.dao.RedditPostDao;
+import de.jbamberger.offlinefetcher.db.entity.RedditPost;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

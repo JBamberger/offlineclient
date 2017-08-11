@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.jbamberger.offlinefetcher.R;
-import de.jbamberger.offlinefetcher.source.jodel.Post;
+import de.jbamberger.offlinefetcher.source.jodel.model.Post;
 import de.jbamberger.offlinefetcher.ui.components.DataBindingBaseAdapter;
 
 /**
