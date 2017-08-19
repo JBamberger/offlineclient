@@ -31,10 +31,6 @@ public class JodelRepository {
     }
 
 
-
-
-
-
     private final MutableLiveData<Resource<List<Post>>> posts = new MutableLiveData<>();
 
     public LiveData<Resource<List<Post>>> getPosts() {
@@ -58,6 +54,37 @@ public class JodelRepository {
                 posts.setValue(Resource.error(t.toString(), null));
             }
         });
+
+        return posts;
+    }
+
+    public LiveData<Resource<List<Post>>> getPosts(String after) {
+        posts.setValue(Resource.loading(null));
+        api.getPostsCombo(
+                47.75027847290039D,
+                8.978754997253418D,
+                true,
+                true,
+                false)
+                .enqueue(new Callback<GetPostsComboResponse>() {
+                    @Override
+                    public void onResponse(@NonNull Call<GetPostsComboResponse> call, @NonNull Response<GetPostsComboResponse> response) {
+                        GetPostsComboResponse r = response.body();
+                        if (r != null) {
+                            List<Post> postsList = r.getRecent();
+                            if (postsList != null) {
+                                posts.setValue(Resource.success(postsList));
+                                return;
+                            }
+                        }
+                        posts.setValue(Resource.error("Invalid response.", null));
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<GetPostsComboResponse> call, @NonNull Throwable t) {
+                        posts.setValue(Resource.error(t.toString(), null));
+                    }
+                });
 
         return posts;
     }
