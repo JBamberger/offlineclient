@@ -16,5 +16,9 @@ public class Strings {
         return s == null || s.isEmpty();
     }
 
+    public static String getNull() {
+        return null;
+    }
+
     private Strings() {}
 }
