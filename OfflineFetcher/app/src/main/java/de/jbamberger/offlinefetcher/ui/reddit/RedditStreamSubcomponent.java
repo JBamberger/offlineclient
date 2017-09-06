@@ -10,5 +10,5 @@ import dagger.android.AndroidInjector;
 @Subcomponent(modules = RedditStreamModule.class)
 public interface RedditStreamSubcomponent extends AndroidInjector<RedditStreamFragment> {
     @Subcomponent.Builder
-    public abstract class Builder extends AndroidInjector.Builder<RedditStreamFragment> {}
+    abstract class Builder extends AndroidInjector.Builder<RedditStreamFragment> {}
 }

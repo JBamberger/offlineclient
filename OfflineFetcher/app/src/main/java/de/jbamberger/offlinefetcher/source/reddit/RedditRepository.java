@@ -34,24 +34,21 @@ public class RedditRepository {
     }
 
     private void refreshRedditPosts(final String subreddit) {
-        executor.execute(new Runnable() {
-            @Override
-            public void run() {
-                boolean postExists = false;//redditPostDao.hasRedditPost(TIMEOUT);
-                if (!postExists) {
-                    api.getPosts(subreddit).enqueue(new Callback<RedditPost>() {
-                        @Override
-                        public void onResponse(@NonNull Call<RedditPost> call, @NonNull Response<RedditPost> response) {
-                            // error case is left out for brevity
-                            redditPostDao.save(response.body());
-                        }
+        executor.execute(() -> {
+            boolean postExists = false;//redditPostDao.hasRedditPost(TIMEOUT);
+            if (!postExists) {
+                api.getPosts(subreddit).enqueue(new Callback<RedditPost>() {
+                    @Override
+                    public void onResponse(@NonNull Call<RedditPost> call, @NonNull Response<RedditPost> response) {
+                        // error case is left out for brevity
+                        redditPostDao.save(response.body());
+                    }
 
-                        @Override
-                        public void onFailure(@NonNull Call<RedditPost> call, @NonNull Throwable t) {
+                    @Override
+                    public void onFailure(@NonNull Call<RedditPost> call, @NonNull Throwable t) {
 
-                        }
-                    });
-                }
+                    }
+                });
             }
         });
     }

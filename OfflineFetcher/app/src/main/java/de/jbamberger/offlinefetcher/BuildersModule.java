@@ -15,6 +15,9 @@ import de.jbamberger.offlinefetcher.ui.jodel.JodelSubComponent;
 import de.jbamberger.offlinefetcher.ui.jodel.feed.JodelFeedFragment;
 import de.jbamberger.offlinefetcher.ui.main.MainActivity;
 import de.jbamberger.offlinefetcher.ui.reddit.RedditActivity;
+import de.jbamberger.offlinefetcher.ui.reddit.RedditScope;
+import de.jbamberger.offlinefetcher.ui.reddit.RedditStreamFragment;
+import de.jbamberger.offlinefetcher.ui.reddit.RedditStreamModule;
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
@@ -33,6 +36,10 @@ public abstract class BuildersModule {
 
     @ContributesAndroidInjector
     abstract RedditActivity contributeRedditActivity();
+
+    @RedditScope
+    @ContributesAndroidInjector(modules = {RedditStreamModule.class})
+    abstract RedditStreamFragment contributesRedditStreamFragment();
 
     @JodelActivityScope
     @ContributesAndroidInjector(modules = {JodelModule.class/*, NetModule.class*/})

@@ -7,6 +7,9 @@ import de.jbamberger.offlinefetcher.util.Strings
  */
 
 class Util {
+
+
+
     fun hello(string : String?): Unit {
         if (Strings.isEmpty(string))
             println("Go away!")

@@ -1,11 +1,9 @@
 package de.jbamberger.offlinefetcher.ui.reddit;
 
 
-import android.app.Fragment;
 import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,16 +14,13 @@ import android.view.ViewGroup;
 
 import javax.inject.Inject;
 
-import dagger.android.support.AndroidSupportInjection;
 import de.jbamberger.offlinefetcher.R;
 import de.jbamberger.offlinefetcher.databinding.FragmentRedditStreamBinding;
+import de.jbamberger.offlinefetcher.di.Injectable;
 
 import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class RedditStreamFragment  extends LifecycleFragment {
+public class RedditStreamFragment  extends LifecycleFragment implements Injectable {
     private static final String UID_KEY = "uid";
 
     @Inject
@@ -41,14 +36,6 @@ public class RedditStreamFragment  extends LifecycleFragment {
         RedditStreamFragment fragment = new RedditStreamFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-
-
-    @Override
-    public void onAttach(Context context) {
-        AndroidSupportInjection.inject(this);
-        super.onAttach(context);
     }
 
     @Override
