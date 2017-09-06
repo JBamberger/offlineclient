@@ -1,5 +1,6 @@
-package de.jbamberger.offlinefetcher.ui.jodel;
+package de.jbamberger.offlinefetcher.di.jodel;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -9,6 +10,7 @@ import javax.inject.Scope;
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
+@Documented
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
 public @interface JodelActivityScope {

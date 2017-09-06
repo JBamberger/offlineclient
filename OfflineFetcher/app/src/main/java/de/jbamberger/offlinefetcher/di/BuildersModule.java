@@ -1,4 +1,4 @@
-package de.jbamberger.offlinefetcher;
+package de.jbamberger.offlinefetcher.di;
 
 import android.app.Activity;
 
@@ -8,16 +8,17 @@ import dagger.android.ActivityKey;
 import dagger.android.AndroidInjector;
 import dagger.android.ContributesAndroidInjector;
 import dagger.multibindings.IntoMap;
+import de.jbamberger.offlinefetcher.di.jodel.JodelActivityScope;
+import de.jbamberger.offlinefetcher.di.jodel.JodelModule;
+import de.jbamberger.offlinefetcher.di.jodel.JodelSubComponent;
+import de.jbamberger.offlinefetcher.di.reddit.RedditScope;
+import de.jbamberger.offlinefetcher.di.reddit.stream.RedditStreamModule;
+import de.jbamberger.offlinefetcher.di.reddit.stream.RedditStreamScope;
 import de.jbamberger.offlinefetcher.ui.jodel.JodelActivity;
-import de.jbamberger.offlinefetcher.ui.jodel.JodelActivityScope;
-import de.jbamberger.offlinefetcher.ui.jodel.JodelModule;
-import de.jbamberger.offlinefetcher.ui.jodel.JodelSubComponent;
 import de.jbamberger.offlinefetcher.ui.jodel.feed.JodelFeedFragment;
 import de.jbamberger.offlinefetcher.ui.main.MainActivity;
 import de.jbamberger.offlinefetcher.ui.reddit.RedditActivity;
-import de.jbamberger.offlinefetcher.ui.reddit.RedditScope;
 import de.jbamberger.offlinefetcher.ui.reddit.RedditStreamFragment;
-import de.jbamberger.offlinefetcher.ui.reddit.RedditStreamModule;
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
@@ -26,6 +27,7 @@ import de.jbamberger.offlinefetcher.ui.reddit.RedditStreamModule;
 
 @Module
 public abstract class BuildersModule {
+
     @Binds
     @IntoMap
     @ActivityKey(JodelActivity.class)
@@ -34,10 +36,11 @@ public abstract class BuildersModule {
     @ContributesAndroidInjector
     abstract MainActivity contributeMainActivity();
 
+    @RedditScope
     @ContributesAndroidInjector
     abstract RedditActivity contributeRedditActivity();
 
-    @RedditScope
+    @RedditStreamScope
     @ContributesAndroidInjector(modules = {RedditStreamModule.class})
     abstract RedditStreamFragment contributesRedditStreamFragment();
 

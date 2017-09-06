@@ -27,7 +27,6 @@ import dagger.android.AndroidInjection;
 import dagger.android.support.AndroidSupportInjection;
 import dagger.android.support.HasSupportFragmentInjector;
 import de.jbamberger.offlinefetcher.App;
-import de.jbamberger.offlinefetcher.DaggerAppComponent;
 
 /**
  * Helper class to automatically inject fragments if they implement {@link Injectable}.

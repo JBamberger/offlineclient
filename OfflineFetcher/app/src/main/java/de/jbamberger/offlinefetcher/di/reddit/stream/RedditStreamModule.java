@@ -1,4 +1,4 @@
-package de.jbamberger.offlinefetcher.ui.reddit;
+package de.jbamberger.offlinefetcher.di.reddit.stream;
 
 import android.support.v4.app.Fragment;
 
@@ -7,11 +7,12 @@ import dagger.Module;
 import dagger.android.AndroidInjector;
 import dagger.android.support.FragmentKey;
 import dagger.multibindings.IntoMap;
+import de.jbamberger.offlinefetcher.ui.reddit.RedditStreamFragment;
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
-@Module//(subcomponents = RedditStreamSubcomponent.class)
+@Module
 public abstract class RedditStreamModule {
     @Binds
     @IntoMap

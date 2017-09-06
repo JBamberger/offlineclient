@@ -1,7 +1,8 @@
-package de.jbamberger.offlinefetcher.ui.jodel;
+package de.jbamberger.offlinefetcher.di.jodel;
 
 import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
+import de.jbamberger.offlinefetcher.ui.jodel.JodelActivity;
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)

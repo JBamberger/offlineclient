@@ -1,4 +1,4 @@
-package de.jbamberger.offlinefetcher;
+package de.jbamberger.offlinefetcher.di;
 
 import android.app.Application;
 import android.content.Context;
@@ -9,7 +9,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import de.jbamberger.offlinefetcher.ui.jodel.JodelSubComponent;
+import de.jbamberger.offlinefetcher.di.jodel.JodelSubComponent;
 
 /**
  * Dependency injection module to provide application wide dependencies.

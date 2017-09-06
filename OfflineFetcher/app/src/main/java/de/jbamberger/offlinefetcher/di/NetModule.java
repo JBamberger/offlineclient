@@ -1,4 +1,4 @@
-package de.jbamberger.offlinefetcher;
+package de.jbamberger.offlinefetcher.di;
 
 import android.app.Application;
 import android.content.SharedPreferences;
@@ -13,6 +13,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.jbamberger.offlinefetcher.BuildConfig;
 import de.jbamberger.offlinefetcher.source.jodel.JodelApi;
 import de.jbamberger.offlinefetcher.source.jodel.typeadapter.ByteArrayTypeAdapter;
 import de.jbamberger.offlinefetcher.source.jodel.typeadapter.DateTimeTypeAdapter;

@@ -1,4 +1,4 @@
-package de.jbamberger.offlinefetcher.ui.reddit;
+package de.jbamberger.offlinefetcher.di.reddit.stream;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -13,5 +13,5 @@ import javax.inject.Scope;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Scope
-public @interface RedditScope {
+public @interface RedditStreamScope {
 }

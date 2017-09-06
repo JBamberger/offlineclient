@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.jbamberger.offlinefetcher;
+package de.jbamberger.offlinefetcher.di;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;

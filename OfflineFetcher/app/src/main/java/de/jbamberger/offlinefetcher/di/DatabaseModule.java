@@ -1,4 +1,4 @@
-package de.jbamberger.offlinefetcher;
+package de.jbamberger.offlinefetcher.di;
 
 import dagger.Module;
 

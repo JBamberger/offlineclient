@@ -7,10 +7,17 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
 import de.jbamberger.offlinefetcher.ui.jodel.feed.JodelFeedViewModel;
+import de.jbamberger.offlinefetcher.ui.reddit.RedditViewModel;
 import de.jbamberger.offlinefetcher.ui.viewutil.AppViewModelFactory;
 
 @Module
 abstract class ViewModelModule {
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RedditViewModel.class)
+    abstract ViewModel bindRedditViewModel(RedditViewModel viewModel);
+
     @Binds
     @IntoMap
     @ViewModelKey(JodelFeedViewModel.class)
