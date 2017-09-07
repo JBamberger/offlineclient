@@ -17,8 +17,8 @@ public class RedditViewModel extends ViewModel {
     private RedditRepository repo;
 
     @Inject
-    public RedditViewModel(/*RedditRepository repo*/) {
-        /*this.repo = repo;*/
+    public RedditViewModel(RedditRepository repo) {
+        this.repo = repo;
     }
 
 

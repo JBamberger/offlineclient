@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import java.util.concurrent.Executor;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import de.jbamberger.offlinefetcher.db.dao.RedditPostDao;
@@ -22,6 +23,7 @@ public class RedditRepository {
     private final Executor executor;
     private final RedditPostDao redditPostDao;
 
+    @Inject
     public RedditRepository(RedditApi api, Executor executor, RedditPostDao redditPostDao) {
         this.api = api;
         this.executor = executor;
@@ -41,7 +43,7 @@ public class RedditRepository {
                     @Override
                     public void onResponse(@NonNull Call<RedditPost> call, @NonNull Response<RedditPost> response) {
                         // error case is left out for brevity
-                        redditPostDao.save(response.body());
+                        executor.execute(() -> redditPostDao.save(response.body()));
                     }
 
                     @Override

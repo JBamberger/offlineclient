@@ -17,6 +17,7 @@ import de.jbamberger.offlinefetcher.BuildConfig;
 import de.jbamberger.offlinefetcher.source.jodel.JodelApi;
 import de.jbamberger.offlinefetcher.source.jodel.typeadapter.ByteArrayTypeAdapter;
 import de.jbamberger.offlinefetcher.source.jodel.typeadapter.DateTimeTypeAdapter;
+import de.jbamberger.offlinefetcher.source.reddit.RedditApi;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -100,5 +101,11 @@ public class NetModule {
     @Singleton
     JodelApi provideJodelApiInterface(Retrofit.Builder retrofitBuilder) {
         return retrofitBuilder.baseUrl(JodelApi.BASE_URL).build().create(JodelApi.class);
+    }
+
+    @Provides
+    @Singleton
+    RedditApi provideRedditApiInterface(Retrofit.Builder retrofitBuilder) {
+        return retrofitBuilder.baseUrl(RedditApi.BASE_URL).build().create(RedditApi.class);
     }
 }
