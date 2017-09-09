@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package de.jbamberger.offlinefetcher.ui.viewutil;
+package de.jbamberger.offlinefetcher.util;
 
 /**
  * Status of a resource that is provided to the UI.

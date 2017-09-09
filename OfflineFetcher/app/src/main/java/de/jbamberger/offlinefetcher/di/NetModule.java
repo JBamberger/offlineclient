@@ -18,6 +18,7 @@ import de.jbamberger.offlinefetcher.source.jodel.JodelApi;
 import de.jbamberger.offlinefetcher.source.jodel.typeadapter.ByteArrayTypeAdapter;
 import de.jbamberger.offlinefetcher.source.jodel.typeadapter.DateTimeTypeAdapter;
 import de.jbamberger.offlinefetcher.source.reddit.RedditApi;
+import de.jbamberger.offlinefetcher.util.LiveDataCallAdapterFactory;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -91,6 +92,7 @@ public class NetModule {
     @Singleton
     Retrofit.Builder provideRetrofitAPI(Gson gson, OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
+                .addCallAdapterFactory(new LiveDataCallAdapterFactory())
                 //.addConverterFactory(SimpleXmlConverterFactory.create())//TODO produces errors, different handling necessary
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))

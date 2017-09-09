@@ -3,18 +3,20 @@ package de.jbamberger.offlinefetcher.source.jodel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import de.jbamberger.offlinefetcher.AppExecutors;
+import de.jbamberger.offlinefetcher.source.ApiResponse;
+import de.jbamberger.offlinefetcher.source.NetworkBoundResource;
 import de.jbamberger.offlinefetcher.source.jodel.model.GetPostsComboResponse;
 import de.jbamberger.offlinefetcher.source.jodel.model.Post;
-import de.jbamberger.offlinefetcher.ui.viewutil.Resource;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import de.jbamberger.offlinefetcher.util.AbsentLiveData;
+import de.jbamberger.offlinefetcher.util.Resource;
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
@@ -23,10 +25,12 @@ import retrofit2.Response;
 @Singleton
 public class JodelRepository {
 
-    private JodelApi api;
+    private final JodelApi api;
+    private final AppExecutors appExecutors;
 
     @Inject
-    public JodelRepository(JodelApi api) {
+    public JodelRepository(AppExecutors appExecutors, JodelApi api) {
+        this.appExecutors = appExecutors;
         this.api = api;
     }
 
@@ -34,58 +38,27 @@ public class JodelRepository {
     private final MutableLiveData<Resource<List<Post>>> posts = new MutableLiveData<>();
 
     public LiveData<Resource<List<Post>>> getPosts() {
-        posts.setValue(Resource.loading(null));
-        api.getPostsCombo(47.75027847290039D, 8.978754997253418D, true, true, false).enqueue(new Callback<GetPostsComboResponse>() {
+        return new NetworkBoundResource<List<Post>, GetPostsComboResponse>(appExecutors) {
             @Override
-            public void onResponse(@NonNull Call<GetPostsComboResponse> call, @NonNull Response<GetPostsComboResponse> response) {
-                GetPostsComboResponse r = response.body();
-                if (r != null) {
-                    List<Post> postsList = r.getRecent();
-                    if (postsList != null) {
-                        posts.setValue(Resource.success(postsList));
-                        return;
-                    }
-                }
-                posts.setValue(Resource.error("Invalid response.", null));
+            protected void saveCallResult(@NonNull GetPostsComboResponse item) {
             }
 
             @Override
-            public void onFailure(@NonNull Call<GetPostsComboResponse> call, @NonNull Throwable t) {
-                posts.setValue(Resource.error(t.toString(), null));
+            protected boolean shouldFetch(@Nullable List<Post> data) {
+                return data == null;
             }
-        });
 
-        return posts;
-    }
+            @NonNull
+            @Override
+            protected LiveData<List<Post>> loadFromDb() {
+                return AbsentLiveData.create();
+            }
 
-    public LiveData<Resource<List<Post>>> getPosts(String after) {
-        posts.setValue(Resource.loading(null));
-        api.getPostsCombo(
-                47.75027847290039D,
-                8.978754997253418D,
-                true,
-                true,
-                false)
-                .enqueue(new Callback<GetPostsComboResponse>() {
-                    @Override
-                    public void onResponse(@NonNull Call<GetPostsComboResponse> call, @NonNull Response<GetPostsComboResponse> response) {
-                        GetPostsComboResponse r = response.body();
-                        if (r != null) {
-                            List<Post> postsList = r.getRecent();
-                            if (postsList != null) {
-                                posts.setValue(Resource.success(postsList));
-                                return;
-                            }
-                        }
-                        posts.setValue(Resource.error("Invalid response.", null));
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull Call<GetPostsComboResponse> call, @NonNull Throwable t) {
-                        posts.setValue(Resource.error(t.toString(), null));
-                    }
-                });
-
-        return posts;
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<GetPostsComboResponse>> createCall() {
+                return api.getPostsCombo(47.75027847290039D, 8.978754997253418D, true, true, false);
+            }
+        }.asLiveData();
     }
 }

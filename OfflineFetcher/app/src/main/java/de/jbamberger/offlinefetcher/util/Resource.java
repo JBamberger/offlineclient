@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package de.jbamberger.offlinefetcher.ui.viewutil;
+package de.jbamberger.offlinefetcher.util;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import static de.jbamberger.offlinefetcher.ui.viewutil.Status.ERROR;
-import static de.jbamberger.offlinefetcher.ui.viewutil.Status.LOADING;
-import static de.jbamberger.offlinefetcher.ui.viewutil.Status.SUCCESS;
-
+import static de.jbamberger.offlinefetcher.util.Status.ERROR;
+import static de.jbamberger.offlinefetcher.util.Status.LOADING;
+import static de.jbamberger.offlinefetcher.util.Status.SUCCESS;
 
 /**
  * A generic class that holds a value with its loading status.
