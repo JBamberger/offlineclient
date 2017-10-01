@@ -48,15 +48,6 @@ public class App extends Application implements HasActivityInjector {
             }
             //FIXME: use reporting library
             Log.e(tag, message, t);
-            /*FakeCrashLibrary.log(priority, tag, message);
-
-            if (t != null) {
-                if (priority == Log.ERROR) {
-                    FakeCrashLibrary.logError(t);
-                } else if (priority == Log.WARN) {
-                    FakeCrashLibrary.logWarning(t);
-                }
-            }*/
         }
     }
 }
