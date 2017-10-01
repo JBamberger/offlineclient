@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="de.jbamberger.offlinefetcher.ui.reddit.RedditActivity"
+        tools:context="de.jbamberger.offlineclient.ui.reddit.RedditActivity"
         tools:showIn="@layout/app_bar_reddit">
 
     </android.support.constraint.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="de.jbamberger.offlinefetcher.ui.ninegag.NineGagActivityFragment"
+    tools:context="de.jbamberger.offlineclient.ui.ninegag.NineGagActivityFragment"
     tools:showIn="@layout/activity_nine_gag">
 
 </android.support.constraint.ConstraintLayout>

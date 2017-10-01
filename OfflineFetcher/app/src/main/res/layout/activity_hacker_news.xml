@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="de.jbamberger.offlinefetcher.ui.hackernews.HackerNewsActivity">
+    tools:context="de.jbamberger.offlineclient.ui.hackernews.HackerNewsActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

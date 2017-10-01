@@ -6,7 +6,7 @@
     <data>
         <variable
             name="listener"
-            type="de.jbamberger.offlinefetcher.ui.jodel.feed.JodelFeedViewModel"/>
+            type="de.jbamberger.offlineclient.ui.jodel.feed.JodelFeedViewModel"/>
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout

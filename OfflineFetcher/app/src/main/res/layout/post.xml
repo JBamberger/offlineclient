@@ -15,7 +15,7 @@
 
         <variable
             name="obj"
-            type="de.jbamberger.offlinefetcher.source.jodel.model.Post" />
+            type="de.jbamberger.offlineclient.source.jodel.model.Post" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -23,7 +23,7 @@
         android:background="@{obj.getParsedColor()}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context="de.jbamberger.offlinefetcher.ui.main.MainActivity">
+        tools:context="de.jbamberger.offlineclient.ui.main.MainActivity">
 
         <TextView
             android:textColor="#ffffff"

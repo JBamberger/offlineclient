@@ -7,7 +7,7 @@
 
         <variable
             name="obj"
-            type="de.jbamberger.offlinefetcher.ui.components.TwoLineItem" />
+            type="de.jbamberger.offlineclient.ui.components.TwoLineItem" />
         <variable
             name="listener"
             type="android.view.View.OnClickListener" />
