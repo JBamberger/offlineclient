@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OfflineFetcher</string>
+    <string name="app_name">OfflineClient</string>
     <string name="title_activity_jodel">JodelActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>

@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions;
  */
 
 @GlideModule
-public final class OfflineFetcherGlideModule extends AppGlideModule {
+public final class OfflineClientGlideModule extends AppGlideModule {
 
     @Override
     public void applyOptions(Context context, GlideBuilder builder) {
