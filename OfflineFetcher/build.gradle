@@ -8,7 +8,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta4'
+        classpath 'com.android.tools.build:gradle:3.0.0-beta6'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
@@ -17,8 +17,8 @@ buildscript {
     }
 }
 ext {
-    support_version = "26.0.2"
-    arch_version = "1.0.0-alpha9"
+    support_version = "26.1.0"
+    arch_version = "1.0.0-beta1"
     dagger_version = "2.11"
     junit_version = "4.12"
     espresso_version = "2.2.2"

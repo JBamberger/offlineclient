@@ -20,7 +20,7 @@ import javax.inject.Inject;
 import de.jbamberger.offlinefetcher.databinding.FragmentJodelFeedBinding;
 import de.jbamberger.offlinefetcher.di.Injectable;
 import de.jbamberger.offlinefetcher.source.jodel.JodelApi;
-import de.jbamberger.offlinefetcher.ui.viewutil.Status;
+import de.jbamberger.offlinefetcher.util.Status;
 import de.jbamberger.offlinefetcher.util.AutoClearedValue;
 import timber.log.Timber;
 

@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import de.jbamberger.offlinefetcher.source.jodel.JodelRepository;
 import de.jbamberger.offlinefetcher.source.jodel.model.Post;
+import de.jbamberger.offlinefetcher.util.Resource;
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)

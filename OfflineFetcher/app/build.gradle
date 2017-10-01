@@ -4,10 +4,10 @@ apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    buildToolsVersion "26.0.2"
 
     defaultConfig {
-        applicationId "de.jbamberger.offlinefetcher"
+        applicationId "de.jbamberger.offlineclient"
         minSdkVersion 25
         targetSdkVersion 26
         versionCode 1
