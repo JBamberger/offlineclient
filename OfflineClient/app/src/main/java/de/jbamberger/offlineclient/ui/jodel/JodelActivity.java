@@ -40,12 +40,6 @@ public class JodelActivity extends AppCompatActivity implements HasSupportFragme
 
     @Inject
     SharedPreferences prefs;
-
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return dispatchingAndroidInjector;
-    }
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
         switch (item.getItemId()) {
@@ -62,6 +56,11 @@ public class JodelActivity extends AppCompatActivity implements HasSupportFragme
         }
         return false;
     };
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return dispatchingAndroidInjector;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,7 +97,7 @@ public class JodelActivity extends AppCompatActivity implements HasSupportFragme
                 String value = pref.decryptString((String) m.get(k));
                 Log.d(TAG, "run: key: [" + key + "], val: [" + value + "]");
 
-                if(key.equals("accessToken")) {
+                if (key.equals("accessToken")) {
                     prefs.edit().putString("accessToken", value).apply();
                 }
 

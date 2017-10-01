@@ -28,10 +28,7 @@ public class FlagReason {
         if (this.reasonId != flagReason.reasonId) {
             return false;
         }
-        if (this.subreasonId != flagReason.subreasonId) {
-            return false;
-        }
-        return true;
+        return this.subreasonId == flagReason.subreasonId;
     }
 
     public int hashCode() {

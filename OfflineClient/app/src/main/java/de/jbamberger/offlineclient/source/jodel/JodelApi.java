@@ -60,7 +60,7 @@ import retrofit2.http.Query;
 
 public interface JodelApi {
 
-    public static final String BASE_URL = "https://api.go-tellm.com:443/api/";
+    String BASE_URL = "https://api.go-tellm.com:443/api/";
 /*
     @GET("/v2/posts/location/popular")
     public abstract LiveData<ApiResponse<GetPostsResponse>> getMostPopularPosts(@Query("after") String paramString, @Query("lat") double paramDouble1, @Query("lng") double paramDouble2, @Query("home") boolean paramBoolean1, @Query("skipHometown") boolean paramBoolean2);
@@ -378,7 +378,7 @@ public interface JodelApi {
 
 
     @GET("v3/posts/location/combo")
-    public abstract LiveData<ApiResponse<GetPostsComboResponse>> getPostsCombo(
+    LiveData<ApiResponse<GetPostsComboResponse>> getPostsCombo(
             @Query("lat") double lat,
             @Query("lng") double lng,
             @Query("stickies") boolean stickies,

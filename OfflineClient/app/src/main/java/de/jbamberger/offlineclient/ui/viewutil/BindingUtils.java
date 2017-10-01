@@ -61,7 +61,7 @@ public class BindingUtils {
 
     @BindingAdapter("visIfNN")
     public static void visibleIfNotNull(View v, Object condition) {
-        if(condition == null) {
+        if (condition == null) {
             v.setVisibility(View.GONE);
         } else {
             v.setVisibility(View.VISIBLE);

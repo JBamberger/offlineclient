@@ -7,9 +7,9 @@ public class PushNotification {
     private final String postColor;
     private final String postId;
     private final String replyId;
+    private final String type;
     private boolean scrollToBottom;
     private boolean silent;
-    private final String type;
 
     public PushNotification(String str, String str2, String str3, String str4, String str5, String str6, String str7) {
         this.messageText = str;

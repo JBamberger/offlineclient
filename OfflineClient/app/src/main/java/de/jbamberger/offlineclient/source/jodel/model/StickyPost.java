@@ -1,6 +1,7 @@
 package de.jbamberger.offlineclient.source.jodel.model;
 
 import android.text.TextUtils;
+
 import java.util.List;
 
 public class StickyPost {
@@ -17,14 +18,6 @@ public class StickyPost {
     public final String stickypostId;
     public final String type;
     public String voted;
-
-    public class StickyButton {
-        public final String title;
-
-        StickyButton(String str) {
-            this.title = str;
-        }
-    }
 
     public StickyPost(String str, String str2, String str3, String str4, String str5, String str6, String str7, List<StickyButton> list, String str8) {
         this.message = str;
@@ -44,5 +37,13 @@ public class StickyPost {
 
     public boolean hasButtons() {
         return this.buttons != null && this.buttons.size() > 0;
+    }
+
+    public class StickyButton {
+        public final String title;
+
+        StickyButton(String str) {
+            this.title = str;
+        }
     }
 }

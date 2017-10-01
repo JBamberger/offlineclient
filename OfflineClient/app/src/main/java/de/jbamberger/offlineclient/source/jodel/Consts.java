@@ -1,11 +1,8 @@
 package de.jbamberger.offlineclient.source.jodel;
 
 public final class Consts {
-    public static String API_PAGING_PARAM_LIMIT = "api.paging.param.limit";
     public static final boolean BACKUP_DEFAULT = true;
     public static final String BACKUP_ENABLED = "android.uuid.backup.googledrive.enabled";
-    public static String BACKUP_SHARED_PREFERENCES = "backup";
-    public static String BACKUP_UID_KEY = "backup_uid";
     public static final String CHANNEL = "channel";
     public static final int CHANNEL_MAX_LENGTH = 50;
     public static final String CHANNEL_SYMBOL = "@";
@@ -82,9 +79,7 @@ public final class Consts {
     public static final String HASHTAG = "hashtag";
     public static final String HASHTAGS_AUTOINSERT_ENABLED = "hashtags.autoinsert.enabled";
     public static final int HASHTAG_MAX_LENGHT = 30;
-    public static boolean HASHTAG_PROMPT_USED = true;
     public static final String HASHTAG_SYMBOL = "#";
-    public static boolean HAS_DRAWING = true;
     public static final boolean HOLD_TO_VIEW_DEFAULT = true;
     public static final String IMAGE_PATH_THUMB_PATTERN = "image.path.thumb.pattern";
     public static final Integer[] JODEL_COLORS = new Integer[]{
@@ -98,7 +93,6 @@ public final class Consts {
     public static final String JODEL_COMMANDEMENTS_URLS_DEFAULT = "http://jodel-app.com/legal/eula/en/";
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
-    public static boolean MENTION_PROMPT_USED = true;
     public static final String MENU_COMMANDMENTS = "commandments";
     public static final String MENU_CONTACT_US = "contact_us";
     public static final String MENU_CUSTOM_LINK = "custom_link";
@@ -141,13 +135,10 @@ public final class Consts {
     public static final String SCROLL_TOP = "top";
     public static final String SETTING_CUSTOM_LINK_URLS = "settings.custom_link.urls";
     public static final String SETTING_CUSTOM_LINK_URLS_DEFAULT = "https://jodel-app.com/jobs/";
-    public static String SHARED_PREFERENCES = "";//TODO: PushNotificationListenerService.NOTIFICATION_TAG;
     public static final String SHARE_COUNT_ENABLED = "share.count.enabled";
     public static final String STATS_LOCATION_UPDATE_ENABLED = "stats.location_update.enabled";
     public static final String TERMS_OF_USE_URL = "terms.of.use.url";
     public static final String TERMS_OF_USE_URL_DEFAULT = "http://www.jodel-app.com/terms.html";
-    public static String TIME_RANGE_PAST_DAY = "";//TODO: GetMorePosts.TIME_RANGE_PAST_DAY;
-    public static String TIME_RANGE_PAST_WEEK = "";//TODO: GetMorePosts.TIME_RANGE_PAST_WEEK;
     public static final String VOTE_TYPE_DOWN = "down";
     public static final String VOTE_TYPE_UP = "up";
     public static final String VOTING_REASONS_ENABLED = "feature.voting_reasons.enabled";
@@ -160,6 +151,15 @@ public final class Consts {
     public static final long VOTING_REASONS_SILENT_PERIOD_DEFAULT = 30;
     public static final long VOTING_REASONS_SILENT_PERIOD_MAX = 1440;
     public static final long VOTING_REASONS_SILENT_PERIOD_MIN = 0;
+    public static String API_PAGING_PARAM_LIMIT = "api.paging.param.limit";
+    public static String BACKUP_SHARED_PREFERENCES = "backup";
+    public static String BACKUP_UID_KEY = "backup_uid";
+    public static boolean HASHTAG_PROMPT_USED = true;
+    public static boolean HAS_DRAWING = true;
+    public static boolean MENTION_PROMPT_USED = true;
+    public static String SHARED_PREFERENCES = "";//TODO: PushNotificationListenerService.NOTIFICATION_TAG;
+    public static String TIME_RANGE_PAST_DAY = "";//TODO: GetMorePosts.TIME_RANGE_PAST_DAY;
+    public static String TIME_RANGE_PAST_WEEK = "";//TODO: GetMorePosts.TIME_RANGE_PAST_WEEK;
 
     public class NotificationType {
         public static final String OJ_PIN_REPLY = "oj_pin_reply";

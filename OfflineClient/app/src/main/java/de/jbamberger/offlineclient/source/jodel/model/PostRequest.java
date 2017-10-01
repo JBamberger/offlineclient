@@ -8,10 +8,10 @@ public class PostRequest {
     public final boolean hasHashtag;
     public final byte[] image;
     public final Location location;
-    public LocationTag locationTag;
     public final boolean mention;
     public final String message;
     public final boolean to_home;
+    public LocationTag locationTag;
 
     public PostRequest(String str, String str2, String str3, byte[] bArr, Location location, String str4, boolean z, LocationTag locationTag, boolean z2) {
         this.message = str;

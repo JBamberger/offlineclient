@@ -9,8 +9,7 @@ import de.jbamberger.offlineclient.util.Strings
 class Util {
 
 
-
-    fun hello(string : String?): Unit {
+    fun hello(string: String?): Unit {
         if (Strings.isEmpty(string))
             println("Go away!")
         else

@@ -13,5 +13,6 @@ import de.jbamberger.offlineclient.ui.reddit.RedditActivity;
 public interface RedditSubComponent extends AndroidInjector<RedditActivity> {
 
     @Subcomponent.Builder
-    abstract class Builder extends AndroidInjector.Builder<RedditActivity> {}
+    abstract class Builder extends AndroidInjector.Builder<RedditActivity> {
+    }
 }

@@ -26,21 +26,19 @@ import java.io.OutputStream;
  * it, writing the resulting data to another OutputStream.
  */
 public class Base64OutputStream extends FilterOutputStream {
+    private static byte[] EMPTY = new byte[0];
     private final Base64.Coder coder;
     private final int flags;
-
     private byte[] buffer = null;
     private int bpos = 0;
-
-    private static byte[] EMPTY = new byte[0];
 
     /**
      * Performs Base64 encoding on the data written to the stream,
      * writing the encoded data to another OutputStream.
      *
-     * @param out the OutputStream to write the encoded data to
+     * @param out   the OutputStream to write the encoded data to
      * @param flags bit flags for controlling the encoder; see the
-     *        constants in {@link Base64}
+     *              constants in {@link Base64}
      */
     public Base64OutputStream(OutputStream out, int flags) {
         this(out, flags, true);
@@ -51,11 +49,10 @@ public class Base64OutputStream extends FilterOutputStream {
      * stream, writing the encoded/decoded data to another
      * OutputStream.
      *
-     * @param out the OutputStream to write the encoded data to
-     * @param flags bit flags for controlling the encoder; see the
-     *        constants in {@link Base64}
+     * @param out    the OutputStream to write the encoded data to
+     * @param flags  bit flags for controlling the encoder; see the
+     *               constants in {@link Base64}
      * @param encode true to encode, false to decode
-     *
      * @hide
      */
     public Base64OutputStream(OutputStream out, int flags, boolean encode) {
@@ -132,7 +129,7 @@ public class Base64OutputStream extends FilterOutputStream {
      * Write the given bytes to the encoder/decoder.
      *
      * @param finish true if this is the last batch of input, to cause
-     *        encoder/decoder state to be finalized.
+     *               encoder/decoder state to be finalized.
      */
     private void internalWrite(byte[] b, int off, int len, boolean finish) throws IOException {
         coder.output = embiggen(coder.output, coder.maxOutputSize(len));

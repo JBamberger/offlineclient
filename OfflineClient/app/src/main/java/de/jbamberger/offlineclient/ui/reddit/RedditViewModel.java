@@ -28,6 +28,7 @@ public class RedditViewModel extends ViewModel {
         }
         post = repo.getRedditPost(subreddit);
     }
+
     public LiveData<RedditPost> getPost() {
         return post;
     }

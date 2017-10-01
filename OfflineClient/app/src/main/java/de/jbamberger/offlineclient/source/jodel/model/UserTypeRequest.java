@@ -1,9 +1,9 @@
 package de.jbamberger.offlineclient.source.jodel.model;
 
 public class UserTypeRequest {
+    public final String userType;
     public int age;
     public String gender;
-    public final String userType;
 
     public UserTypeRequest(UserType userType) {
         this.userType = userType.backendValue;

@@ -13,11 +13,11 @@ public enum UserType {
     HIGH_SCHOOL("high_school", 0/*TODO: R.string.user_profiling_type_high_school*/),
     HIGH_SCHOOL_GRADUATE("high_school_graduate", 0/*TODO: R.string.user_profiling_type_high_school_graduate*/),
     OTHER(""/*TODO: FacebookRequestErrorClassification.KEY_OTHER*/, 0/*TODO: R.string.user_profiling_type_other*/);
-    
+
     public final String backendValue;
     public final transient int stringResId;
 
-    private UserType(String str, int i) {
+    UserType(String str, int i) {
         this.backendValue = str;
         this.stringResId = i;
     }

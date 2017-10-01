@@ -44,6 +44,14 @@ public class Location implements Parcelable {
         this(address.getLocality(), address.getLocality(), address.getCountryCode(), new Coordinates(address.getLatitude(), address.getLongitude()), 0.0f);
     }
 
+    public Location(Parcel parcel) {
+        this.name = parcel.readString();
+        this.city = parcel.readString();
+        this.country = parcel.readString();
+        this.coordinates = parcel.readParcelable(getClass().getClassLoader());
+        this.accuracy = parcel.readFloat();
+    }
+
     public double getLatitude() {
         return this.coordinates.latitude;
     }
@@ -54,14 +62,6 @@ public class Location implements Parcelable {
 
     public float getAccuracy() {
         return this.accuracy;
-    }
-
-    public Location(Parcel parcel) {
-        this.name = parcel.readString();
-        this.city = parcel.readString();
-        this.country = parcel.readString();
-        this.coordinates = (Coordinates) parcel.readParcelable(getClass().getClassLoader());
-        this.accuracy = parcel.readFloat();
     }
 
     public String toString() {

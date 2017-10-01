@@ -1,6 +1,7 @@
 package de.jbamberger.offlineclient.source.jodel.model;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

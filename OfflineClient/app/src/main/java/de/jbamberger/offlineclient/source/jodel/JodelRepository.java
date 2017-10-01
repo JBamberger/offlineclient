@@ -27,15 +27,14 @@ public class JodelRepository {
 
     private final JodelApi api;
     private final AppExecutors appExecutors;
+    private final MutableLiveData<Resource<List<Post>>> posts = new MutableLiveData<>();
+
 
     @Inject
     public JodelRepository(AppExecutors appExecutors, JodelApi api) {
         this.appExecutors = appExecutors;
         this.api = api;
     }
-
-
-    private final MutableLiveData<Resource<List<Post>>> posts = new MutableLiveData<>();
 
     public LiveData<Resource<List<Post>>> getPosts() {
         return new NetworkBoundResource<List<Post>, GetPostsComboResponse>(appExecutors) {

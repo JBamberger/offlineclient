@@ -20,8 +20,8 @@ import javax.inject.Inject;
 import de.jbamberger.offlineclient.databinding.FragmentJodelFeedBinding;
 import de.jbamberger.offlineclient.di.Injectable;
 import de.jbamberger.offlineclient.source.jodel.JodelApi;
-import de.jbamberger.offlineclient.util.Status;
 import de.jbamberger.offlineclient.util.AutoClearedValue;
+import de.jbamberger.offlineclient.util.Status;
 import timber.log.Timber;
 
 /**

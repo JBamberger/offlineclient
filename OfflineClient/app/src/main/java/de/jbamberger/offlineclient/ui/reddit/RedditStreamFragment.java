@@ -20,7 +20,7 @@ import de.jbamberger.offlineclient.di.Injectable;
 
 import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
-public class RedditStreamFragment  extends LifecycleFragment implements Injectable {
+public class RedditStreamFragment extends LifecycleFragment implements Injectable {
     private static final String UID_KEY = "uid";
 
     @Inject

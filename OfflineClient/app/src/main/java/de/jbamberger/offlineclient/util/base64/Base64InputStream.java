@@ -25,11 +25,9 @@ import java.io.InputStream;
  * it.
  */
 public class Base64InputStream extends FilterInputStream {
-    private final Base64.Coder coder;
-
-    private static byte[] EMPTY = new byte[0];
-
     private static final int BUFFER_SIZE = 2048;
+    private static byte[] EMPTY = new byte[0];
+    private final Base64.Coder coder;
     private boolean eof;
     private byte[] inputBuffer;
     private int outputStart;
@@ -39,9 +37,9 @@ public class Base64InputStream extends FilterInputStream {
      * An InputStream that performs Base64 decoding on the data read
      * from the wrapped stream.
      *
-     * @param in the InputStream to read the source data from
+     * @param in    the InputStream to read the source data from
      * @param flags bit flags for controlling the decoder; see the
-     *        constants in {@link android.util.Base64}
+     *              constants in {@link android.util.Base64}
      */
     public Base64InputStream(InputStream in, int flags) {
         this(in, flags, false);
@@ -51,11 +49,10 @@ public class Base64InputStream extends FilterInputStream {
      * Performs Base64 encoding or decoding on the data read from the
      * wrapped InputStream.
      *
-     * @param in the InputStream to read the source data from
-     * @param flags bit flags for controlling the decoder; see the
-     *        constants in {@link android.util.Base64}
+     * @param in     the InputStream to read the source data from
+     * @param flags  bit flags for controlling the decoder; see the
+     *               constants in {@link android.util.Base64}
      * @param encode true to encode, false to decode
-     *
      * @hide
      */
     public Base64InputStream(InputStream in, int flags, boolean encode) {
@@ -100,7 +97,7 @@ public class Base64InputStream extends FilterInputStream {
         if (outputStart >= outputEnd) {
             return 0;
         }
-        long bytes = Math.min(n, outputEnd-outputStart);
+        long bytes = Math.min(n, outputEnd - outputStart);
         outputStart += bytes;
         return bytes;
     }
@@ -123,7 +120,7 @@ public class Base64InputStream extends FilterInputStream {
         if (outputStart >= outputEnd) {
             return -1;
         }
-        int bytes = Math.min(len, outputEnd-outputStart);
+        int bytes = Math.min(len, outputEnd - outputStart);
         System.arraycopy(coder.output, outputStart, b, off, bytes);
         outputStart += bytes;
         return bytes;

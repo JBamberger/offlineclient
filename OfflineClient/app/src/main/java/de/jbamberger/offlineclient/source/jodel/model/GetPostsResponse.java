@@ -8,13 +8,6 @@ public class GetPostsResponse {
     private List<Post> posts;
     private String requestTag;
 
-    public enum ErrorType {
-        NO_ERROR,
-        CONNECTION_ERROR,
-        UPDATE_ACCESS_TOKEN,
-        OTHERS
-    }
-
     public GetPostsResponse(String str, ErrorType errorType) {
         this.requestTag = str;
         this.errorType = errorType;
@@ -37,15 +30,22 @@ public class GetPostsResponse {
         return this.requestTag;
     }
 
-    public ErrorType getErrorType() {
-        return this.errorType;
-    }
-
     public void setRequestTag(String str) {
         this.requestTag = str;
     }
 
+    public ErrorType getErrorType() {
+        return this.errorType;
+    }
+
     public void setErrorType(ErrorType errorType) {
         this.errorType = errorType;
+    }
+
+    public enum ErrorType {
+        NO_ERROR,
+        CONNECTION_ERROR,
+        UPDATE_ACCESS_TOKEN,
+        OTHERS
     }
 }

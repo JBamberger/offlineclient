@@ -21,12 +21,13 @@ import android.arch.lifecycle.LiveData;
 /**
  * A LiveData class that has {@code null} value.
  */
-public class AbsentLiveData extends LiveData {
+public class AbsentLiveData<T> extends LiveData<T> {
     private AbsentLiveData() {
         postValue(null);
     }
+
     public static <T> LiveData<T> create() {
         //noinspection unchecked
-        return new AbsentLiveData();
+        return new AbsentLiveData<>();
     }
 }

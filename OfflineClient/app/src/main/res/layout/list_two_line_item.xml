@@ -8,16 +8,17 @@
         <variable
             name="obj"
             type="de.jbamberger.offlineclient.ui.components.TwoLineItem" />
+
         <variable
             name="listener"
             type="android.view.View.OnClickListener" />
     </data>
 
     <android.support.constraint.ConstraintLayout
-        android:onClickListener="@{listener::onClick}"
-        android:background="?attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:onClickListener="@{listener::onClick}"
         android:orientation="vertical">
 
 
@@ -46,10 +47,10 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="30"
             android:text="@{obj.content}"
             android:textSize="13sp"
-            android:maxLines="30"
-            android:ellipsize="end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"

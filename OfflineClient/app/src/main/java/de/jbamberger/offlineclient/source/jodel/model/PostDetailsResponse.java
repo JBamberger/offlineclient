@@ -22,6 +22,10 @@ public class PostDetailsResponse {
         return this.replies;
     }
 
+    public void setRepliesThread(List<Post> list) {
+        this.replies = list;
+    }
+
     public int getRemaining() {
         return this.remaining;
     }
@@ -36,10 +40,6 @@ public class PostDetailsResponse {
 
     public void setNext(String str) {
         this.next = str;
-    }
-
-    public void setRepliesThread(List<Post> list) {
-        this.replies = list;
     }
 
     public boolean getShareable() {

@@ -10,10 +10,9 @@ import retrofit2.http.Query;
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-public interface RedditApi
-{
+public interface RedditApi {
 
-    public static final String BASE_URL = "https://reddit.com/";
+    String BASE_URL = "https://reddit.com/";
 
 
     @GET("r/{subReddit}/")

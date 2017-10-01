@@ -12,5 +12,6 @@ import de.jbamberger.offlineclient.ui.reddit.RedditStreamFragment;
 @Subcomponent(modules = RedditStreamModule.class)
 public interface RedditStreamSubcomponent extends AndroidInjector<RedditStreamFragment> {
     @Subcomponent.Builder
-    abstract class Builder extends AndroidInjector.Builder<RedditStreamFragment> {}
+    abstract class Builder extends AndroidInjector.Builder<RedditStreamFragment> {
+    }
 }

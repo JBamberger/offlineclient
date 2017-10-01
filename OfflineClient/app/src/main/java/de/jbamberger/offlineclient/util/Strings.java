@@ -6,6 +6,9 @@ package de.jbamberger.offlineclient.util;
 
 public class Strings {
 
+    private Strings() {
+    }
+
     /**
      * Checks if a string is empty or null.
      *
@@ -19,6 +22,4 @@ public class Strings {
     public static String getNull() {
         return null;
     }
-
-    private Strings() {}
 }

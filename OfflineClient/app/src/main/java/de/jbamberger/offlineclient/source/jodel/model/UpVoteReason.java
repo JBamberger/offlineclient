@@ -2,6 +2,7 @@ package de.jbamberger.offlineclient.source.jodel.model;
 
 import android.content.Context;
 import android.content.res.Resources;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import de.jbamberger.offlineclient.util.Strings;
 
 public class UpVoteReason {
     public static final UpVoteReason CANCEL = new UpVoteReason(0, 0);
+    public static final UpVoteReason STUB = new UpVoteReason(-1, 0);
     //TODO: reason 1..5
     private static final UpVoteReason[] REASONS = new UpVoteReason[]{
             new UpVoteReason(1, R.string.app_name),
@@ -17,7 +19,6 @@ public class UpVoteReason {
             new UpVoteReason(3, R.string.app_name),
             new UpVoteReason(4, R.string.app_name),
             new UpVoteReason(5, R.string.app_name)};
-    public static final UpVoteReason STUB = new UpVoteReason(-1, 0);
     //TODO: @KeepName
     public final int reasonCode;
     private final transient int stringResId;

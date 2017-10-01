@@ -11,56 +11,44 @@ import java.util.ArrayList;
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-public abstract class ExecuteAsRootBase
-{
-    public static boolean canRunRootCommands()
-    {
+public abstract class ExecuteAsRootBase {
+    public static boolean canRunRootCommands() {
         boolean retval = false;
         Process suProcess;
 
-        try
-        {
+        try {
             suProcess = Runtime.getRuntime().exec("su");
 
             DataOutputStream os = new DataOutputStream(suProcess.getOutputStream());
             DataInputStream osRes = new DataInputStream(suProcess.getInputStream());
 
-            if (null != os && null != osRes)
-            {
+            if (null != os && null != osRes) {
                 // Getting the id of the current user to check if this is root
                 os.writeBytes("id\n");
                 os.flush();
 
                 String currUid = osRes.readLine();
                 boolean exitSu = false;
-                if (null == currUid)
-                {
+                if (null == currUid) {
                     retval = false;
                     exitSu = false;
                     Log.d("ROOT", "Can't get root access or denied by user");
-                }
-                else if (true == currUid.contains("uid=0"))
-                {
+                } else if (true == currUid.contains("uid=0")) {
                     retval = true;
                     exitSu = true;
                     Log.d("ROOT", "Root access granted");
-                }
-                else
-                {
+                } else {
                     retval = false;
                     exitSu = true;
                     Log.d("ROOT", "Root access rejected: " + currUid);
                 }
 
-                if (exitSu)
-                {
+                if (exitSu) {
                     os.writeBytes("exit\n");
                     os.flush();
                 }
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             // Can't get root !
             // Probably broken pipe exception on trying to write to output stream (os) after su failed, meaning that the device is not rooted
 
@@ -71,22 +59,18 @@ public abstract class ExecuteAsRootBase
         return retval;
     }
 
-    public final boolean execute()
-    {
+    public final boolean execute() {
         boolean retval = false;
 
-        try
-        {
+        try {
             ArrayList<String> commands = getCommandsToExecute();
-            if (null != commands && commands.size() > 0)
-            {
+            if (null != commands && commands.size() > 0) {
                 Process suProcess = Runtime.getRuntime().exec("su");
 
                 DataOutputStream os = new DataOutputStream(suProcess.getOutputStream());
 
                 // Execute commands that require root access
-                for (String currCommand : commands)
-                {
+                for (String currCommand : commands) {
                     os.writeBytes(currCommand + "\n");
                     os.flush();
                 }
@@ -94,40 +78,22 @@ public abstract class ExecuteAsRootBase
                 os.writeBytes("exit\n");
                 os.flush();
 
-                try
-                {
+                try {
                     int suProcessRetval = suProcess.waitFor();
-                    if (255 != suProcessRetval)
-                    {
-                        // Root access granted
-                        retval = true;
-                    }
-                    else
-                    {
-                        // Root access denied
-                        retval = false;
-                    }
-                }
-                catch (Exception ex)
-                {
+                    // Root access granted or denied
+                    retval = 255 != suProcessRetval;
+                } catch (Exception ex) {
                     Log.e("ROOT", "Error executing root action", ex);
                 }
             }
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException | SecurityException ex) {
             Log.w("ROOT", "Can't get root access", ex);
-        }
-        catch (SecurityException ex)
-        {
-            Log.w("ROOT", "Can't get root access", ex);
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             Log.w("ROOT", "Error executing internal operation", ex);
         }
 
         return retval;
     }
+
     protected abstract ArrayList<String> getCommandsToExecute();
 }

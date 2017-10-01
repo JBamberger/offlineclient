@@ -22,7 +22,9 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <include android:id="@+id/content" layout="@layout/content_reddit" />
+        <include
+            android:id="@+id/content"
+            layout="@layout/content_reddit" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"

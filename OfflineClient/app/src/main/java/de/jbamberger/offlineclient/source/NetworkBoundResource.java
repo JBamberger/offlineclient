@@ -31,6 +31,7 @@ import de.jbamberger.offlineclient.util.Resource;
  * <p>
  * You can read more about it in the <a href="https://developer.android.com/arch">Architecture
  * Guide</a>.
+ *
  * @param <ResultType>
  * @param <RequestType>
  */

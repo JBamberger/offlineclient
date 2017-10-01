@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 26
@@ -84,7 +83,6 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
 
-    implementation "org.greenrobot:greendao:$rootProject.greendao_version"
     implementation "joda-time:joda-time:$rootProject.joda_time_version"
     implementation "com.jakewharton.timber:timber:$rootProject.timber_version"
     implementation "org.jsoup:jsoup:$rootProject.jsoup_version"

@@ -4,6 +4,11 @@ public class InstallFromReferrer extends ActionTrackingRequest {
     private static String SHARE_REFERRAL_SOURCE = "RegistrationCompleted";
     public final InstallReferrerMetadata metadata;
 
+    public InstallFromReferrer(String str, String str2) {
+        super(SHARE_REFERRAL_SOURCE);
+        this.metadata = new InstallReferrerMetadata(str, str2);
+    }
+
     public class InstallReferrerMetadata {
         public final String post;
         public final String source;
@@ -12,10 +17,5 @@ public class InstallFromReferrer extends ActionTrackingRequest {
             this.post = str;
             this.source = str2;
         }
-    }
-
-    public InstallFromReferrer(String str, String str2) {
-        super(SHARE_REFERRAL_SOURCE);
-        this.metadata = new InstallReferrerMetadata(str, str2);
     }
 }
