@@ -65,46 +65,44 @@ public class JodelActivity extends AppCompatActivity implements HasSupportFragme
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_jodel);
-
         binding.navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
     }
 
     public void run(View v) {
-        ExecuteAsRootBase cmd = new ExecuteAsRootBase() {
-            @Override
-            protected ArrayList<String> getCommandsToExecute() {
-                ArrayList<String> commands = new ArrayList<>();
-                String jodelPath = "/data/data/com.tellm.android.app";
-                commands.add("[ -f " + jodelPath + "/files/INSTALLATION ] && cp " + jodelPath + "/files/INSTALLATION " + getFilesDir()
-                        + "&& chmod 755 " + getFilesDir().getAbsolutePath() + "/INSTALLATION");
-                commands.add("[ -f " + jodelPath + "/shared_prefs/tellm.xml ] && cp " + jodelPath + "/shared_prefs/tellm.xml " +
-                        getApplicationInfo().dataDir + "/shared_prefs/tellm.xml" +
-                        "&& chmod 755 " + getApplicationInfo().dataDir + "/shared_prefs/tellm.xml");
-                return commands;
-            }
-        };
-        cmd.execute();
-        SharedPreferences p = getSharedPreferences("tellm", MODE_PRIVATE);
-        SecurePreferences pref = new SecurePreferences(getApplicationContext());
-        Map<String, ?> m = p.getAll();
-        for (String k : m.keySet()) {
-            try {
-                String key = pref.decryptString(k);
-                String value = pref.decryptString((String) m.get(k));
-                Log.d(TAG, "run: key: [" + key + "], val: [" + value + "]");
-
-                if (key.equals("accessToken")) {
-                    prefs.edit().putString("accessToken", value).apply();
+        try {
+            ExecuteAsRootBase cmd = new ExecuteAsRootBase() {
+                @Override
+                protected ArrayList<String> getCommandsToExecute() {
+                    ArrayList<String> commands = new ArrayList<>();
+                    String jodelPath = "/data/data/com.tellm.android.app";
+                    commands.add("[ -f " + jodelPath + "/files/INSTALLATION ] && cp " + jodelPath + "/files/INSTALLATION " + getFilesDir()
+                            + "&& chmod 755 " + getFilesDir().getAbsolutePath() + "/INSTALLATION");
+                    commands.add("[ -f " + jodelPath + "/shared_prefs/tellm.xml ] && cp " + jodelPath + "/shared_prefs/tellm.xml " +
+                            getApplicationInfo().dataDir + "/shared_prefs/tellm.xml" +
+                            "&& chmod 755 " + getApplicationInfo().dataDir + "/shared_prefs/tellm.xml");
+                    return commands;
                 }
+            };
+            cmd.execute();
+            SharedPreferences p = getSharedPreferences("tellm", MODE_PRIVATE);
+            SecurePreferences pref = new SecurePreferences(getApplicationContext());
+            Map<String, ?> m = p.getAll();
+            for (String k : m.keySet()) {
+                try {
+                    String key = pref.decryptString(k);
+                    String value = pref.decryptString((String) m.get(k));
+                    Log.d(TAG, "run: key: [" + key + "], val: [" + value + "]");
 
-            } catch (ClassCastException e) {
-                Timber.e(e);
+                    if (key.equals("accessToken")) {
+                        prefs.edit().putString("accessToken", value).apply();
+                    }
+                } catch (ClassCastException e) {
+                    Timber.e(e);
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-
 }
