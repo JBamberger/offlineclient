@@ -7,14 +7,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="de.jbamberger.offlineclient.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="de.jbamberger.offlineclient.ui.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,49 +22,65 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="de.jbamberger.offlineclient.ui.jodel.JodelActivity"
+            android:name=".ui.jodel.JodelActivity"
             android:label="@string/title_activity_jodel"
-            android:parentActivityName="de.jbamberger.offlineclient.ui.main.MainActivity">
+            android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.jbamberger.offlineclient.ui.main.MainActivity" />
         </activity>
         <activity
-            android:name="de.jbamberger.offlineclient.ui.reddit.RedditActivity"
+            android:name=".ui.reddit.RedditActivity"
             android:label="@string/title_activity_reddit"
-            android:parentActivityName="de.jbamberger.offlineclient.ui.main.MainActivity"
+            android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.jbamberger.offlineclient.ui.main.MainActivity" />
         </activity>
         <activity
-            android:name="de.jbamberger.offlineclient.ui.hackernews.HackerNewsActivity"
+            android:name=".ui.hackernews.HackerNewsActivity"
             android:label="@string/title_activity_hacker_news"
-            android:parentActivityName="de.jbamberger.offlineclient.ui.main.MainActivity"
+            android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.jbamberger.offlineclient.ui.main.MainActivity" />
         </activity>
         <activity
-            android:name="de.jbamberger.offlineclient.ui.ninegag.NineGagActivity"
-            android:label="@string/title_activity_nine_gag"
-            android:parentActivityName="de.jbamberger.offlineclient.ui.main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.jbamberger.offlineclient.ui.main.MainActivity" />
-        </activity>
-        <activity
-            android:name="de.jbamberger.offlineclient.ui.twitter.TwitterActivity"
+            android:name=".ui.twitter.TwitterActivity"
             android:label="@string/title_activity_twitter"
-            android:parentActivityName="de.jbamberger.offlineclient.ui.main.MainActivity"
+            android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.jbamberger.offlineclient.ui.main.MainActivity" />
         </activity>
+
+        <service android:name=".messaging.MessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".messaging.InstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+
+        </service>
+
+
+
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_menu_slideshow" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
     </application>
 
 </manifest>
