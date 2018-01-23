@@ -84,6 +84,5 @@ public class JodelFeedFragment extends LifecycleFragment implements Injectable {
             Snackbar.make(binding.get().getRoot(), "loading error.", Snackbar.LENGTH_LONG).show();
             binding.get().swipeRefreshLayout.setRefreshing(false);
         });
-
     }
 }

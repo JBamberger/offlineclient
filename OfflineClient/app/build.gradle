@@ -80,6 +80,8 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:$rootProject.arch_version"
     annotationProcessor "android.arch.persistence.room:compiler:$rootProject.arch_version"
 
+    implementation "com.google.firebase:firebase-messaging:$firebaseVersion"
+
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
 
@@ -89,10 +91,12 @@ dependencies {
     implementation "com.google.code.gson:gson:$rootProject.gson_version"
 
     // dagger2 core
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
     implementation "com.google.dagger:dagger:$rootProject.dagger_version"
 
     //dagger2 android
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger_version"
     implementation "com.google.dagger:dagger-android-support:$rootProject.dagger_version"
     implementation "com.google.dagger:dagger-android:$rootProject.dagger_version"
@@ -109,6 +113,7 @@ dependencies {
     compileOnly "javax.annotation:jsr250-api:1.0"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
-repositories {
-    mavenCentral()
-}
+
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'

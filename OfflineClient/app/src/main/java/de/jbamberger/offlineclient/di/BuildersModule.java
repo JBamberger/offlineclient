@@ -47,5 +47,7 @@ public abstract class BuildersModule {
     @JodelActivityScope
     @ContributesAndroidInjector(modules = {JodelModule.class/*, NetModule.class*/})
     abstract JodelFeedFragment contributeJodelFeedFragment();
-
+//
+//    @ContributesAndroidInjector
+//    abstract InstanceIdService contibutesInstanceIdService();
 }
