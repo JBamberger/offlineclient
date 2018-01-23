@@ -4,7 +4,6 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.FirebaseInstanceIdService
-import dagger.android.AndroidInjection
 import de.jbamberger.offlineclient.source.backend.BackendApi
 import timber.log.Timber
 
@@ -17,7 +16,7 @@ class InstanceIdService : FirebaseInstanceIdService() {
     var api: BackendApi? = null
 
     override fun onCreate() {
-        AndroidInjection.inject(this)
+//        AndroidInjection.inject(this)
         super.onCreate()
     }
 

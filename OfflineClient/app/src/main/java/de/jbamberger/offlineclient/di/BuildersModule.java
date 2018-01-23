@@ -49,5 +49,5 @@ public abstract class BuildersModule {
     abstract JodelFeedFragment contributeJodelFeedFragment();
 //
 //    @ContributesAndroidInjector
-//    abstract InstanceIdService contibutesInstanceIdService();
+//    abstract InstanceIdService contributesInstanceIdService();
 }

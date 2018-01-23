@@ -1,9 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
+    dataBinding.enabled = true
+    kapt.generateStubs = true
 
     defaultConfig {
         applicationId "de.jbamberger.offlineclient"
@@ -25,9 +30,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding {
-        enabled = true
-    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -91,12 +94,12 @@ dependencies {
     implementation "com.google.code.gson:gson:$rootProject.gson_version"
 
     // dagger2 core
-    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
+//    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
     implementation "com.google.dagger:dagger:$rootProject.dagger_version"
 
     //dagger2 android
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger_version"
+//    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger_version"
     annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.dagger_version"
     implementation "com.google.dagger:dagger-android-support:$rootProject.dagger_version"
     implementation "com.google.dagger:dagger-android:$rootProject.dagger_version"
@@ -111,9 +114,5 @@ dependencies {
 
     testImplementation "junit:junit:$rootProject.junit_version"
     compileOnly "javax.annotation:jsr250-api:1.0"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
-
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'com.google.gms.google-services'
