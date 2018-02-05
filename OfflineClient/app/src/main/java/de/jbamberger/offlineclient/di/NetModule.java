@@ -14,6 +14,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import de.jbamberger.offlineclient.BuildConfig;
+import de.jbamberger.offlineclient.source.backend.BackendApi;
 import de.jbamberger.offlineclient.source.jodel.JodelApi;
 import de.jbamberger.offlineclient.source.jodel.typeadapter.ByteArrayTypeAdapter;
 import de.jbamberger.offlineclient.source.jodel.typeadapter.DateTimeTypeAdapter;
@@ -98,12 +99,12 @@ public class NetModule {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(okHttpClient);
     }
-//
-//    @Provides
-//    @Singleton
-//    BackendApi provideBackendApiInterface(Retrofit.Builder retrofitBuilder) {
-//        return retrofitBuilder.baseUrl("https://jbamberger.de").build().create(BackendApi.class);
-//    }
+
+    @Provides
+    @Singleton
+    BackendApi provideBackendApiInterface(Retrofit.Builder retrofitBuilder) {
+        return retrofitBuilder.baseUrl("https://jbamberger.de").build().create(BackendApi.class);
+    }
 
     @Provides
     @Singleton

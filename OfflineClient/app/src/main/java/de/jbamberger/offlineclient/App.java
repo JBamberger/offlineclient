@@ -2,12 +2,15 @@ package de.jbamberger.offlineclient;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.Service;
 import android.util.Log;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
+import dagger.android.HasServiceInjector;
 import de.jbamberger.offlineclient.di.AppInjector;
 import timber.log.Timber;
 
@@ -15,12 +18,12 @@ import timber.log.Timber;
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-public class App extends Application implements HasActivityInjector/*, HasServiceInjector */{
+public class App extends Application implements HasActivityInjector, HasServiceInjector {
 
     @Inject
     DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
-//    @Inject DispatchingAndroidInjector<Service> serviceInjector;
+    @Inject DispatchingAndroidInjector<Service> serviceInjector;
 
     @Override
     public void onCreate() {
@@ -38,10 +41,10 @@ public class App extends Application implements HasActivityInjector/*, HasServic
         return dispatchingAndroidInjector;
     }
 
-//    @Override
-//    public AndroidInjector<Service> serviceInjector() {
-//        return serviceInjector;
-//    }
+    @Override
+    public AndroidInjector<Service> serviceInjector() {
+        return serviceInjector;
+    }
 
     /**
      * A tree which logs important information for crash reporting.

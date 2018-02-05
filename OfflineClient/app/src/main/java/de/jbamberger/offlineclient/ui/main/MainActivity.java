@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import java.util.ArrayList;
 
 import dagger.android.AndroidInjection;
@@ -19,6 +21,7 @@ import de.jbamberger.offlineclient.ui.hackernews.HackerNewsActivity;
 import de.jbamberger.offlineclient.ui.jodel.JodelActivity;
 import de.jbamberger.offlineclient.ui.reddit.RedditActivity;
 import de.jbamberger.offlineclient.ui.twitter.TwitterActivity;
+import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         adapter = new DataBindingAdapter();
+
+        Timber.d("InstanceId: %s", FirebaseInstanceId.getInstance().getToken());
 
         binding.list.setLayoutManager(new LinearLayoutManager(this));
         binding.list.setAdapter(adapter);

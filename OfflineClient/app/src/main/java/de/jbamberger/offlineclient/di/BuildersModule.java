@@ -14,6 +14,7 @@ import de.jbamberger.offlineclient.di.jodel.JodelSubComponent;
 import de.jbamberger.offlineclient.di.reddit.RedditScope;
 import de.jbamberger.offlineclient.di.reddit.stream.RedditStreamModule;
 import de.jbamberger.offlineclient.di.reddit.stream.RedditStreamScope;
+import de.jbamberger.offlineclient.messaging.InstanceIdService;
 import de.jbamberger.offlineclient.ui.jodel.JodelActivity;
 import de.jbamberger.offlineclient.ui.jodel.feed.JodelFeedFragment;
 import de.jbamberger.offlineclient.ui.main.MainActivity;
@@ -47,7 +48,7 @@ public abstract class BuildersModule {
     @JodelActivityScope
     @ContributesAndroidInjector(modules = {JodelModule.class})
     abstract JodelFeedFragment contributeJodelFeedFragment();
-//
-//    @ContributesAndroidInjector
-//    abstract InstanceIdService contributesInstanceIdService();
+
+    @ContributesAndroidInjector
+    abstract InstanceIdService contributesInstanceIdService();
 }
