@@ -7,7 +7,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,7 @@ import javax.inject.Inject;
 import de.jbamberger.offlineclient.R;
 import de.jbamberger.offlineclient.databinding.FragmentRedditStreamBinding;
 import de.jbamberger.offlineclient.di.Injectable;
-
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
+import timber.log.Timber;
 
 public class RedditStreamFragment extends Fragment implements Injectable {
     private static final String UID_KEY = "uid";
@@ -44,7 +42,7 @@ public class RedditStreamFragment extends Fragment implements Injectable {
         String userId = getArguments().getString(UID_KEY);
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(RedditViewModel.class);
         viewModel.init(userId);
-        viewModel.getPost().observe(this, redditPost -> Log.d(TAG, "onChanged() called with: redditPost = [" + redditPost + "]"));
+        viewModel.getPost().observe(this, redditPost -> Timber.d("onChanged() called with: redditPost = [" + redditPost + "]"));
     }
 
     @Override
