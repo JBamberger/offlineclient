@@ -22,8 +22,6 @@ import de.jbamberger.offlineclient.ui.twitter.TwitterActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     ActivityMainBinding binding;
 
     DataBindingAdapter adapter;

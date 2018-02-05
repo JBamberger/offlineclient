@@ -23,7 +23,6 @@ abstract class ViewModelModule {
     @ViewModelKey(JodelFeedViewModel.class)
     abstract ViewModel bindJodelFeedViewModel(JodelFeedViewModel userViewModel);
 
-
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(AppViewModelFactory factory);
 }

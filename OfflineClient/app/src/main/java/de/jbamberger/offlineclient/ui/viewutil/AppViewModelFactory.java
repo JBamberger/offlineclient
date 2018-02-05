@@ -2,6 +2,7 @@ package de.jbamberger.offlineclient.ui.viewutil;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
+import android.support.annotation.NonNull;
 
 import java.util.Map;
 
@@ -18,9 +19,10 @@ public class AppViewModelFactory implements ViewModelProvider.Factory {
         this.creators = creators;
     }
 
+    @NonNull
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends ViewModel> T create(Class<T> modelClass) {
+    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
         Provider<? extends ViewModel> creator = creators.get(modelClass);
         if (creator == null) {
             for (Map.Entry<Class<? extends ViewModel>, Provider<ViewModel>> entry : creators.entrySet()) {

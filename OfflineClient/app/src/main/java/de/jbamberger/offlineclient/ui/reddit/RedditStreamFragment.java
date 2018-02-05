@@ -1,12 +1,12 @@
 package de.jbamberger.offlineclient.ui.reddit;
 
 
-import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +20,7 @@ import de.jbamberger.offlineclient.di.Injectable;
 
 import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
-public class RedditStreamFragment extends LifecycleFragment implements Injectable {
+public class RedditStreamFragment extends Fragment implements Injectable {
     private static final String UID_KEY = "uid";
 
     @Inject

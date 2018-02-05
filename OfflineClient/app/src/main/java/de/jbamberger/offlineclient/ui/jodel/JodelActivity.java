@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -27,8 +26,6 @@ import de.jbamberger.offlineclient.util.ExecuteAsRootBase;
 import timber.log.Timber;
 
 public class JodelActivity extends AppCompatActivity implements HasSupportFragmentInjector {
-
-    private static final String TAG = JodelActivity.class.getSimpleName();
 
     @Inject
     JodelApi api;
@@ -92,7 +89,7 @@ public class JodelActivity extends AppCompatActivity implements HasSupportFragme
                 try {
                     String key = pref.decryptString(k);
                     String value = pref.decryptString((String) m.get(k));
-                    Log.d(TAG, "run: key: [" + key + "], val: [" + value + "]");
+                    Timber.d("run: key: [" + key + "], val: [" + value + "]");
 
                     if (key.equals("accessToken")) {
                         prefs.edit().putString("accessToken", value).apply();

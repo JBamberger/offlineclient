@@ -1,12 +1,12 @@
 package de.jbamberger.offlineclient.ui.jodel.feed;
 
-import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -28,7 +28,7 @@ import timber.log.Timber;
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-public class JodelFeedFragment extends LifecycleFragment implements Injectable {
+public class JodelFeedFragment extends Fragment implements Injectable {
 
     @Inject
     JodelApi api;
