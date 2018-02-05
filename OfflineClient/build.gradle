@@ -4,6 +4,7 @@ buildscript {
     ext {
         kotlin_version = '1.2.21'
         android_plugin_version = '3.0.1'
+        google_play_services_version = '3.2.0'
     }
     repositories {
         jcenter()
@@ -11,13 +12,14 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$android_plugin_version"
-//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:3.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.gms:google-services:$google_play_services_version"
     }
 }
 ext {
     support_version = "27.0.2"
-    arch_version = "1.0.0"
+    room_version = "1.0.0"
+    lifecycle_version = "1.1.0"
     dagger_version = "2.12"
     junit_version = "4.12"
     espresso_version = "2.2.2"
@@ -36,14 +38,13 @@ ext {
     timber_version = "4.5.1"
     rxjavaVersion = "2.1.0"
     rxandroidVersion = "2.0.1"
-    firebaseVersion = "11.4.2"
+    firebaseVersion = "11.8.0"
 }
 
 
 allprojects {
     repositories {
         jcenter()
-        mavenCentral()
         google()
         maven { url "https://jitpack.io" }
     }

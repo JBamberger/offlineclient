@@ -2,9 +2,6 @@ package de.jbamberger.offlineclient.source.jodel;
 
 import android.content.Context;
 import android.provider.Settings;
-
-import org.apache.commons.io.FileUtils;
-
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -14,6 +11,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
+import de.jbamberger.offlineclient.util.FileUtils;
 import de.jbamberger.offlineclient.util.base64.Base64;
 
 
@@ -22,7 +20,7 @@ public class SecurePreferences {
 
     public SecurePreferences(Context context) {
         try {
-            String installationId = FileUtils.readFileToString(new File(context.getFilesDir().getAbsoluteFile() + "/INSTALLATION"), "utf-8");
+            String installationId = FileUtils.readFile(new File(context.getFilesDir().getAbsoluteFile() + "/INSTALLATION"), "utf-8");
 
             this.key = generateKey(context, installationId);
         } catch (Exception e) {

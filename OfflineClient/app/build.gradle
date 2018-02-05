@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-android-extensions'
-//apply plugin: 'kotlin-kapt'
-apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 //kapt {
 //    generateStubs = true
@@ -13,14 +12,14 @@ android {
         enabled = true
     }
 
-
     defaultConfig {
         applicationId "de.jbamberger.offlineclient"
-        minSdkVersion 25
+        minSdkVersion 24
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -49,7 +48,7 @@ android {
 }
 
 dependencies {
-    //implementation "com.google.guava:guava:20.0"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "com.android.support:support-v4:$support_version"
     implementation "com.android.support:appcompat-v7:$support_version"
@@ -60,9 +59,6 @@ dependencies {
     implementation "com.android.support:customtabs:$support_version"
     implementation "com.android.support:preference-v14:$support_version"
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
-
-    implementation "org.apache.commons:commons-lang3:$apache_commons_lang_version"
-    implementation "commons-io:commons-io:$apache_commons_version"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:retrofit-converters:$retrofit_version"
@@ -77,12 +73,12 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
-    implementation "com.squareup:otto:$otto_version"
+    implementation "android.arch.lifecycle:runtime:$lifecycle_version"
+    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    kapt "android.arch.lifecycle:compiler:$lifecycle_version"
 
-    implementation "android.arch.lifecycle:runtime:$arch_version"
-    implementation "android.arch.lifecycle:extensions:$arch_version"
-
-    implementation "android.arch.persistence.room:runtime:$arch_version"
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
 
     implementation "com.google.firebase:firebase-messaging:$firebaseVersion"
 
@@ -90,33 +86,30 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
 
     implementation "joda-time:joda-time:$joda_time_version"
+
     implementation "com.jakewharton.timber:timber:$timber_version"
+
     implementation "org.jsoup:jsoup:$jsoup_version"
+
     implementation "com.google.code.gson:gson:$gson_version"
 
     implementation "com.google.dagger:dagger:$dagger_version"
-
     implementation "com.google.dagger:dagger-android:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    compileOnly "javax.annotation:jsr250-api:1.0"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
 
     implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation "junit:junit:$junit_version"
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
-    annotationProcessor "android.arch.lifecycle:compiler:$arch_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
-    annotationProcessor "android.arch.persistence.room:compiler:$arch_version"
-
-//    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-//    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
-//    kapt "com.android.databinding:compiler:$android_plugin_version"
-
-    testImplementation "junit:junit:$junit_version"
-    compileOnly "javax.annotation:jsr250-api:1.0"
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    kapt "com.android.databinding:compiler:$android_plugin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+
+apply plugin: 'com.google.gms.google-services'
