@@ -20,7 +20,7 @@ public class SecurePreferences {
 
     public SecurePreferences(Context context) {
         try {
-            String installationId = FileUtils.readFile(new File(context.getFilesDir().getAbsoluteFile() + "/INSTALLATION"), "utf-8");
+            String installationId = FileUtils.INSTANCE.readFile(new File(context.getFilesDir().getAbsoluteFile() + "/INSTALLATION"), "utf-8");
 
             this.key = generateKey(context, installationId);
         } catch (Exception e) {

@@ -50,7 +50,7 @@ public class JodelRepository {
             @NonNull
             @Override
             protected LiveData<List<Post>> loadFromDb() {
-                return AbsentLiveData.create();
+                return AbsentLiveData.Companion.create();
             }
 
             @NonNull

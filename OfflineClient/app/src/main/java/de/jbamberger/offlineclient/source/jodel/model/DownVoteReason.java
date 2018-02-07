@@ -33,7 +33,7 @@ public class DownVoteReason {
         List<DownVoteReason> arrayList = new ArrayList<>();
         for (DownVoteReason downVoteReason : REASONS) {
             String string = resources.getString(downVoteReason.stringResId);
-            if (!(Strings.isEmpty(string) || "$empty$".equalsIgnoreCase(string))) {
+            if (!(Strings.INSTANCE.isEmpty(string) || "$empty$".equalsIgnoreCase(string))) {
                 arrayList.add(downVoteReason);
             }
         }

@@ -17,7 +17,6 @@ import de.jbamberger.offlineclient.source.jodel.SecurePreferences
 import de.jbamberger.offlineclient.ui.jodel.feed.JodelFeedFragment
 import de.jbamberger.offlineclient.util.ExecuteAsRootBase
 import timber.log.Timber
-import java.util.*
 import javax.inject.Inject
 
 class JodelActivity : AppCompatActivity(), HasSupportFragmentInjector {
@@ -55,17 +54,12 @@ class JodelActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
     fun run(v: View) {
         try {
+            val jodelPath = "/data/data/com.tellm.android.app"
             val cmd = object : ExecuteAsRootBase() {
-                override fun getCommandsToExecute(): ArrayList<String> {
-                    val commands = ArrayList<String>()
-                    val jodelPath = "/data/data/com.tellm.android.app"
-                    commands.add("[ -f " + jodelPath + "/files/INSTALLATION ] && cp " + jodelPath + "/files/INSTALLATION " + filesDir
-                            + "&& chmod 755 " + filesDir.absolutePath + "/INSTALLATION")
-                    commands.add("[ -f " + jodelPath + "/shared_prefs/tellm.xml ] && cp " + jodelPath + "/shared_prefs/tellm.xml " +
-                            applicationInfo.dataDir + "/shared_prefs/tellm.xml" +
-                            "&& chmod 755 " + applicationInfo.dataDir + "/shared_prefs/tellm.xml")
-                    return commands
-                }
+                override val commandsToExecute: List<String>
+                    get() = listOf<String>(
+                            "[ -f $jodelPath/files/INSTALLATION ] && cp $jodelPath/files/INSTALLATION $filesDir && chmod 755 ${filesDir.absolutePath}/INSTALLATION",
+                            "[ -f $jodelPath/shared_prefs/tellm.xml ] && cp $jodelPath/shared_prefs/tellm.xml ${applicationInfo.dataDir}/shared_prefs/tellm.xml" + "&& chmod 755 ${applicationInfo.dataDir}/shared_prefs/tellm.xml")
             }
             cmd.execute()
             val p = getSharedPreferences("tellm", Context.MODE_PRIVATE)

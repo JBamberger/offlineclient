@@ -43,14 +43,14 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     @MainThread
     protected NetworkBoundResource(AppExecutors appExecutors) {
         this.appExecutors = appExecutors;
-        result.setValue(Resource.loading(null));
+        result.setValue(Resource.Companion.loading(null));
         LiveData<ResultType> dbSource = loadFromDb();
         result.addSource(dbSource, data -> {
             result.removeSource(dbSource);
             if (shouldFetch(data)) {
                 fetchFromNetwork(dbSource);
             } else {
-                result.addSource(dbSource, newData -> result.setValue(Resource.success(newData)));
+                result.addSource(dbSource, newData -> result.setValue(Resource.Companion.success(newData)));
             }
         });
     }
@@ -58,7 +58,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     private void fetchFromNetwork(final LiveData<ResultType> dbSource) {
         LiveData<ApiResponse<RequestType>> apiResponse = createCall();
         // we re-attach dbSource as a new source, it will dispatch its latest value quickly
-        result.addSource(dbSource, newData -> result.setValue(Resource.loading(newData)));
+        result.addSource(dbSource, newData -> result.setValue(Resource.Companion.loading(newData)));
         result.addSource(apiResponse, response -> {
             result.removeSource(apiResponse);
             result.removeSource(dbSource);
@@ -71,13 +71,13 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
                             // otherwise we will get immediately last cached value,
                             // which may not be updated with latest results received from network.
                             result.addSource(loadFromDb(),
-                                    newData -> result.setValue(Resource.success(newData)))
+                                    newData -> result.setValue(Resource.Companion.success(newData)))
                     );
                 });
             } else {
                 onFetchFailed();
                 result.addSource(dbSource,
-                        newData -> result.setValue(Resource.error(response.errorMessage, newData)));
+                        newData -> result.setValue(Resource.Companion.error(response.errorMessage, newData)));
             }
         });
     }

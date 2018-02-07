@@ -14,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import de.jbamberger.offlineclient.databinding.FragmentJodelFeedBinding
 import de.jbamberger.offlineclient.di.Injectable
-import de.jbamberger.offlineclient.source.jodel.model.Post
 import de.jbamberger.offlineclient.util.AutoClearedValue
 import de.jbamberger.offlineclient.util.Status
 import timber.log.Timber
@@ -47,31 +46,31 @@ class JodelFeedFragment : Fragment(), Injectable {
         feedViewModel = ViewModelProviders
                 .of(this, viewModelFactory)
                 .get(JodelFeedViewModel::class.java)
-        val binding = this.binding!!.get()
+        val binding = this.binding!!.get() ?: throw IllegalStateException("Binding not initialized")
         binding.listener = feedViewModel
 
-        val adapter = AutoClearedValue(this, JodelPostsAdapter())
+        val adapter = JodelPostsAdapter()
         binding.list.layoutManager = LinearLayoutManager(context)
         binding.list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        binding.list.adapter = adapter.get()
+        binding.list.adapter = adapter
 
         feedViewModel!!.posts.observe(this, Observer { listResource ->
             Timber.d("" + listResource)
             if (listResource != null) {
                 val data = listResource.data
                 if (listResource.status == Status.SUCCESS && data != null) {
-                    adapter.get().setItems(data)
+                    adapter.setItems(data)
                     binding.swipeRefreshLayout.isRefreshing = false
                     return@Observer
                 }
                 if (listResource.status == Status.LOADING) {
-                    adapter.get().setItems(emptyList<Post>())
+                    adapter.setItems(emptyList())
                     binding.swipeRefreshLayout.isRefreshing = true
                     return@Observer
                 }
             }
 
-            adapter.get().setItems(emptyList())
+            adapter.setItems(emptyList())
             Snackbar.make(binding.root, "loading error.", Snackbar.LENGTH_LONG).show()
             binding.swipeRefreshLayout.isRefreshing = false
         })
