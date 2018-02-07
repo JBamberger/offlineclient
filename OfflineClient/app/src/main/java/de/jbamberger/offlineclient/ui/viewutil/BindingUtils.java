@@ -17,10 +17,8 @@ import de.jbamberger.offlineclient.util.Strings;
 
 public class BindingUtils {
 
-    /**
-     * prevent instantiation
-     */
     private BindingUtils() {
+        throw new AssertionError("No instances!");
     }
 
 

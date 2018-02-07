@@ -29,6 +29,9 @@ public class AutoClearedValue<T> {
 
     public AutoClearedValue(Fragment fragment, T value) {
         FragmentManager fragmentManager = fragment.getFragmentManager();
+        if (fragmentManager == null) {
+            throw new IllegalStateException("Instance must be created after Fragment is attached.");
+        }
         fragmentManager.registerFragmentLifecycleCallbacks(
                 new FragmentManager.FragmentLifecycleCallbacks() {
                     @Override

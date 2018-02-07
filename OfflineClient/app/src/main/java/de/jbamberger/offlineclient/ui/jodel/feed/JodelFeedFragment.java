@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -19,7 +20,6 @@ import javax.inject.Inject;
 
 import de.jbamberger.offlineclient.databinding.FragmentJodelFeedBinding;
 import de.jbamberger.offlineclient.di.Injectable;
-import de.jbamberger.offlineclient.source.jodel.JodelApi;
 import de.jbamberger.offlineclient.util.AutoClearedValue;
 import de.jbamberger.offlineclient.util.Status;
 import timber.log.Timber;
@@ -29,9 +29,6 @@ import timber.log.Timber;
  */
 
 public class JodelFeedFragment extends Fragment implements Injectable {
-
-    @Inject
-    JodelApi api;
 
     @Inject
     Context context;
@@ -46,7 +43,7 @@ public class JodelFeedFragment extends Fragment implements Injectable {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         FragmentJodelFeedBinding dataBinding = FragmentJodelFeedBinding.inflate(inflater, container, false);
         binding = new AutoClearedValue<>(this, dataBinding);
         return dataBinding.getRoot();

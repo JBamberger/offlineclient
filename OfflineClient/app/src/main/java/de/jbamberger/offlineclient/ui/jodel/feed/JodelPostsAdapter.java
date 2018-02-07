@@ -16,7 +16,7 @@ public class JodelPostsAdapter extends DataBindingBaseAdapter {
 
     private List<Post> items = new ArrayList<>();
 
-    public void setItems(List<Post> items) {
+    void setItems(List<Post> items) {
         this.items = items;
         notifyDataSetChanged();
     }
