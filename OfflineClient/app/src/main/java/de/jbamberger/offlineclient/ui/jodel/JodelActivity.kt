@@ -1,7 +1,5 @@
 package de.jbamberger.offlineclient.ui.jodel
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -11,12 +9,10 @@ import android.view.View
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
+import de.jbamberger.api.jodel.JodelRepository
 import de.jbamberger.offlineclient.R
 import de.jbamberger.offlineclient.databinding.ActivityJodelBinding
-import de.jbamberger.offlineclient.source.jodel.SecurePreferences
 import de.jbamberger.offlineclient.ui.jodel.feed.JodelFeedFragment
-import de.jbamberger.offlineclient.util.ExecuteAsRootBase
-import timber.log.Timber
 import javax.inject.Inject
 
 class JodelActivity : AppCompatActivity(), HasSupportFragmentInjector {
@@ -25,7 +21,7 @@ class JodelActivity : AppCompatActivity(), HasSupportFragmentInjector {
     internal lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
     @Inject
-    internal lateinit var prefs: SharedPreferences
+    internal lateinit var repo: JodelRepository
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
         return@OnNavigationItemSelectedListener when (it.itemId) {
@@ -53,34 +49,6 @@ class JodelActivity : AppCompatActivity(), HasSupportFragmentInjector {
     }
 
     fun run(v: View) {
-        try {
-            val jodelPath = "/data/data/com.tellm.android.app"
-            val cmd = object : ExecuteAsRootBase() {
-                override val commandsToExecute: List<String>
-                    get() = listOf<String>(
-                            "[ -f $jodelPath/files/INSTALLATION ] && cp $jodelPath/files/INSTALLATION $filesDir && chmod 755 ${filesDir.absolutePath}/INSTALLATION",
-                            "[ -f $jodelPath/shared_prefs/tellm.xml ] && cp $jodelPath/shared_prefs/tellm.xml ${applicationInfo.dataDir}/shared_prefs/tellm.xml" + "&& chmod 755 ${applicationInfo.dataDir}/shared_prefs/tellm.xml")
-            }
-            cmd.execute()
-            val p = getSharedPreferences("tellm", Context.MODE_PRIVATE)
-            val pref = SecurePreferences(applicationContext)
-            val m = p.all
-            for (k in m.keys) {
-                try {
-                    val key = pref.decryptString(k)
-                    val value = pref.decryptString(m[k] as String)
-                    Timber.d("run: key: [$key], val: [$value]")
-
-                    if (key == "accessToken") {
-                        prefs.edit().putString("accessToken", value).apply()
-                    }
-                } catch (e: ClassCastException) {
-                    Timber.e(e)
-                }
-
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        repo.credentials()
     }
 }

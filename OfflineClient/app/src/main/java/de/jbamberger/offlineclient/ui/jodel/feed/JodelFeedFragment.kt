@@ -12,10 +12,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import de.jbamberger.api.Status
 import de.jbamberger.offlineclient.databinding.FragmentJodelFeedBinding
 import de.jbamberger.offlineclient.di.Injectable
 import de.jbamberger.offlineclient.util.AutoClearedValue
-import de.jbamberger.offlineclient.util.Status
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -54,16 +54,16 @@ class JodelFeedFragment : Fragment(), Injectable {
         binding.list.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         binding.list.adapter = adapter
 
-        feedViewModel!!.posts.observe(this, Observer { listResource ->
-            Timber.d("" + listResource)
-            if (listResource != null) {
-                val data = listResource.data
-                if (listResource.status == Status.SUCCESS && data != null) {
+        feedViewModel!!.posts.observe(this, Observer {
+            Timber.d("" + it)
+            if (it != null) {
+                val data = it.data
+                if (it.status == Status.SUCCESS && data != null) {
                     adapter.setItems(data)
                     binding.swipeRefreshLayout.isRefreshing = false
                     return@Observer
                 }
-                if (listResource.status == Status.LOADING) {
+                if (it.status == Status.LOADING) {
                     adapter.setItems(emptyList())
                     binding.swipeRefreshLayout.isRefreshing = true
                     return@Observer

@@ -6,7 +6,7 @@
 
         <variable
             name="obj"
-            type="de.jbamberger.offlineclient.source.jodel.model.Post" />
+            type="de.jbamberger.api.jodel.model.Post" />
     </data>
 
 

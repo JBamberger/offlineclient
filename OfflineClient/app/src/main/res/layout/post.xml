@@ -15,13 +15,12 @@
 
         <variable
             name="obj"
-            type="de.jbamberger.offlineclient.source.jodel.model.Post" />
+            type="de.jbamberger.api.jodel.model.Post" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@{obj.getParsedColor()}"
         android:onClickListener="@{listener::onClick}"
         tools:context="de.jbamberger.offlineclient.ui.main.MainActivity">
 

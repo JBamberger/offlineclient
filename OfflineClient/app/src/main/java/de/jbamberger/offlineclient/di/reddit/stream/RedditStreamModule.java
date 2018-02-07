@@ -7,8 +7,6 @@ import dagger.Module;
 import dagger.android.AndroidInjector;
 import dagger.android.support.FragmentKey;
 import dagger.multibindings.IntoMap;
-import de.jbamberger.offlineclient.db.OfflineDatabase;
-import de.jbamberger.offlineclient.db.dao.RedditPostDao;
 import de.jbamberger.offlineclient.ui.reddit.RedditStreamFragment;
 
 /**
@@ -21,8 +19,4 @@ public abstract class RedditStreamModule {
     @FragmentKey(RedditStreamFragment.class)
     abstract AndroidInjector.Factory<? extends Fragment>
     bindRedditStreamFragmentInjectorFactory(RedditStreamSubcomponent.Builder builder);
-
-    RedditPostDao providesRedditPostDao(OfflineDatabase db) {
-        return db.redditPostDao();
-    }
 }

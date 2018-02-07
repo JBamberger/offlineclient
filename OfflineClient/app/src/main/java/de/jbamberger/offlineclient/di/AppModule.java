@@ -5,13 +5,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import de.jbamberger.api.Repository;
+import de.jbamberger.api.backend.BackendRepository;
+import de.jbamberger.api.jodel.JodelRepository;
+import de.jbamberger.api.reddit.RedditRepository;
 import de.jbamberger.offlineclient.di.jodel.JodelSubComponent;
 import de.jbamberger.offlineclient.di.reddit.RedditSubComponent;
 
@@ -22,7 +23,7 @@ import de.jbamberger.offlineclient.di.reddit.RedditSubComponent;
  */
 
 @Module(subcomponents = {JodelSubComponent.class, RedditSubComponent.class},
-        includes = {ViewModelModule.class, NetModule.class})
+        includes = {ViewModelModule.class})
 class AppModule {
 
     @Provides
@@ -39,8 +40,25 @@ class AppModule {
 
     @Provides
     @Singleton
-    Executor providesWorkExecutor(Context context) {
-        //TODO: fix
-        return new ScheduledThreadPoolExecutor(4);
+    Repository providesRepository(Application app) {
+        return new Repository(app);
+    }
+
+    @Provides
+    @Singleton
+    BackendRepository providesBackendRepository(Repository repo) {
+        return repo.getBackendRepository();
+    }
+
+    @Provides
+    @Singleton
+    JodelRepository providesJodelRepository(Repository repo) {
+        return repo.getJodelRepository();
+    }
+
+    @Provides
+    @Singleton
+    RedditRepository providesRedditRepository(Repository repo) {
+        return repo.getRedditRepository();
     }
 }
