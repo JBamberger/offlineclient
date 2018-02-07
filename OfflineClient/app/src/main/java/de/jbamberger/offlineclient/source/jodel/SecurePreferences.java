@@ -2,6 +2,8 @@ package de.jbamberger.offlineclient.source.jodel;
 
 import android.content.Context;
 import android.provider.Settings;
+import android.util.Base64;
+
 import java.io.File;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -12,7 +14,6 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import de.jbamberger.offlineclient.util.FileUtils;
-import de.jbamberger.offlineclient.util.base64.Base64;
 
 
 public class SecurePreferences {
