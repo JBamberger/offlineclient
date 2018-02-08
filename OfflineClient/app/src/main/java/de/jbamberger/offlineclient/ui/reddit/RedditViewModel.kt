@@ -2,8 +2,8 @@ package de.jbamberger.offlineclient.ui.reddit
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
-import de.jbamberger.offlineclient.db.entity.RedditPost
-import de.jbamberger.offlineclient.source.reddit.RedditRepository
+import de.jbamberger.api.reddit.RedditPost
+import de.jbamberger.api.reddit.RedditRepository
 import javax.inject.Inject
 
 /**

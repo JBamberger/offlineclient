@@ -2,9 +2,9 @@ package de.jbamberger.offlineclient.ui.jodel.feed
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
-import de.jbamberger.offlineclient.source.jodel.JodelRepository
-import de.jbamberger.offlineclient.source.jodel.model.Post
-import de.jbamberger.offlineclient.util.Resource
+import de.jbamberger.api.Resource
+import de.jbamberger.api.jodel.JodelRepository
+import de.jbamberger.api.jodel.model.Post
 import javax.inject.Inject
 
 /**
@@ -14,9 +14,9 @@ import javax.inject.Inject
 class JodelFeedViewModel @Inject
 constructor(private val repository: JodelRepository) : ViewModel() {
 
-    val posts: LiveData<Resource<List<Post>>> = repository.posts
+    val posts: LiveData<Resource<List<Post>>> = repository.getPosts()
 
     fun refresh() {
-        repository.posts
+        repository.getPosts()
     }
 }

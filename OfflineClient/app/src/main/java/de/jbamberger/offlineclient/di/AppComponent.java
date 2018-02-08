@@ -17,8 +17,7 @@ import de.jbamberger.offlineclient.App;
         AndroidInjectionModule.class,
         AndroidSupportInjectionModule.class,
         AppModule.class,
-        BuildersModule.class,
-        DatabaseModule.class
+        BuildersModule.class
 })
 public interface AppComponent extends AndroidInjector<App> {
 
