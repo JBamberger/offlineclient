@@ -10,8 +10,8 @@ import de.jbamberger.api.RepositoryProvider
 import de.jbamberger.api.backend.BackendRepository
 import de.jbamberger.api.jodel.JodelRepository
 import de.jbamberger.api.reddit.RedditRepository
-import de.jbamberger.offlineclient.di.jodel.JodelSubComponent
-import de.jbamberger.offlineclient.di.reddit.RedditSubComponent
+import de.jbamberger.offlineclient.ui.jodel.feed.JodelSubComponent
+import de.jbamberger.offlineclient.ui.reddit.RedditSubComponent
 import javax.inject.Singleton
 
 /**

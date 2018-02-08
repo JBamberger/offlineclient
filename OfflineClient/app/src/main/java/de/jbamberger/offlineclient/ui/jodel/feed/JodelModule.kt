@@ -1,4 +1,4 @@
-package de.jbamberger.offlineclient.di.jodel
+package de.jbamberger.offlineclient.ui.jodel.feed
 
 import dagger.Module
 

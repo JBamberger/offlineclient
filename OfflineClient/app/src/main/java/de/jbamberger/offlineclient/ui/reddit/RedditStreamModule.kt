@@ -1,4 +1,4 @@
-package de.jbamberger.offlineclient.di.reddit.stream
+package de.jbamberger.offlineclient.ui.reddit
 
 import android.support.v4.app.Fragment
 
@@ -7,7 +7,6 @@ import dagger.Module
 import dagger.android.AndroidInjector
 import dagger.android.support.FragmentKey
 import dagger.multibindings.IntoMap
-import de.jbamberger.offlineclient.ui.reddit.RedditStreamFragment
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)

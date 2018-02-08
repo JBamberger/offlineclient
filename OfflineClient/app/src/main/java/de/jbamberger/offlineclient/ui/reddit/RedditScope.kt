@@ -1,4 +1,4 @@
-package de.jbamberger.offlineclient.di.reddit.stream
+package de.jbamberger.offlineclient.ui.reddit
 
 import javax.inject.Scope
 
@@ -9,4 +9,4 @@ import javax.inject.Scope
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
 @Scope
-annotation class RedditStreamScope
+annotation class RedditScope

@@ -1,4 +1,4 @@
-package de.jbamberger.offlineclient.di.jodel
+package de.jbamberger.offlineclient.ui.jodel.feed
 
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
@@ -9,7 +9,7 @@ import de.jbamberger.offlineclient.ui.jodel.JodelActivity
  */
 
 @JodelActivityScope
-@Subcomponent(modules = arrayOf(JodelModule::class/*, NetModule.class*/))
+@Subcomponent(modules = [JodelModule::class])
 interface JodelSubComponent : AndroidInjector<JodelActivity> {
 
     @Subcomponent.Builder

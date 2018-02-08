@@ -1,4 +1,4 @@
-package de.jbamberger.offlineclient.di.reddit
+package de.jbamberger.offlineclient.ui.reddit
 
 
 import android.app.Activity
@@ -8,7 +8,6 @@ import dagger.Module
 import dagger.android.ActivityKey
 import dagger.android.AndroidInjector
 import dagger.multibindings.IntoMap
-import de.jbamberger.offlineclient.ui.reddit.RedditActivity
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)

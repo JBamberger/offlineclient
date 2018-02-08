@@ -1,8 +1,7 @@
-package de.jbamberger.offlineclient.di.reddit
+package de.jbamberger.offlineclient.ui.reddit
 
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
-import de.jbamberger.offlineclient.ui.reddit.RedditActivity
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)

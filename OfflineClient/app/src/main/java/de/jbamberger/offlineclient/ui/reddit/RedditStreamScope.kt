@@ -1,4 +1,4 @@
-package de.jbamberger.offlineclient.di.jodel
+package de.jbamberger.offlineclient.ui.reddit
 
 import javax.inject.Scope
 
@@ -7,6 +7,6 @@ import javax.inject.Scope
  */
 
 @MustBeDocumented
-@Scope
 @Retention(AnnotationRetention.RUNTIME)
-annotation class JodelActivityScope
+@Scope
+annotation class RedditStreamScope
