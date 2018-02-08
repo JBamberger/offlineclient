@@ -13,8 +13,6 @@ import de.jbamberger.offlineclient.App
 import de.jbamberger.offlineclient.di.AppInjector.Injectable
 
 
-
-
 /**
  * Helper class to automatically inject fragments if they implement [Injectable].
  */
@@ -56,10 +54,8 @@ object AppInjector {
 
         (activity as? FragmentActivity)?.supportFragmentManager?.registerFragmentLifecycleCallbacks(
                 object : FragmentManager.FragmentLifecycleCallbacks() {
-                    override fun onFragmentCreated(fm: FragmentManager, f: Fragment,
-                                                   savedInstanceState: Bundle) {
+                    override fun onFragmentCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
                         if (f is Injectable) AndroidSupportInjection.inject(f)
-
                     }
                 }, true)
     }

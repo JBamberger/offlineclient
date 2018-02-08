@@ -10,8 +10,6 @@ import de.jbamberger.api.RepositoryProvider
 import de.jbamberger.api.backend.BackendRepository
 import de.jbamberger.api.jodel.JodelRepository
 import de.jbamberger.api.reddit.RedditRepository
-import de.jbamberger.offlineclient.ui.jodel.feed.JodelSubComponent
-import de.jbamberger.offlineclient.ui.reddit.RedditSubComponent
 import javax.inject.Singleton
 
 /**
@@ -20,7 +18,7 @@ import javax.inject.Singleton
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-@Module(subcomponents = arrayOf(JodelSubComponent::class, RedditSubComponent::class), includes = arrayOf(ViewModelModule::class))
+@Module(includes = [ViewModelModule::class])
 internal class AppModule {
 
     @Provides

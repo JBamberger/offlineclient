@@ -1,4 +1,4 @@
-package de.jbamberger.offlineclient.ui.reddit
+package de.jbamberger.offlineclient.ui.reddit.stream
 
 
 import android.arch.lifecycle.Observer
@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import de.jbamberger.offlineclient.R
 import de.jbamberger.offlineclient.databinding.FragmentRedditStreamBinding
 import de.jbamberger.offlineclient.di.AppInjector
+import de.jbamberger.offlineclient.ui.reddit.RedditViewModel
 import timber.log.Timber
 import javax.inject.Inject
 

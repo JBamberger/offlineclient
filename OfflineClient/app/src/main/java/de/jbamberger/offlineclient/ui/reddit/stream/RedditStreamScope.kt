@@ -1,4 +1,4 @@
-package de.jbamberger.offlineclient.ui.reddit
+package de.jbamberger.offlineclient.ui.reddit.stream
 
 import javax.inject.Scope
 

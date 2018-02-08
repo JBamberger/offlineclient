@@ -9,4 +9,4 @@ import javax.inject.Scope
 @MustBeDocumented
 @Retention(AnnotationRetention.RUNTIME)
 @Scope
-annotation class RedditScope
+annotation class RedditActivityScope

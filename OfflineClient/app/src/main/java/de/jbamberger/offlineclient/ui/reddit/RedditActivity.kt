@@ -17,6 +17,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import de.jbamberger.offlineclient.R
 import de.jbamberger.offlineclient.databinding.ActivityRedditBinding
+import de.jbamberger.offlineclient.ui.reddit.stream.RedditStreamFragment
 import kotlinx.android.synthetic.main.activity_reddit.*
 import kotlinx.android.synthetic.main.app_bar_reddit.*
 import javax.inject.Inject

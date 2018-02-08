@@ -1,4 +1,4 @@
-package de.jbamberger.offlineclient.ui.jodel.feed
+package de.jbamberger.offlineclient.ui.jodel
 
 import javax.inject.Scope
 
