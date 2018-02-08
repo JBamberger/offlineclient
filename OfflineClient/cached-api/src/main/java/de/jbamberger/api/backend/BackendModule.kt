@@ -18,6 +18,6 @@ internal class BackendModule {
     @Provides
     @Singleton
     internal fun provideBackendApiInterface(retrofitBuilder: Retrofit.Builder): BackendApi {
-        return retrofitBuilder.baseUrl("https://jbamberger.de").build().create(BackendApi::class.java)
+        return retrofitBuilder.baseUrl(BackendApi.BASE_URL).build().create(BackendApi::class.java)
     }
 }
