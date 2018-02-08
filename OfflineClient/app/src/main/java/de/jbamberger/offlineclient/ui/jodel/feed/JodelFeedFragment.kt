@@ -14,7 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import de.jbamberger.api.Status
 import de.jbamberger.offlineclient.databinding.FragmentJodelFeedBinding
-import de.jbamberger.offlineclient.di.Injectable
+import de.jbamberger.offlineclient.di.AppInjector
 import de.jbamberger.offlineclient.util.AutoClearedValue
 import timber.log.Timber
 import javax.inject.Inject
@@ -23,7 +23,7 @@ import javax.inject.Inject
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-class JodelFeedFragment : Fragment(), Injectable {
+class JodelFeedFragment : Fragment(), AppInjector.Injectable {
 
     @Inject
     internal lateinit var context: Context

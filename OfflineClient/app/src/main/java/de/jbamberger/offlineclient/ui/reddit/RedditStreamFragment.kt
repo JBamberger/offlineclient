@@ -12,11 +12,11 @@ import android.view.View
 import android.view.ViewGroup
 import de.jbamberger.offlineclient.R
 import de.jbamberger.offlineclient.databinding.FragmentRedditStreamBinding
-import de.jbamberger.offlineclient.di.Injectable
+import de.jbamberger.offlineclient.di.AppInjector
 import timber.log.Timber
 import javax.inject.Inject
 
-class RedditStreamFragment : Fragment(), Injectable {
+class RedditStreamFragment : Fragment(), AppInjector.Injectable {
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory

@@ -6,16 +6,20 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
-
 import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
 import de.jbamberger.offlineclient.App
+import de.jbamberger.offlineclient.di.AppInjector.Injectable
+
+
+
 
 /**
  * Helper class to automatically inject fragments if they implement [Injectable].
  */
 object AppInjector {
+    interface Injectable
 
     fun init(app: App) {
         DaggerAppComponent.builder()
@@ -60,3 +64,4 @@ object AppInjector {
                 }, true)
     }
 }
+
