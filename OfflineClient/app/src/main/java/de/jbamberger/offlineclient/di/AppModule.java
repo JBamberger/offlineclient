@@ -9,7 +9,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import de.jbamberger.api.Repository;
+import de.jbamberger.api.RepositoryProvider;
 import de.jbamberger.api.backend.BackendRepository;
 import de.jbamberger.api.jodel.JodelRepository;
 import de.jbamberger.api.reddit.RedditRepository;
@@ -40,25 +40,25 @@ class AppModule {
 
     @Provides
     @Singleton
-    Repository providesRepository(Application app) {
-        return new Repository(app);
+    RepositoryProvider providesRepository(Application app) {
+        return new RepositoryProvider(app);
     }
 
     @Provides
     @Singleton
-    BackendRepository providesBackendRepository(Repository repo) {
+    BackendRepository providesBackendRepository(RepositoryProvider repo) {
         return repo.getBackendRepository();
     }
 
     @Provides
     @Singleton
-    JodelRepository providesJodelRepository(Repository repo) {
+    JodelRepository providesJodelRepository(RepositoryProvider repo) {
         return repo.getJodelRepository();
     }
 
     @Provides
     @Singleton
-    RedditRepository providesRedditRepository(Repository repo) {
+    RedditRepository providesRedditRepository(RepositoryProvider repo) {
         return repo.getRedditRepository();
     }
 }

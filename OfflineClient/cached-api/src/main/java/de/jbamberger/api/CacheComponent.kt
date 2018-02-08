@@ -4,8 +4,11 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import de.jbamberger.api.backend.BackendModule
+import de.jbamberger.api.backend.BackendRepository
 import de.jbamberger.api.jodel.JodelModule
+import de.jbamberger.api.jodel.JodelRepository
 import de.jbamberger.api.reddit.RedditModule
+import de.jbamberger.api.reddit.RedditRepository
 import javax.inject.Singleton
 
 /**
@@ -23,5 +26,7 @@ interface CacheComponent {
         fun build(): CacheComponent
     }
 
-    fun inject(repository: Repository)
+    fun getRedditRepository(): RedditRepository
+    fun getJodelRepository(): JodelRepository
+    fun getBackendRepository(): BackendRepository
 }
