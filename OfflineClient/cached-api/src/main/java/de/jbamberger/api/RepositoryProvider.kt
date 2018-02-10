@@ -2,8 +2,8 @@ package de.jbamberger.api
 
 import android.app.Application
 import de.jbamberger.api.backend.BackendRepository
-import de.jbamberger.api.jodel.JodelRepository
-import de.jbamberger.api.reddit.RedditRepository
+import de.jbamberger.api.provider.jodel.JodelRepository
+import de.jbamberger.api.provider.reddit.RedditRepository
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)

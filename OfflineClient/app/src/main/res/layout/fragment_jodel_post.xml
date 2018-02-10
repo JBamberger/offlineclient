@@ -5,7 +5,7 @@
 
         <variable
             name="obj"
-            type="de.jbamberger.api.jodel.model.Post" />
+            type="de.jbamberger.api.provider.jodel.model.Post" />
     </data>
 
     <android.support.v4.widget.SwipeRefreshLayout

@@ -1,4 +1,4 @@
-package de.jbamberger.api.backend
+package de.jbamberger.api.provider.jodel
 
 import dagger.Module
 import dagger.Provides
@@ -14,10 +14,10 @@ import javax.inject.Singleton
  */
 
 @Module(includes = [DatabaseModule::class, NetModule::class])
-internal class BackendModule {
+internal class JodelModule {
     @Provides
     @Singleton
-    internal fun provideBackendApiInterface(retrofitBuilder: Retrofit.Builder): BackendApi {
-        return retrofitBuilder.baseUrl(BackendApi.BASE_URL).build().create(BackendApi::class.java)
+    internal fun provideJodelApiInterface(retrofitBuilder: Retrofit.Builder): JodelApi {
+        return retrofitBuilder.baseUrl(JodelApi.BASE_URL).build().create(JodelApi::class.java)
     }
 }

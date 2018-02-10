@@ -2,8 +2,8 @@ package de.jbamberger.api.db
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
-import de.jbamberger.api.reddit.RedditPost
-import de.jbamberger.api.reddit.RedditPostDao
+import de.jbamberger.api.provider.reddit.RedditPost
+import de.jbamberger.api.provider.reddit.RedditPostDao
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)

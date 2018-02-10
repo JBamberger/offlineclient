@@ -5,7 +5,8 @@ package de.jbamberger.api
  *
  * @param <T>
 </T> */
-data class Resource<out T> internal constructor(val status: Status, val data: T?, val message: String?) {
+data class Resource<out T>
+internal constructor(val status: Status, val data: T?, val message: String?) {
 
     companion object {
         fun <T> success(data: T?): Resource<T> {

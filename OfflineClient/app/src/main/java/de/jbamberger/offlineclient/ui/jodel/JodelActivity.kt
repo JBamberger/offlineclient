@@ -9,7 +9,7 @@ import android.view.View
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import de.jbamberger.api.jodel.JodelRepository
+import de.jbamberger.api.provider.jodel.JodelRepository
 import de.jbamberger.offlineclient.R
 import de.jbamberger.offlineclient.databinding.ActivityJodelBinding
 import de.jbamberger.offlineclient.ui.jodel.feed.JodelFeedFragment

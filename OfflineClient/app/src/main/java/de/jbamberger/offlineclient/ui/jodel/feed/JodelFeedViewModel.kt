@@ -3,8 +3,8 @@ package de.jbamberger.offlineclient.ui.jodel.feed
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
 import de.jbamberger.api.Resource
-import de.jbamberger.api.jodel.JodelRepository
-import de.jbamberger.api.jodel.model.Post
+import de.jbamberger.api.provider.jodel.JodelRepository
+import de.jbamberger.api.provider.jodel.model.Post
 import javax.inject.Inject
 
 /**

@@ -8,8 +8,8 @@ import dagger.Module
 import dagger.Provides
 import de.jbamberger.api.RepositoryProvider
 import de.jbamberger.api.backend.BackendRepository
-import de.jbamberger.api.jodel.JodelRepository
-import de.jbamberger.api.reddit.RedditRepository
+import de.jbamberger.api.provider.jodel.JodelRepository
+import de.jbamberger.api.provider.reddit.RedditRepository
 import javax.inject.Singleton
 
 /**

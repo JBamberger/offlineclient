@@ -1,6 +1,6 @@
 package de.jbamberger.offlineclient.ui.jodel.feed
 
-import de.jbamberger.api.jodel.model.Post
+import de.jbamberger.api.provider.jodel.model.Post
 import de.jbamberger.offlineclient.R
 import de.jbamberger.offlineclient.ui.components.DataBindingBaseAdapter
 import java.util.*
