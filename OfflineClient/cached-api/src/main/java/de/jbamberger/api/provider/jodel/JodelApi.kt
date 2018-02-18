@@ -1,9 +1,7 @@
 package de.jbamberger.api.provider.jodel
 
-import android.arch.lifecycle.LiveData
-
-import de.jbamberger.api.ApiResponse
 import de.jbamberger.api.provider.jodel.model.GetPostsComboResponse
+import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -19,7 +17,7 @@ internal interface JodelApi {
             @Query("lng") lng: Double,
             @Query("stickies") stickies: Boolean,
             @Query("home") home: Boolean,
-            @Query("skipHometown") skipHometown: Boolean): LiveData<ApiResponse<GetPostsComboResponse>>
+            @Query("skipHometown") skipHometown: Boolean): Flowable<GetPostsComboResponse>
 
     companion object {
         val BASE_URL = "https://api.go-tellm.com:443/api/"

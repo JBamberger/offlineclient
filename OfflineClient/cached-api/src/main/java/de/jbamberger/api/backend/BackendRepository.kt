@@ -14,21 +14,18 @@ class BackendRepository @Inject internal constructor(val api: BackendApi) {
         Timber.d("updateToken %s\n%s", old, new)
         if (old.isBlank()) {
             if (!new.isBlank()) {
-                api.insertToken(new).observeForever {
-                    if (it != null) {
-                        Timber.d("%b %s %s", it.isSuccessful, it.body, it.errorMessage)
-                    }
-                }
+                api.insertToken(new).subscribe(
+                        { Timber.d("Status: ", it) },
+                        { Timber.e(it, "Could not send token to backend!") })
             }
         } else {
             if (old.equals(new)) {
                 return
             } else {
-                api.updateToken(old, new).observeForever {
-                    if (it != null) {
-                        Timber.d("%b %s %s", it.isSuccessful, it.body, it.errorMessage)
-                    }
-                }
+                api.updateToken(old, new)
+                        .subscribe(
+                                { Timber.d("Status: ", it) },
+                                { Timber.e(it, "Could not send token to backend!") })
             }
         }
     }

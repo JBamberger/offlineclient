@@ -41,7 +41,7 @@ protected constructor(private val appExecutors: AppExecutors) {
             result.removeSource(apiResponse)
             result.removeSource(dbSource)
 
-            if (response!!.isSuccessful) {
+            if (response!!.error == null) {
                 appExecutors.diskIO().execute {
                     saveCallResult(processResponse(response))
                     appExecutors.mainThread().execute {
@@ -53,7 +53,7 @@ protected constructor(private val appExecutors: AppExecutors) {
                 }
             } else {
                 onFetchFailed()
-                result.addSource(dbSource) { result.setValue(Resource.error(response.errorMessage!!, it)) }
+                result.addSource(dbSource) { result.setValue(Resource.error(response.error!!.message!!, it)) }
             }
         }
     }

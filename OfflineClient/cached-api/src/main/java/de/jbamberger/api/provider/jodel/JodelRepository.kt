@@ -2,6 +2,7 @@ package de.jbamberger.api.provider.jodel
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.LiveDataReactiveStreams
 import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.content.SharedPreferences
@@ -34,7 +35,10 @@ internal constructor(private val appExecutors: AppExecutors, private val api: Jo
             }
 
             override fun createCall(): LiveData<ApiResponse<GetPostsComboResponse>> {
-                return api.getPostsCombo(47.75027847290039, 8.978754997253418, true, true, false)
+                val responseStream = api.getPostsCombo(47.75027847290039, 8.978754997253418, true, true, false)
+                        .map { ApiResponse(it) }
+                        .onErrorReturn { ApiResponse(it)}
+                return LiveDataReactiveStreams.fromPublisher(responseStream)
             }
         }.asLiveData()
     }

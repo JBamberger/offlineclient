@@ -49,6 +49,7 @@ dependencies {
     implementation "com.android.support:support-annotations:$support_version"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.retrofit2:retrofit-converters:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
@@ -63,6 +64,7 @@ dependencies {
 
     implementation "android.arch.lifecycle:runtime:$lifecycle_version"
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
+    implementation "android.arch.lifecycle:reactivestreams:$lifecycle_version"
     kapt "android.arch.lifecycle:compiler:$lifecycle_version"
 
     implementation "android.arch.persistence.room:runtime:$room_version"
