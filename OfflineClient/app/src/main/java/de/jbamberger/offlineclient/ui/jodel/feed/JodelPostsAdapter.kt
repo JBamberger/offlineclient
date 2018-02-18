@@ -28,7 +28,7 @@ class JodelPostsAdapter : DataBindingBaseAdapter() {
     }
 
     override fun getLayoutIdForPosition(position: Int): Int {
-        return R.layout.post
+        return R.layout.jodel_post
     }
 
     override fun getItemCount(): Int {

@@ -1,23 +1,17 @@
 package de.jbamberger.offlineclient.ui.main
 
 import android.app.Activity
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.google.firebase.iid.FirebaseInstanceId
+import de.jbamberger.api.Status
 import de.jbamberger.offlineclient.R
 import de.jbamberger.offlineclient.databinding.ActivityMainBinding
 import de.jbamberger.offlineclient.ui.base.BaseActivity
-import de.jbamberger.offlineclient.ui.components.DataBindingAdapter
-import de.jbamberger.offlineclient.ui.components.ListItem
-import de.jbamberger.offlineclient.ui.components.TwoLineItem
-import de.jbamberger.offlineclient.ui.hackernews.HackerNewsActivity
-import de.jbamberger.offlineclient.ui.jodel.JodelActivity
-import de.jbamberger.offlineclient.ui.reddit.RedditActivity
-import de.jbamberger.offlineclient.ui.twitter.TwitterActivity
 import timber.log.Timber
 
 class MainActivity : BaseActivity<MainActivityViewModel>() {
@@ -28,7 +22,7 @@ class MainActivity : BaseActivity<MainActivityViewModel>() {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_main)
-        val adapter = DataBindingAdapter()
+        val adapter = StreamAdapter()
 
         Timber.d("InstanceId: %s", FirebaseInstanceId.getInstance().token)
 
@@ -37,7 +31,19 @@ class MainActivity : BaseActivity<MainActivityViewModel>() {
         binding.list.addItemDecoration(
                 DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
-        val items = listOf<ListItem>(
+        viewModel.posts.observe(this, Observer {
+            if (it != null) {
+                when(it.status) {
+                    Status.SUCCESS -> {
+                        adapter.setItems(it.data!!)
+                    }
+                    Status.ERROR -> TODO()
+                    Status.LOADING -> TODO()
+                }
+            }
+        })
+
+/*      val items = listOf<ListItem>(
                 TwoLineItem("Jodel", "anonymous location based chat",
                         View.OnClickListener { start( JodelActivity::class.java) }),
                 TwoLineItem("Reddit", "front page of the internet",
@@ -46,8 +52,7 @@ class MainActivity : BaseActivity<MainActivityViewModel>() {
                         View.OnClickListener { start( HackerNewsActivity::class.java) }),
                 TwoLineItem("Twitter", "birds..?!",
                         View.OnClickListener { start( TwitterActivity::class.java) }))
-
-        adapter.setItems(items)
+        adapter.setItems(items)*/
     }
 
     private fun start(clazz: Class<out Activity>) {

@@ -8,4 +8,9 @@ import javax.inject.Inject
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-class MainActivityViewModel @Inject constructor(private val repo: Repository) : ViewModel()
+class MainActivityViewModel @Inject constructor(private val repo: Repository) : ViewModel() {
+
+    var posts = repo.getPosts()
+        private set
+
+}

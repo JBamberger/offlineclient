@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="de.jbamberger.offlineclient.ui.main.MainActivity">
+
+    <data>
+
+        <variable
+            name="selected"
+            type="boolean" />
+
+        <variable
+            name="listener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="obj"
+            type="de.jbamberger.api.model.StreamContent" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClickListener="@{listener::onClick}">
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{obj.content}"
+            android:textColor="#ffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Message" />
+
+        <TextView
+            android:id="@+id/orderDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text='@{"date: " + obj.orderDate}'
+            android:textColor="#ffffff"
+            app:layout_constraintEnd_toStartOf="@+id/contentProvider"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/content"
+            tools:text="Color" />
+
+        <TextView
+            android:id="@+id/contentProvider"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text='@{"provider: " + obj.provider.name()}'
+            android:textColor="#ffffff"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/orderDate"
+            app:layout_constraintTop_toBottomOf="@+id/content"
+            tools:text="Color" />
+
+        <ImageView
+            android:id="@+id/contentImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="16:9"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/orderDate"
+            app:srcUrl='@{"https:" + obj.imageUrl}'
+            app:visIfNN="@{obj.imageUrl}" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
