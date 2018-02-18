@@ -4,14 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.google.firebase.iid.FirebaseInstanceId
-import dagger.android.AndroidInjection
 import de.jbamberger.offlineclient.R
 import de.jbamberger.offlineclient.databinding.ActivityMainBinding
+import de.jbamberger.offlineclient.ui.base.BaseActivity
 import de.jbamberger.offlineclient.ui.components.DataBindingAdapter
 import de.jbamberger.offlineclient.ui.components.ListItem
 import de.jbamberger.offlineclient.ui.components.TwoLineItem
@@ -21,10 +20,11 @@ import de.jbamberger.offlineclient.ui.reddit.RedditActivity
 import de.jbamberger.offlineclient.ui.twitter.TwitterActivity
 import timber.log.Timber
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity<MainActivityViewModel>() {
+
+    override val viewModelClass = MainActivityViewModel::class.java
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding =
                 DataBindingUtil.setContentView(this, R.layout.activity_main)

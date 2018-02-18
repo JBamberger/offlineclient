@@ -19,7 +19,7 @@ class BackendRepository @Inject internal constructor(val api: BackendApi) {
                         { Timber.e(it, "Could not send token to backend!") })
             }
         } else {
-            if (old.equals(new)) {
+            if (old == new) {
                 return
             } else {
                 api.updateToken(old, new)

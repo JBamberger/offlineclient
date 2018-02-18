@@ -7,6 +7,8 @@ import de.jbamberger.offlineclient.ui.jodel.JodelActivity
 import de.jbamberger.offlineclient.ui.jodel.JodelActivityScope
 import de.jbamberger.offlineclient.ui.jodel.JodelModule
 import de.jbamberger.offlineclient.ui.main.MainActivity
+import de.jbamberger.offlineclient.ui.main.MainActivityModule
+import de.jbamberger.offlineclient.ui.main.MainActivityScope
 import de.jbamberger.offlineclient.ui.reddit.RedditActivity
 import de.jbamberger.offlineclient.ui.reddit.RedditActivityScope
 import de.jbamberger.offlineclient.ui.reddit.RedditModule
@@ -19,7 +21,8 @@ import de.jbamberger.offlineclient.ui.reddit.RedditModule
 @Module
 internal abstract class BuildersModule {
 
-    @ContributesAndroidInjector
+    @MainActivityScope
+    @ContributesAndroidInjector(modules = [MainActivityModule::class])
     internal abstract fun contributeMainActivity(): MainActivity
 
     @JodelActivityScope
