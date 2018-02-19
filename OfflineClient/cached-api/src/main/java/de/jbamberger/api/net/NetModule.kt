@@ -77,7 +77,6 @@ class NetModule {
                     //.header("X-Api-Version", "0.2")
                     //.header("X-Timestamp", "2017-06-11T20:33:44Z")
                     //.header("X-Authorization", "HMAC 4A49F88A4B3E11A6FE2C559FF7228DF0917D1CB9")
-
                     .method(original.method(), original.body())
                     .build()
 

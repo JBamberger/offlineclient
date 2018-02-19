@@ -19,6 +19,7 @@ object BindingUtils {
     /**
      * Load a picture from an url into an image view.
      */
+    @JvmStatic
     @BindingAdapter("srcUrl")
     fun loadImageUrl(iv: ImageView, url: String) {
         if (Strings.isEmpty(url)) {
@@ -33,6 +34,7 @@ object BindingUtils {
         }
     }
 
+    @JvmStatic
     @BindingAdapter("visIfNN")
     fun visibleIfNotNull(v: View, condition: Any?) {
         if (condition == null) {

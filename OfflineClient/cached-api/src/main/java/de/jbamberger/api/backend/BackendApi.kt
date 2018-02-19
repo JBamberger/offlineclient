@@ -19,4 +19,7 @@ internal interface BackendApi {
     @GET("/v1/fcm/register")
     fun insertToken(@Query("new_id") new: String): Flowable<String>
 
+    @GET("/data/stream")
+    fun getSampleStream(): Flowable<List<BackendPost>>
+
 }
