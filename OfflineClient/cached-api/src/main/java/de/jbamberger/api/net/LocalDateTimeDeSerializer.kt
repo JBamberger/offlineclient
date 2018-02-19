@@ -1,22 +1,30 @@
 package de.jbamberger.api.net
 
-import com.google.gson.*
+import com.squareup.moshi.FromJson
+import com.squareup.moshi.JsonDataException
+import com.squareup.moshi.ToJson
 import org.joda.time.LocalDateTime
 import org.joda.time.format.DateTimeFormat
-import java.lang.reflect.Type
+import java.lang.IllegalArgumentException
 
 /**
  * @author Jannik Bamberger (dev.jbamberger@gmail.com
  */
-class LocalDateTimeDeSerializer : JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
+class LocalDateTimeDeSerializer {
 
-    override fun serialize(src: LocalDateTime, typeOfSrc: Type, context: JsonSerializationContext): JsonElement {
-        return JsonPrimitive(src.toString(DATE_PATTERN))
+    @ToJson
+    fun serialize(src: LocalDateTime): String {
+        return src.toString(DATE_PATTERN)
     }
 
-    @Throws(JsonParseException::class)
-    override fun deserialize(json: JsonElement, typeOfT: Type, context: JsonDeserializationContext): LocalDateTime {
-        return LocalDateTime.parse(json.asJsonPrimitive.asString, DateTimeFormat.forPattern(DATE_PATTERN))
+    @FromJson
+    fun deserialize(json: String): LocalDateTime {
+        try {
+
+            return LocalDateTime.parse(json, DateTimeFormat.forPattern(DATE_PATTERN))
+        } catch (e: IllegalArgumentException) {
+            throw JsonDataException()
+        }
     }
 
     companion object {

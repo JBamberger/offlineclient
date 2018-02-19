@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text='@{"provider: " + obj.provider.name}'
+            android:text='@{"provider: " + obj.provider}'
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/orderDate"
@@ -69,7 +69,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/orderDate"
-            app:srcUrl='@{"https:" + obj.imageUrl}'
+            app:srcUrl='@{obj.imageUrl}'
             app:visIfNN="@{obj.imageUrl}" />
 
     </android.support.constraint.ConstraintLayout>

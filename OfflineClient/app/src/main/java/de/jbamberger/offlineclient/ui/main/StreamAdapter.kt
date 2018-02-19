@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import de.jbamberger.api.model.StreamContent
 import de.jbamberger.offlineclient.BR
 import de.jbamberger.offlineclient.R
+import timber.log.Timber
 import java.util.*
 
 
@@ -47,6 +48,7 @@ class StreamAdapter : RecyclerView.Adapter<StreamAdapter.DataBindingViewHolder>(
      */
     override fun onBindViewHolder(holder: DataBindingViewHolder, position: Int) {
         val obj = items[position]
+        Timber.d("%s Provider: %s", obj.javaClass, obj.provider?.name)
         val listener = null
         holder.bind(obj, listener)
     }

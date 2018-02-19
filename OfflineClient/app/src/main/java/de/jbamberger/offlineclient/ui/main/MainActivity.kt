@@ -41,7 +41,7 @@ class MainActivity : BaseActivity<MainActivityViewModel>() {
                         swipeRefreshLayout.isRefreshing = false
                     }
                     Status.ERROR -> {
-                        Toast.makeText(this, "Loading error!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Loading error! ${it.message}", Toast.LENGTH_LONG).show()
                         swipeRefreshLayout.isRefreshing = false
                     }
                     Status.LOADING -> {

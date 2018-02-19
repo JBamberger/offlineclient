@@ -3,9 +3,8 @@ package de.jbamberger.api.net
 import android.app.Application
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import de.jbamberger.api.BuildConfig
@@ -15,10 +14,9 @@ import io.reactivex.schedulers.Schedulers
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.joda.time.DateTime
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import javax.inject.Singleton
 
@@ -43,13 +41,13 @@ class NetModule {
 
     @Provides
     @Singleton
-    internal fun provideGson(): Gson {
-        val gsonBuilder = GsonBuilder()
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-        //gsonBuilder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeDeSerializer());
-        gsonBuilder.registerTypeAdapter(DateTime::class.java, DateTimeTypeAdapter())
-        gsonBuilder.registerTypeAdapter(ByteArray::class.java, ByteArrayTypeAdapter())
-        return gsonBuilder.create()
+    internal fun provideMoshi(): Moshi {
+        return Moshi.Builder()
+                .add(LocalDateTimeDeSerializer())
+                .add(DateTimeTypeAdapter())
+                .add(ByteArrayTypeAdapter())
+                .add(KotlinJsonAdapterFactory())
+                .build()
     }
 
     @Provides
@@ -90,12 +88,12 @@ class NetModule {
 
     @Provides
     @Singleton
-    internal fun provideRetrofitAPI(gson: Gson, okHttpClient: OkHttpClient): Retrofit.Builder {
+    internal fun provideRetrofitAPI(moshi: Moshi, okHttpClient: OkHttpClient): Retrofit.Builder {
         return Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 //.addConverterFactory(SimpleXmlConverterFactory.create())//TODO produces errors, different handling necessary
                 .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .client(okHttpClient)
     }
 }

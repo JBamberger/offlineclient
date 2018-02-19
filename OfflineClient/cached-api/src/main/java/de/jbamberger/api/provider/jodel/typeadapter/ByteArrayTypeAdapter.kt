@@ -1,15 +1,17 @@
 package de.jbamberger.api.provider.jodel.typeadapter
 
 import android.util.Base64
-import com.google.gson.*
-import java.lang.reflect.Type
+import com.squareup.moshi.FromJson
+import com.squareup.moshi.ToJson
 
-class ByteArrayTypeAdapter : JsonDeserializer<ByteArray>, JsonSerializer<ByteArray> {
-    override fun serialize(bArr: ByteArray, type: Type, jsonSerializationContext: JsonSerializationContext): JsonElement {
-        return JsonPrimitive(Base64.encodeToString(bArr, 2))
+class ByteArrayTypeAdapter {
+    @ToJson
+    fun serialize(bArr: ByteArray): String {
+        return Base64.encodeToString(bArr, 2)
     }
 
-    override fun deserialize(jsonElement: JsonElement, type: Type, jsonDeserializationContext: JsonDeserializationContext): ByteArray {
-        return Base64.decode(jsonElement.asString, 2)
+    @FromJson
+    fun deserialize(jsonElement: String): ByteArray {
+        return Base64.decode(jsonElement, 2)
     }
 }

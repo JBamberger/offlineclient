@@ -1,16 +1,25 @@
 package de.jbamberger.api.provider.jodel.typeadapter
 
-import com.google.gson.*
+import com.squareup.moshi.FromJson
+import com.squareup.moshi.JsonDataException
+import com.squareup.moshi.ToJson
 import org.joda.time.DateTime
 import org.joda.time.format.ISODateTimeFormat
-import java.lang.reflect.Type
+import java.lang.IllegalArgumentException
 
-class DateTimeTypeAdapter : JsonDeserializer<DateTime>, JsonSerializer<DateTime> {
-    override fun deserialize(jsonElement: JsonElement, type: Type, jsonDeserializationContext: JsonDeserializationContext): DateTime {
-        return ISODateTimeFormat.dateTime().parseDateTime(jsonElement.asString)
+class DateTimeTypeAdapter {
+    @FromJson
+    fun fromJson(date: String): DateTime {
+        try {
+        return ISODateTimeFormat.dateTime().parseDateTime(date)
+
+        } catch (e: IllegalArgumentException) {
+            throw JsonDataException()
+        }
     }
 
-    override fun serialize(dateTime: DateTime, type: Type, jsonSerializationContext: JsonSerializationContext): JsonElement {
-        return JsonPrimitive(ISODateTimeFormat.dateTime().print(dateTime))
+    @ToJson
+    fun toJson(dateTime: DateTime): String {
+        return ISODateTimeFormat.dateTime().print(dateTime)
     }
 }

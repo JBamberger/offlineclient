@@ -1,14 +1,14 @@
 package de.jbamberger.api.provider.jodel.model
 
 import android.location.Address
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 class Location(
         val name: String,
         val city: String,
         val country: String,
-        @SerializedName("loc_coordinates") val coordinates: Coordinates,
-        @SerializedName("loc_accuracy") val accuracy: Float) {
+        @Json(name="loc_coordinates") val coordinates: Coordinates,
+        @Json(name="loc_accuracy") val accuracy: Float) {
 
     val latitude: Double
         get() = coordinates.latitude

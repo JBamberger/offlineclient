@@ -1,7 +1,7 @@
 package de.jbamberger.api.provider.jodel.model
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 class Coordinates(
-        @SerializedName("lat") val latitude: Double,
-        @SerializedName("lng") val longitude: Double)
+        @Json(name = "lat") val latitude: Double,
+        @Json(name = "lng") val longitude: Double)
