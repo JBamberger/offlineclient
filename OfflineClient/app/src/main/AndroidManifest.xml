@@ -17,41 +17,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.jodel.JodelActivity"
-            android:label="@string/title_activity_jodel"
-            android:parentActivityName=".ui.main.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.jbamberger.offlineclient.ui.main.MainActivity" />
-        </activity>
-        <activity
-            android:name=".ui.reddit.RedditActivity"
-            android:label="@string/title_activity_reddit"
-            android:parentActivityName=".ui.main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.jbamberger.offlineclient.ui.main.MainActivity" />
-        </activity>
-        <activity
-            android:name=".ui.hackernews.HackerNewsActivity"
-            android:label="@string/title_activity_hacker_news"
-            android:parentActivityName=".ui.main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.jbamberger.offlineclient.ui.main.MainActivity" />
-        </activity>
-        <activity
-            android:name=".ui.twitter.TwitterActivity"
-            android:label="@string/title_activity_twitter"
-            android:parentActivityName=".ui.main.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.jbamberger.offlineclient.ui.main.MainActivity" />
-        </activity>
 
         <service android:name=".messaging.MessagingService">
             <intent-filter>
@@ -68,7 +33,7 @@
             See README(https://goo.gl/l4GJaQ) for more. -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_menu_slideshow" />
+            android:resource="@drawable/ic_notifications_black_24dp" />
         <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
              notification message. See README(https://goo.gl/6BKBk7) for more. -->
         <meta-data
