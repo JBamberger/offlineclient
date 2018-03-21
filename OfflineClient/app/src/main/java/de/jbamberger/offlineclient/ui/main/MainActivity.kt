@@ -6,7 +6,7 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.google.firebase.iid.FirebaseInstanceId
-import de.jbamberger.api.Status
+import de.jbamberger.api.Resource
 import de.jbamberger.offlineclient.R
 import de.jbamberger.offlineclient.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,7 +24,7 @@ class MainActivity : BaseActivity<MainActivityViewModel>() {
         Timber.d("InstanceId: %s", FirebaseInstanceId.getInstance().token)
 
         swipeRefreshLayout.setOnRefreshListener {
-            Toast.makeText(this, "Refresh not impl", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Refresh not impl", Toast.LENGTH_SHORT).show()
             swipeRefreshLayout.isRefreshing = false
         }
 
@@ -35,17 +35,17 @@ class MainActivity : BaseActivity<MainActivityViewModel>() {
 
         viewModel.posts.observe(this, Observer {
             if (it != null) {
-                when (it.status) {
-                    Status.SUCCESS -> {
+                when (it) {
+                    is Resource.Success -> {
                         it.data?.let { it1 -> adapter.setItems(it1) }
                         swipeRefreshLayout.isRefreshing = false
                     }
-                    Status.ERROR -> {
+                    is Resource.Error -> {
                         Toast.makeText(this, "Loading error! ${it.message}", Toast.LENGTH_LONG).show()
                         swipeRefreshLayout.isRefreshing = false
                     }
-                    Status.LOADING -> {
-                        Toast.makeText(this, "Loading...", Toast.LENGTH_LONG).show()
+                    is Resource.Loading -> {
+                        Toast.makeText(this, "Loading...", Toast.LENGTH_SHORT).show()
                         swipeRefreshLayout.isRefreshing = true
                     }
                 }

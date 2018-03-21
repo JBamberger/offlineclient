@@ -5,20 +5,8 @@ package de.jbamberger.api
  *
  * @param <T>
 </T> */
-data class Resource<out T>
-internal constructor(val status: Status, val data: T?, val message: String?) {
-
-    companion object {
-        fun <T> success(data: T?): Resource<T> {
-            return Resource(Status.SUCCESS, data, null)
-        }
-
-        fun <T> error(msg: String, data: T?): Resource<T> {
-            return Resource(Status.ERROR, data, msg)
-        }
-
-        fun <T> loading(data: T?): Resource<T> {
-            return Resource(Status.LOADING, data, null)
-        }
-    }
+sealed class Resource<out T> {
+    class Success<out T>(val data: T?) : Resource<T>()
+    class Loading<out T>(val data: T?) : Resource<T>()
+    class Error<out T>(val message: String, val data: T?) : Resource<T>()
 }
