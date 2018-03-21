@@ -1,7 +1,9 @@
 package de.jbamberger.api.provider.reddit
 
 import android.arch.lifecycle.LiveData
+import de.jbamberger.api.AbsentLiveData
 import de.jbamberger.api.AppExecutors
+import de.jbamberger.api.Resource
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,6 +18,10 @@ class RedditRepository @Inject internal constructor(
         private val api: RedditApi,
         private val executor: AppExecutors,
         private val redditPostDao: RedditPostDao) {
+
+    fun getPosts() : LiveData<Resource<List<RedditPost>>?> {
+        return AbsentLiveData.create()
+    }
 
     fun getRedditPost(subreddit: String): LiveData<RedditPost> {
         refreshRedditPosts(subreddit)

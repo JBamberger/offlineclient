@@ -2,41 +2,41 @@ package de.jbamberger.api.provider.jodel.model
 
 import org.joda.time.DateTime
 
-class Post {
-    var childCount: Int = 0
-    var children: List<Post>? = null
-    var color: String? = null
-    var createdAt: DateTime? = null
-    var distance: Float = 0.toFloat()
-    var isFromHome: Boolean = false
-    var isGotThanks: Boolean = false
-    var highlight: List<PostHighlight>? = null
-    var imageUrl: String? = null
-    var isFlagged: Boolean = false
-    var isOffline: Boolean = false
-    var isReply: Boolean = false
-    var location: Location? = null
-    var locationTag: LocationTag? = null
-    var message: String? = null
-    var isNotificationsEnabled: Boolean = false
-    var parentId: String? = null
-    var pinCount: Int = 0
-    var isPinned: Boolean = false
-    var postId: String? = null
-    var postOwn: String? = null
-    var isReadonly: Boolean = false
-    var isRemoved: Boolean = false
-    var removedReason: Int = 0
-    var replier = -1
-    var replierMark: String? = null
-    var replyTimestamp: String? = null
-    var shareCount: Int = 0
-    var thanksCount: Int = 0
-    var thumbnailUrl: String? = null
-    var userHandle: String? = null
-    var voteCount: Int = 0
-    var voted: String? = null
-
+data class Post(
+        val postId: String,
+        val childCount: Int = 0,
+        val children: List<Post>? = null,
+        val color: String? = null,
+        val createdAt: DateTime? = null,
+        val distance: Float = 0.toFloat(),
+        val isFromHome: Boolean = false,
+        val isGotThanks: Boolean = false,
+        val highlight: List<PostHighlight>? = null,
+        val imageUrl: String? = null,
+        val isFlagged: Boolean = false,
+        val isOffline: Boolean = false,
+        val isReply: Boolean = false,
+        val location: Location? = null,
+        val locationTag: LocationTag? = null,
+        val message: String? = null,
+        val isNotificationsEnabled: Boolean = false,
+        val parentId: String? = null,
+        val pinCount: Int = 0,
+        val isPinned: Boolean = false,
+        val postOwn: String? = null,
+        val isReadonly: Boolean = false,
+        val isRemoved: Boolean = false,
+        val removedReason: Int = 0,
+        val replier: Int = -1,
+        val replierMark: String? = null,
+        val replyTimestamp: String? = null,
+        val shareCount: Int = 0,
+        val thanksCount: Int = 0,
+        val thumbnailUrl: String? = null,
+        val userHandle: String? = null,
+        val voteCount: Int = 0,
+        val voted: String? = null
+) {
     override fun equals(other: Any?): Boolean {
         if (this === other) {
             return true
@@ -44,13 +44,11 @@ class Post {
         if (other !is Post) {
             return false
         }
-        val post = other as Post?
-        return if (post!!.postId != null) {
-            post.postId == this.postId
-        } else false
+        return other.postId == this.postId
+
     }
 
     override fun hashCode(): Int {
-        return this.postId!!.hashCode()
+        return this.postId.hashCode()
     }
 }

@@ -6,7 +6,6 @@ import de.jbamberger.api.ApiResponse
 import de.jbamberger.api.AppExecutors
 import de.jbamberger.api.NetworkBoundResource
 import de.jbamberger.api.Resource
-import de.jbamberger.api.model.StreamContent
 import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -38,29 +37,29 @@ internal constructor(val appExecutors: AppExecutors, val api: BackendApi) {
         }
     }
 
-    fun getPosts(): LiveData<Resource<List<StreamContent>>> {
-        return object : NetworkBoundResource<List<StreamContent>, List<StreamContent>>(appExecutors) {
-            var items: List<StreamContent>? = null
+    fun getPosts(): LiveData<Resource<List<BackendPost>>> {
+        return object : NetworkBoundResource<List<BackendPost>, List<BackendPost>>(appExecutors) {
+            var items: List<BackendPost>? = null
 
-            override fun saveCallResult(item: List<StreamContent>) {
+            override fun saveCallResult(item: List<BackendPost>) {
                 items = item
             }
 
-            override fun shouldFetch(data: List<StreamContent>?): Boolean {
+            override fun shouldFetch(data: List<BackendPost>?): Boolean {
                 return data == null
             }
 
-            override fun loadFromDb(): LiveData<List<StreamContent>?> {
-                return object : LiveData<List<StreamContent>?>() {
+            override fun loadFromDb(): LiveData<List<BackendPost>?> {
+                return object : LiveData<List<BackendPost>?>() {
                     init {
                         postValue(items)
                     }
                 }
             }
 
-            override fun createCall(): LiveData<ApiResponse<List<StreamContent>>> {
+            override fun createCall(): LiveData<ApiResponse<List<BackendPost>>> {
                 val responseStream = api.getSampleStream()
-                        .map { ApiResponse<List<StreamContent>>(it) }
+                        .map { ApiResponse<List<BackendPost>>(it) }
                         .onErrorReturn { ApiResponse(it) }
                 return LiveDataReactiveStreams.fromPublisher(responseStream)
             }

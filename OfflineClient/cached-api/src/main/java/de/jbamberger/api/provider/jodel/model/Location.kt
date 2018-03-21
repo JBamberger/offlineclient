@@ -3,7 +3,7 @@ package de.jbamberger.api.provider.jodel.model
 import android.location.Address
 import com.squareup.moshi.Json
 
-class Location(
+data class Location(
         val name: String,
         val city: String,
         val country: String,
