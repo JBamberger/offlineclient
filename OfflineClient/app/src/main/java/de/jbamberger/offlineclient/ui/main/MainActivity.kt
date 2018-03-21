@@ -37,11 +37,11 @@ class MainActivity : BaseActivity<MainActivityViewModel>() {
             if (it != null) {
                 when (it) {
                     is Resource.Success -> {
-                        it.data?.let { it1 -> adapter.setItems(it1) }
+                        adapter.setItems(it.data)
                         swipeRefreshLayout.isRefreshing = false
                     }
                     is Resource.Error -> {
-                        Toast.makeText(this, "Loading error! ${it.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Loading error! ${it.message.message}", Toast.LENGTH_LONG).show()
                         swipeRefreshLayout.isRefreshing = false
                     }
                     is Resource.Loading -> {

@@ -23,7 +23,7 @@ internal constructor(private val appExecutors: AppExecutors, private val api: Jo
     private val posts = MutableLiveData<Resource<List<Post>>>()
 
     fun getPosts(): LiveData<Resource<List<Post>>> {
-        return object : NetworkBoundResource<List<Post>, GetPostsComboResponse>(appExecutors) {
+        return NetworkBoundResource(appExecutors, object : NetworkBoundResource.Source<List<Post>, GetPostsComboResponse> {
             override fun saveCallResult(item: GetPostsComboResponse) {}
 
             override fun shouldFetch(data: List<Post>?): Boolean {
@@ -36,11 +36,11 @@ internal constructor(private val appExecutors: AppExecutors, private val api: Jo
 
             override fun createCall(): LiveData<ApiResponse<GetPostsComboResponse>> {
                 val responseStream = api.getPostsCombo(47.75027847290039, 8.978754997253418, true, true, false)
-                        .map { ApiResponse(it) }
-                        .onErrorReturn { ApiResponse(it)}
+                        .map<ApiResponse<GetPostsComboResponse>> { ApiResponse.Success(it) }
+                        .onErrorReturn { ApiResponse.Error(it) }
                 return LiveDataReactiveStreams.fromPublisher(responseStream)
             }
-        }.asLiveData()
+        }).asLiveData()
     }
 
 

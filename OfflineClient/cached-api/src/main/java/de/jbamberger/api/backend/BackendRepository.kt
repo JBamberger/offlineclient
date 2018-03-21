@@ -38,31 +38,32 @@ internal constructor(val appExecutors: AppExecutors, val api: BackendApi) {
     }
 
     fun getPosts(): LiveData<Resource<List<BackendPost>>> {
-        return object : NetworkBoundResource<List<BackendPost>, List<BackendPost>>(appExecutors) {
-            var items: List<BackendPost>? = null
+        return NetworkBoundResource(appExecutors,
+                object : NetworkBoundResource.Source<List<BackendPost>, List<BackendPost>> {
+                    var items: List<BackendPost>? = null
 
-            override fun saveCallResult(item: List<BackendPost>) {
-                items = item
-            }
-
-            override fun shouldFetch(data: List<BackendPost>?): Boolean {
-                return data == null
-            }
-
-            override fun loadFromDb(): LiveData<List<BackendPost>?> {
-                return object : LiveData<List<BackendPost>?>() {
-                    init {
-                        postValue(items)
+                    override fun saveCallResult(item: List<BackendPost>) {
+                        items = item
                     }
-                }
-            }
 
-            override fun createCall(): LiveData<ApiResponse<List<BackendPost>>> {
-                val responseStream = api.getSampleStream()
-                        .map { ApiResponse<List<BackendPost>>(it) }
-                        .onErrorReturn { ApiResponse(it) }
-                return LiveDataReactiveStreams.fromPublisher(responseStream)
-            }
-        }.asLiveData()
+                    override fun shouldFetch(data: List<BackendPost>?): Boolean {
+                        return data == null
+                    }
+
+                    override fun loadFromDb(): LiveData<List<BackendPost>?> {
+                        return object : LiveData<List<BackendPost>?>() {
+                            init {
+                                postValue(items)
+                            }
+                        }
+                    }
+
+                    override fun createCall(): LiveData<ApiResponse<List<BackendPost>>> {
+                        val responseStream = api.getSampleStream()
+                                .map<ApiResponse<List<BackendPost>>> { ApiResponse.Success(it) }
+                                .onErrorReturn { ApiResponse.Error(it) }
+                        return LiveDataReactiveStreams.fromPublisher(responseStream)
+                    }
+                }).asLiveData()
     }
 }

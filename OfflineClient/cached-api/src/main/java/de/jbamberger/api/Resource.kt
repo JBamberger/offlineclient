@@ -6,7 +6,7 @@ package de.jbamberger.api
  * @param <T>
 </T> */
 sealed class Resource<out T> {
-    class Success<out T>(val data: T?) : Resource<T>()
+    class Success<out T>(val data: T) : Resource<T>()
     class Loading<out T>(val data: T?) : Resource<T>()
-    class Error<out T>(val message: String, val data: T?) : Resource<T>()
+    class Error<out T>(val message: Throwable, val data: T?) : Resource<T>()
 }
