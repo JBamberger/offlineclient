@@ -1,5 +1,12 @@
 # OfflineClient
 
-Android app that downloads contents from various services and caches them locally for usage without internet access.
+# Current state
 
-The code is by no means complete or functional. Some functions rely on non-public apis that may change at any time and therefore break functionality. Some functions require root access to function properly.
+Various code snippets patched together to test functionalities and libraries. Nothing functional / usable.
+The code is by no means complete or functional. Some functions rely on non-public APIs that may change at any time and therefore break functionality. Some features require root access to function.
+
+
+# Original intention
+
+Android app that downloads contents from various content providers and caches them locally for usage without network access.
+
