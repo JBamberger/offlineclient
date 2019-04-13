@@ -4,9 +4,9 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
 import de.jbamberger.api.AppExecutors
 import de.jbamberger.api.Resource
-import de.jbamberger.api.backend.BackendPost
-import de.jbamberger.api.backend.BackendRepository
 import de.jbamberger.api.model.StreamContent
+import de.jbamberger.api.provider.backend.BackendPost
+import de.jbamberger.api.provider.backend.BackendRepository
 import de.jbamberger.api.provider.jodel.JodelRepository
 import de.jbamberger.api.provider.jodel.model.Post
 import de.jbamberger.api.provider.reddit.RedditPost

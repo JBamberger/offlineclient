@@ -29,13 +29,13 @@ class RedditRepository @Inject internal constructor(
     }
 
     private fun refreshRedditPosts(subreddit: String) {
-        executor.networkIO().execute {
+        executor.networkIO.execute {
             val postExists = false//redditPostDao.hasRedditPost(TIMEOUT);
             if (!postExists) {
                 api.getPosts(subreddit).enqueue(object : Callback<RedditPost> {
                     override fun onResponse(call: Call<RedditPost>, response: Response<RedditPost>) {
                         // error case is left out for brevity
-                        executor.diskIO().execute { redditPostDao.save(response.body()!!) }
+                        executor.diskIO.execute { redditPostDao.save(response.body()!!) }
                     }
 
                     override fun onFailure(call: Call<RedditPost>, t: Throwable) {

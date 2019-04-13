@@ -91,7 +91,6 @@ class NetModule {
     internal fun provideRetrofitAPI(moshi: Moshi, okHttpClient: OkHttpClient): Retrofit.Builder {
         return Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                //.addConverterFactory(SimpleXmlConverterFactory.create())//TODO produces errors, different handling necessary
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .client(okHttpClient)

@@ -6,7 +6,7 @@ import java.io.*
  * @author Jannik Bamberger (dev.jbamberger@gmail.com)
  */
 
-object FileUtils {
+internal object FileUtils {
 
     @Throws(IOException::class)
     fun readFile(path: String): String {

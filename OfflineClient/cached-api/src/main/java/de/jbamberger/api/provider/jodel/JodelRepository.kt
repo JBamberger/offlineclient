@@ -35,7 +35,8 @@ internal constructor(private val appExecutors: AppExecutors, private val api: Jo
             }
 
             override fun createCall(): LiveData<ApiResponse<GetPostsComboResponse>> {
-                val responseStream = api.getPostsCombo(47.75027847290039, 8.978754997253418, true, true, false)
+                val responseStream = api.getPostsCombo(
+                        47.75027, 8.97875, true, true, false)
                         .map<ApiResponse<GetPostsComboResponse>> { ApiResponse.Success(it) }
                         .onErrorReturn { ApiResponse.Error(it) }
                 return LiveDataReactiveStreams.fromPublisher(responseStream)
@@ -47,15 +48,12 @@ internal constructor(private val appExecutors: AppExecutors, private val api: Jo
     fun credentials() {
         try {
             val jodelPath = "/data/data/com.tellm.android.app"
-            val cmd = object : ExecuteAsRootBase() {
-                override val commandsToExecute: List<String>
-                    get() = listOf<String>(
-                            "[ -f $jodelPath/files/INSTALLATION ] && cp $jodelPath/files/INSTALLATION ${app.filesDir} && chmod 755 ${app.filesDir.absolutePath}/INSTALLATION",
-                            "[ -f $jodelPath/shared_prefs/tellm.xml ] && cp $jodelPath/shared_prefs/tellm.xml ${app.applicationInfo.dataDir}/shared_prefs/tellm.xml" + "&& chmod 755 ${app.applicationInfo.dataDir}/shared_prefs/tellm.xml")
-            }
-            cmd.execute()
+            val commands = listOf(
+                    "[ -f $jodelPath/files/INSTALLATION ] && cp $jodelPath/files/INSTALLATION ${app.filesDir} && chmod 755 ${app.filesDir.absolutePath}/INSTALLATION",
+                    "[ -f $jodelPath/shared_prefs/tellm.xml ] && cp $jodelPath/shared_prefs/tellm.xml ${app.applicationInfo.dataDir}/shared_prefs/tellm.xml" + "&& chmod 755 ${app.applicationInfo.dataDir}/shared_prefs/tellm.xml")
+            ExecuteAsRoot.execute(commands)
             val p = app.getSharedPreferences("tellm", Context.MODE_PRIVATE)
-            val pref = SecurePreferences(app.applicationContext)
+            val pref = PreferenceCodec(app.applicationContext)
             val m = p.all
             for (k in m.keys) {
                 try {

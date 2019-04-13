@@ -3,7 +3,7 @@ package de.jbamberger.offlineclient.ui.main
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import de.jbamberger.api.backend.BackendPost
+import de.jbamberger.api.provider.backend.BackendPost
 
 class BackendStreamHandler : CombinedStreamAdapter.StreamHandler<BackendPost, BackendStreamHandler.Holder> {
 

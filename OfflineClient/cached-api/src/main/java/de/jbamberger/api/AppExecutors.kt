@@ -12,29 +12,20 @@ import javax.inject.Singleton
 /**
  * Global executor pools for the whole application.
  *
- *
  * Grouping tasks like this avoids the effects of task starvation (e.g. disk reads don't wait behind
  * webservice requests).
  */
 @Singleton
-class AppExecutors(private val diskIO: Executor, private val networkIO: Executor, private val mainThread: Executor) {
+internal class AppExecutors(
+        val diskIO: Executor,
+        val networkIO: Executor,
+        val mainThread: Executor) {
 
     @Inject
-    constructor() : this(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(3),
-            MainThreadExecutor()) {
-    }
-
-    fun diskIO(): Executor {
-        return diskIO
-    }
-
-    fun networkIO(): Executor {
-        return networkIO
-    }
-
-    fun mainThread(): Executor {
-        return mainThread
-    }
+    constructor() : this(
+            Executors.newSingleThreadExecutor(),
+            Executors.newFixedThreadPool(3),
+            MainThreadExecutor())
 
     private class MainThreadExecutor : Executor {
         private val mainThreadHandler = Handler(Looper.getMainLooper())

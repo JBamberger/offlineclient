@@ -1,4 +1,4 @@
-package de.jbamberger.api.backend
+package de.jbamberger.api.provider.backend
 
 import io.reactivex.Flowable
 import retrofit2.http.GET

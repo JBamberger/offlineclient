@@ -1,4 +1,4 @@
-package de.jbamberger.api.backend
+package de.jbamberger.api.provider.backend
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.LiveDataReactiveStreams

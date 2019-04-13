@@ -45,39 +45,46 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':cached-api')
 
-    implementation "com.android.support:support-v4:$support_version"
-    implementation "com.android.support:appcompat-v7:$support_version"
-    implementation "com.android.support:support-annotations:$support_version"
-    implementation "com.android.support:design:$support_version"
-    implementation "com.android.support:cardview-v7:$support_version"
-    implementation "com.android.support:recyclerview-v7:$support_version"
-    implementation "com.android.support:customtabs:$support_version"
-    implementation "com.android.support:preference-v14:$support_version"
-    implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+    implementation "com.android.support:support-v4:27.1.1"
+    implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation "com.android.support:support-annotations:27.1.1"
+    implementation "com.android.support:design:27.1.1"
+    implementation "com.android.support:cardview-v7:27.1.1"
+    implementation "com.android.support:recyclerview-v7:27.1.1"
+    implementation "com.android.support:customtabs:27.1.1"
+    implementation "com.android.support:preference-v14:27.1.1"
+    implementation "com.android.support.constraint:constraint-layout:1.1.0"
 
-    implementation "android.arch.lifecycle:runtime:$lifecycle_version"
-    implementation "android.arch.lifecycle:extensions:$lifecycle_version"
-    kapt "android.arch.lifecycle:compiler:$lifecycle_version"
+    implementation "android.arch.lifecycle:runtime:1.1.1"
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+    kapt "android.arch.lifecycle:compiler:1.1.1"
 
-    implementation "com.google.firebase:firebase-messaging:$firebaseVersion"
+    def work_version = "1.0.0-alpha01"
+
+    implementation "android.arch.work:work-runtime-ktx:$work_version"
+    //implementation "android.arch.work:work-firebase:$work_version"
+    androidTestImplementation "android.arch.work:work-testing:$work_version"
+
+
+    implementation "com.google.firebase:firebase-messaging:15.0.2"
 
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
 
     implementation "joda-time:joda-time:$joda_time_version"
 
-    implementation "com.jakewharton.timber:timber:$timber_version"
+    implementation "com.jakewharton.timber:timber:4.7.0"
 
     implementation "org.jsoup:jsoup:$jsoup_version"
 
     implementation "com.google.code.gson:gson:$gson_version"
 
-    implementation "com.google.dagger:dagger:$dagger_version"
-    implementation "com.google.dagger:dagger-android:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    implementation "com.google.dagger:dagger:2.15"
+    implementation "com.google.dagger:dagger-android:2.15"
+    implementation "com.google.dagger:dagger-android-support:2.15"
     compileOnly "javax.annotation:jsr250-api:1.0"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:2.15"
+    kapt "com.google.dagger:dagger-android-processor:2.15"
 
     implementation "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"

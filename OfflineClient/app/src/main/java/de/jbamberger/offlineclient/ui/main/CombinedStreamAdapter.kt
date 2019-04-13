@@ -2,7 +2,7 @@ package de.jbamberger.offlineclient.ui.main
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import de.jbamberger.api.backend.BackendPost
+import de.jbamberger.api.provider.backend.BackendPost
 import de.jbamberger.api.model.StreamContent
 import de.jbamberger.offlineclient.R
 import java.util.*

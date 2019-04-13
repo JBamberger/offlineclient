@@ -5,7 +5,7 @@ import android.arch.lifecycle.LiveData
 /**
  * A LiveData class that has `null` value.
  */
-class AbsentLiveData<T> private constructor() : LiveData<T?>() {
+internal class AbsentLiveData<T> private constructor() : LiveData<T?>() {
     init {
         postValue(null)
     }

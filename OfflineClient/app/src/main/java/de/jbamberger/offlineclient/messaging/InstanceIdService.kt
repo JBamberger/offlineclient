@@ -5,7 +5,7 @@ import android.preference.PreferenceManager
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.iid.FirebaseInstanceIdService
 import dagger.android.AndroidInjection
-import de.jbamberger.api.backend.BackendRepository
+import de.jbamberger.api.provider.backend.BackendRepository
 import timber.log.Timber
 import javax.inject.Inject
 

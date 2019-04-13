@@ -17,7 +17,7 @@ import android.support.annotation.WorkerThread
  */
 class NetworkBoundResource<ResultType, RequestType>
 @MainThread
-constructor(
+internal constructor(
         private val appExecutors: AppExecutors,
         private val source: Source<ResultType, RequestType>) {
 
@@ -46,9 +46,9 @@ constructor(
 
             when (response) {
                 is ApiResponse.Success -> {
-                    appExecutors.diskIO().execute {
+                    appExecutors.diskIO.execute {
                         source.saveCallResult(source.processResponse(response))
-                        appExecutors.mainThread().execute {
+                        appExecutors.mainThread.execute {
                             // we specially request a new live data,
                             // otherwise we will get immediately last cached value,
                             // which may not be updated with latest results received from network.

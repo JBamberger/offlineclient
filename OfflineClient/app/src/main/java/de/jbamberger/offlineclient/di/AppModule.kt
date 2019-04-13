@@ -7,7 +7,7 @@ import android.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import de.jbamberger.api.RepositoryProvider
-import de.jbamberger.api.backend.BackendRepository
+import de.jbamberger.api.provider.backend.BackendRepository
 import de.jbamberger.api.provider.jodel.JodelRepository
 import de.jbamberger.api.provider.reddit.RedditRepository
 import javax.inject.Singleton

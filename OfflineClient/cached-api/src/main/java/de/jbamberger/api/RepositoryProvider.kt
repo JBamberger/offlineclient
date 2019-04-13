@@ -1,7 +1,7 @@
 package de.jbamberger.api
 
 import android.app.Application
-import de.jbamberger.api.backend.BackendRepository
+import de.jbamberger.api.provider.backend.BackendRepository
 import de.jbamberger.api.provider.jodel.JodelRepository
 import de.jbamberger.api.provider.reddit.RedditRepository
 
